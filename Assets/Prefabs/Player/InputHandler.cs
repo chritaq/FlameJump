@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class InputHandler : MonoBehaviour
 {
     private PlayerController playerController;
     private GameObject playerPrefab;
+    [SerializeField] private bool keyBoard;
 
     Queue<Command> actionInputQueue = new Queue<Command>();
     Queue<Command> horizontalInputQueue = new Queue<Command>();
@@ -13,8 +15,8 @@ public class InputHandler : MonoBehaviour
 
 
     //Commands for controller
-    Command zButtonCommand = new JumpCommand();
-    Command zButtonHoldCommand = new JumpHoldCommand();
+    Command aButtonCommand = new JumpCommand();
+    Command aButtonHoldCommand = new JumpHoldCommand();
     Command xButtonCommand = new DashCommand();
     Command restartCommand = new RestartCommand();
     //Command bButton;
@@ -32,6 +34,9 @@ public class InputHandler : MonoBehaviour
     Command noHorizontalCommand = new NoHorizontalCommand();
     Command noVerticalCommand = new NoVerticalCommand();
 
+    PlayerIndex player;
+    GamePadState state;
+    private Vector2 stickInput;
 
     void Start()
     {
@@ -40,39 +45,76 @@ public class InputHandler : MonoBehaviour
 
         playerController = playerPrefab.GetComponent<PlayerController>();
 
+        player = PlayerIndex.One;
+
     }
 
 
     private void Update()
     {
+        //if(Input.anyKey)
+        //{
+        //    keyBoard = true;
+        //}
+        //if(state.Buttons.Start == ButtonState.Pressed)
+        //{
+        //    keyBoard = false;
+        //}
+
+        state = GamePad.GetState(player, GamePadDeadZone.Circular);
+
         HandleActionInput();
         ExcecuteSelectedCommand(actionInputQueue, true, false);
-        HandleMovementInput();
+        if(keyBoard)
+        {
+            HandleKeyboardMovementInput();
+        }
+        else
+        {
+            HandleXboxMovementInput();
+        }
         ExcecuteSelectedCommand(horizontalInputQueue, false);
         ExcecuteSelectedCommand(verticalInputQueue, false);
 
         
     }
 
+
+    private bool aHasBeenPressed = false;
+    private bool xHasBeenPressed = false;
+
     private void HandleActionInput()
     {
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) || state.Buttons.A == ButtonState.Pressed && !aHasBeenPressed)
         {
-            actionInputQueue.Enqueue(zButtonCommand);
+            actionInputQueue.Enqueue(aButtonCommand);
+            aHasBeenPressed = true;
         }
-        if (Input.GetKey(KeyCode.Z))
+
+        else if(state.Buttons.A == ButtonState.Released) {
+            aHasBeenPressed = false;
+        }
+
+
+        if (Input.GetKey(KeyCode.Z) || state.Buttons.A == ButtonState.Pressed)
         {
-            actionInputQueue.Enqueue(zButtonHoldCommand);
+            actionInputQueue.Enqueue(aButtonHoldCommand);
         }
-        if (Input.GetKeyDown(KeyCode.X))
+
+        if (Input.GetKeyDown(KeyCode.X) || state.Buttons.X == ButtonState.Pressed && !xHasBeenPressed)
         {
             actionInputQueue.Enqueue(xButtonCommand);
+            xHasBeenPressed = true;
+        }
+        else if (state.Buttons.X == ButtonState.Released)
+        {
+            xHasBeenPressed = false;
         }
         //inputQueue.Enqueue(null);
     }
 
-    private void HandleMovementInput()
+    private void HandleKeyboardMovementInput()
     {
         if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
         {
@@ -90,7 +132,6 @@ public class InputHandler : MonoBehaviour
         }
 
 
-
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyUp(KeyCode.DownArrow) && Input.GetKey(KeyCode.UpArrow))
         {
             verticalInputQueue.Enqueue(moveUpCommand);
@@ -104,6 +145,37 @@ public class InputHandler : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow) || Input.GetKeyUp(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow))
         {
             horizontalInputQueue.Enqueue(noVerticalCommand);
+        }
+    }
+
+    [SerializeField] private float horizontalDeadZone = 0.5f;
+    [SerializeField] private float verticalDeadZone = 0.5f;
+    private void HandleXboxMovementInput()
+    {
+        if(state.ThumbSticks.Left.X > horizontalDeadZone)
+        {
+            horizontalInputQueue.Enqueue(moveRightCommand);
+        }
+        else if(state.ThumbSticks.Left.X < -horizontalDeadZone)
+        {
+            horizontalInputQueue.Enqueue(moveLeftCommand);
+        }
+        else
+        {
+            horizontalInputQueue.Enqueue(noHorizontalCommand);
+        }
+
+        if (state.ThumbSticks.Left.Y > verticalDeadZone)
+        {
+            verticalInputQueue.Enqueue(moveUpCommand);
+        }
+        else if (state.ThumbSticks.Left.Y < -verticalDeadZone)
+        {
+            verticalInputQueue.Enqueue(moveDownCommand);
+        }
+        else
+        {
+            verticalInputQueue.Enqueue(noVerticalCommand);
         }
     }
 
@@ -195,7 +267,7 @@ public class InputHandler : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Z))
         {
-            zButtonCommand = command;
+            aButtonCommand = command;
             Debug.Log("command assigned to Z");
         }
 

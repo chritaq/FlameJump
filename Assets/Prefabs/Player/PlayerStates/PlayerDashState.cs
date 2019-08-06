@@ -11,7 +11,6 @@ public class PlayerDashState : PlayerState
 
     public override void Enter(PlayerController playerController)
     {
-        Debug.Log("Entered Dash");
         ServiceLocator.GetAudio().PlaySound("Player_Dash");
         counterName = "Dash";
 
@@ -63,6 +62,11 @@ public class PlayerDashState : PlayerState
             AddDashVelocityOnce(playerController);
         }
 
+        if (playerController.checkIfOnGround() && playerController.activeActionCommand == PlayerController.PlayerActionCommands.Jump)
+        {
+            return new PlayerJumpState();
+        }
+
         return TryEndDash(t);
     }
 
@@ -84,6 +88,7 @@ public class PlayerDashState : PlayerState
                 return new PlayerIdleState();
             }
         }
+
         return null;
     }
 }

@@ -78,6 +78,12 @@ public class PlayerController : Unit
         }
     }
 
+    public void Kill()
+    {
+        returnedState = new PlayerKillState();
+        StateSwap();
+    }
+
     public override void Bounce()
     {
         if (returnedState == null)
@@ -236,41 +242,38 @@ public class PlayerController : Unit
     }
 
     Vector2 movement;
-    //private float activeSpeed = 0f;
-    //[SerializeField]
-    //private float turnAcceleration = 1f;
-    //[SerializeField]
-    //private float airTurnAcceleration = 1f;
+    private float horizontalVelocity;
+    [SerializeField] private float horizontalDamping;
+    [SerializeField] private float acceleration;
 
 
     private void Movement()
     {
         direction = GetDirectionFromCommand();
-        //direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
         UpdateVerticalVelocity();
 
-        //Check if the direction the player is moving is different from the input.
-        //Tempcode for turning-speeds etc.
-        //if(movement.x/activeSpeed != direction.x && direction.x != 0)
-        //{
-        //    activeSpeed = 0;
-        //}
+        //Code for turning-speed and acceleration
+        if(direction.x != 0)
+        {
+            horizontalVelocity += direction.x * acceleration;
+            //horizontalVelocity *= Mathf.Pow(1f - horizontalDamping, Time.deltaTime * 10f);
+            horizontalVelocity = Mathf.Clamp(horizontalVelocity, -maxMovementSpeed, maxMovementSpeed);
+            movement = new Vector2(horizontalVelocity, verticalVelocity);
+        }
+        else
+        {
+            if (horizontalVelocity < acceleration && horizontalVelocity > -acceleration)
+            {
+                horizontalVelocity = 0;
+            }
+            else
+            {
+                horizontalVelocity -= Mathf.Clamp(horizontalVelocity, -1, 1) * acceleration;
+            }
 
-        //if (activeSpeed < maxMovementSpeed)
-        //{
-        //    if(!onGround)
-        //    {
-        //        activeSpeed = activeSpeed + airTurnAcceleration;
-        //    }
-        //    else
-        //    {
-        //        activeSpeed = activeSpeed + turnAcceleration;
-        //    }
-            
-        //}
-
-        movement = new Vector2(direction.x * maxMovementSpeed, verticalVelocity);
-
+            movement = new Vector2(horizontalVelocity, verticalVelocity);
+        }
 
         UpdateVelocity();
         //rb.velocity = new Vector2(movement.x, movement.y);
@@ -338,5 +341,34 @@ public class PlayerController : Unit
         lateJump = false;
         yield return null;
     }
+
+
+
+    private int extraGroundedTimer;
+    [SerializeField] private int coyoteJumpTime = 16;
+
+    public void CoyoteJumpTimer()
+    {
+        if(onGround)
+        {
+            extraGroundedTimer = coyoteJumpTime;
+        }
+        extraGroundedTimer--;
+    }
+
+    public bool CheckCoyoteJump()
+    {
+        if(extraGroundedTimer > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+
 
 }

@@ -23,8 +23,9 @@ public class PlayerIdleState : PlayerState
 
     public override PlayerState Update(PlayerController playerController, float t)
     {
+        playerController.CoyoteJumpTimer();
 
-        if(playerController.checkIfOnGround())
+        if (playerController.checkIfOnGround())
         {
             playerController.SetHealthAndDashChargesToMax();
         }
@@ -38,7 +39,7 @@ public class PlayerIdleState : PlayerState
 
         if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Jump || playerController.activeActionCommand == PlayerController.PlayerActionCommands.LateJump)
         {
-            if(playerController.checkIfOnGround())
+            if(playerController.checkIfOnGround() || playerController.CheckCoyoteJump())
             {
                 playerController.StopLateJump();
                 return new PlayerJumpState();
@@ -46,7 +47,6 @@ public class PlayerIdleState : PlayerState
             else if(playerController.activeActionCommand != PlayerController.PlayerActionCommands.LateJump)
             {
                 playerController.TryLateJump();
-                Debug.Log("Tried late jump");
             }
         }
 

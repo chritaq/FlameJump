@@ -10,6 +10,12 @@ public class PlayerKillState : PlayerState
 
     public override void Enter(PlayerController playerController)
     {
+        ServiceLocator.GetScreenShake().StartScreenShake(25, 0.5f);
+
+        playerController.deathParticles.Play();
+        playerController.redFlameParticles.SetActive(false);
+        playerController.blueFlameParticles.SetActive(false);
+
         counterName = "Death";
 
         respawnTime = playerController.GetRespawnTime();
@@ -24,12 +30,16 @@ public class PlayerKillState : PlayerState
         spriteRenderer.enabled = false;
 
         //Makes sure the player gets pinned to the place he died
+        //Dosen't work!
         rb = playerController.AccessRigidBody();
-        rb.velocity = new Vector2(0, 0);
+        rb.velocity = Vector2.zero;
+        rb.gravityScale = 0;
+        
     }
 
     public override void Exit(PlayerController playerController)
     {
+        rb.gravityScale = playerController.CheckInitialGravityScale();
         //Set playerpos to spawn
         playerController.transform.position = playerController.GetSpawnPosition();
 
@@ -47,6 +57,7 @@ public class PlayerKillState : PlayerState
 
     public override PlayerState Update(PlayerController playerController, float t)
     {
+        rb.transform.transform.Translate(new Vector2(0, 0));
         //Timedelay for death
         respawnTime -= t;
         if(respawnTime <= 0)

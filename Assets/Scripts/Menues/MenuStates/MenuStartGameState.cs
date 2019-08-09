@@ -1,31 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuStartGameState : MenuState
 {
-    private float transitionTime;
-
     public override void Enter(MenuController menuController)
     {
-        transitionTime = menuController.longMenuTransitionTime;
-        //Need to disable controls
-        Debug.Log("Start Game pressed");
+        Debug.Log("Entered menustargame state");
+        menuController.SetAboveState(new MenuMainState());
+        menuController.startGameMenuObject.SetActive(true);
     }
 
     public override void Exit(MenuController menuController)
     {
-
+        menuController.startGameMenuObject.SetActive(false);
     }
 
     public override MenuState Update(MenuController menuController, float t)
     {
-        transitionTime -= t;
-        if(transitionTime <= 0)
-        {
-            //Change scene
-            Debug.Log("Game started");
-        }
         return null;
     }
 

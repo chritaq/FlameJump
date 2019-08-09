@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     {
         ServiceLocator.Initialize();
         ServiceLocator.ProvideAudio(new NewAudioProvider());
+        ServiceLocator.ProvideScreenShake(new ScreenShakeProvider());
+        ServiceLocator.GetScreenShake().GetCamera();
         ServiceLocator.GetAudio().LoadSounds();
         ServiceLocator.GetAudio().PlaySound("Music_Gameplay01");
     }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : Unit
 {
+    public GameObject redFlameParticles;
+    public GameObject blueFlameParticles;
+    public ParticleSystem deathParticles;
+    //public ParticleSystem dustParticles;
 
 
     //Movement
@@ -98,6 +102,8 @@ public class PlayerController : Unit
     {
         dashCharges = maxDashCharges;
         health = maxHealth;
+
+        
     }
 
 
@@ -180,6 +186,33 @@ public class PlayerController : Unit
 
     private void Update()
     {
+        //Lägg in i states istället?
+        //if(health == 0)
+        //{
+
+        //    if(!redFlameParticles.activeSelf && dashCharges != 0)
+        //    {
+        //        redFlameParticles.SetActive(true);
+        //        blueFlameParticles.SetActive(false);
+        //    }
+        //    if (!blueFlameParticles.activeSelf && dashCharges == 0)
+        //    {
+        //        blueFlameParticles.SetActive(true);
+        //        redFlameParticles.SetActive(false);
+        //    }
+        //}
+        //else if(health != 0)
+        //{
+        //    if(redFlameParticles.activeSelf)
+        //    {
+        //        redFlameParticles.SetActive(false);
+        //    }
+        //    if (blueFlameParticles.activeSelf)
+        //    {
+        //        blueFlameParticles.SetActive(false);
+        //    }
+            
+        //}
 
         returnedState = currentState.Update(this, Time.deltaTime);
 

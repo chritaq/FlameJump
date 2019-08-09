@@ -10,6 +10,7 @@ public class PlayerBounceState : PlayerState
 
     public override void Enter(PlayerController playerController)
     {
+        ServiceLocator.GetScreenShake().StartScreenShake(2f, 0.2f);
         counterName = "Bounce";
 
         //Gets the normal gravity for the player.
@@ -45,8 +46,31 @@ public class PlayerBounceState : PlayerState
 
     public override PlayerState Update(PlayerController playerController, float t)
     {
+        if(playerController.GetPlayerHealth() == 0)
+        {
+            if (playerController.dashCharges != 0)
+            {
+                playerController.redFlameParticles.SetActive(true);
+                playerController.blueFlameParticles.SetActive(false);
+            }
+            else
+            {
+                playerController.blueFlameParticles.SetActive(true);
+                playerController.redFlameParticles.SetActive(false);
+            }
+        }
+        else
+        {
+            playerController.redFlameParticles.SetActive(false);
+            playerController.blueFlameParticles.SetActive(false);
+        }
+        
+
+
         if (playerController.CheckLateJump())
         {
+            playerController.redFlameParticles.SetActive(false);
+            playerController.blueFlameParticles.SetActive(false);
             playerController.activeActionCommand = PlayerController.PlayerActionCommands.LateJump;
         }
 
@@ -55,6 +79,8 @@ public class PlayerBounceState : PlayerState
             if (playerController.checkIfOnGround())
             {
                 playerController.StopLateJump();
+                playerController.redFlameParticles.SetActive(false);
+                playerController.blueFlameParticles.SetActive(false);
                 return new PlayerJumpState();
             }
             else if (playerController.activeActionCommand != PlayerController.PlayerActionCommands.LateJump)
@@ -71,6 +97,8 @@ public class PlayerBounceState : PlayerState
 
         if (!firstFrame && playerController.checkIfOnGround() && (rb.velocity.y < 0 || rb.velocity.y == 0))
         {
+            //playerController.dustParticles.Play(true);
+            //Debug.Log("PlayedDust");
             return new PlayerIdleState();
         }
 

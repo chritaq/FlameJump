@@ -16,6 +16,7 @@ public class MenuController : MonoBehaviour
     public GameObject optionsMenuObject;
     public GameObject audioMenuObject;
     public GameObject controllersMenuObject;
+    public GameObject startGameMenuObject;
 
     public float longMenuTransitionTime = 2f;
     public float shortMenuTransitionTime = 0.1f;
@@ -32,10 +33,7 @@ public class MenuController : MonoBehaviour
         returnedState = currentState.Update(this, Time.deltaTime);
     }
 
-    public void StartGame()
-    {
-        ChangeState(new MenuStartGameState());
-    }
+
 
     public void MainMenu()
     {
@@ -43,11 +41,59 @@ public class MenuController : MonoBehaviour
         SetSelectedButton(mainMenuObject);
     }
 
+
+
+    public void StartGameMenu()
+    {
+        ChangeState(new MenuStartGameState());
+        SetSelectedButton(startGameMenuObject);
+    }
+
     public void Options()
     {
         ChangeState(new MenuOptionsState());
         SetSelectedButton(optionsMenuObject);
     }
+
+    public void Quit()
+    {
+        Debug.Log("Quits game");
+    }
+
+
+
+    public void NewGame()
+    {
+        ChangeState(new MenuNewGameState());
+    }
+
+    public void Continue()
+    {
+        ChangeState(new MenuContinueState());
+    }
+
+    public void GoBack()
+    {
+        if (aboveState != null)
+        {
+            currentState.Exit(this);
+            currentState = aboveState;
+            currentState.Enter(this);
+
+            if (selectedInMenu2 != null)
+            {
+                eventSystem.SetSelectedGameObject(selectedInMenu2);
+                selectedInMenu2 = null;
+            }
+            else
+            {
+                eventSystem.SetSelectedGameObject(selectedInMenu1);
+                selectedInMenu1 = null;
+            }
+        }
+    }
+
+
 
     public void AudioMenu()
     {
@@ -61,6 +107,8 @@ public class MenuController : MonoBehaviour
         SetSelectedButton(controllersMenuObject);
     }
 
+
+
     private void ChangeState(MenuState menuState)
     {
         SetMenuAboveButton();
@@ -69,31 +117,7 @@ public class MenuController : MonoBehaviour
         currentState.Enter(this);
     }
 
-    public void Quit()
-    {
-        Debug.Log("Quits game");
-    }
 
-    public void GoBack()
-    {
-        if(aboveState != null)
-        {
-            currentState.Exit(this);
-            currentState = aboveState;
-            currentState.Enter(this);
-
-            if(selectedInMenu2 != null)
-            {
-                eventSystem.SetSelectedGameObject(selectedInMenu2);
-                selectedInMenu2 = null;
-            }
-            else
-            {
-                eventSystem.SetSelectedGameObject(selectedInMenu1);
-                selectedInMenu1 = null;
-            }
-        }
-    }
 
     public void SetAboveState(MenuState newAboveState)
     {

@@ -6,6 +6,7 @@ public class PlayerIdleState : PlayerState
 {
     public override void Enter(PlayerController playerController)
     {
+        
     }
 
 
@@ -23,6 +24,14 @@ public class PlayerIdleState : PlayerState
 
     public override PlayerState Update(PlayerController playerController, float t)
     {
+        //FIRE PARTICLES
+        if (playerController.GetPlayerHealth() != 0)
+        {
+            playerController.blueFlameParticles.SetActive(false);
+            playerController.redFlameParticles.SetActive(false);
+        }
+
+
         playerController.CoyoteJumpTimer();
 
         if (playerController.checkIfOnGround())

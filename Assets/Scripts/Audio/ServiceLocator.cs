@@ -5,10 +5,12 @@ using UnityEngine;
 public static class ServiceLocator
 {
     private static IAudioService audio;
+    private static IScreenShakeService screenShake;
 
     public static void Initialize()
     {
         audio = new NullAudioProvider();
+        screenShake = new NullScreenShakeProvider();
     }
 
     public static void ProvideAudio(IAudioService audioService)
@@ -21,9 +23,24 @@ public static class ServiceLocator
         audio = audioService;
     }
 
+    public static void ProvideScreenShake(IScreenShakeService screenShakeService)
+    {
+        if(screenShakeService == null)
+        {
+            screenShakeService = new NullScreenShakeProvider();
+        }
+
+        screenShake = screenShakeService;
+    }
+
     public static IAudioService GetAudio()
     {
         return audio;
+    }
+
+    public static IScreenShakeService GetScreenShake()
+    {
+        return screenShake;
     }
 
 }

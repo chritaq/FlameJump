@@ -82,6 +82,8 @@ public class PlayerJumpState : PlayerState
 
         if (!firstFrame && playerController.checkIfOnGround() && (rb.velocity.y < 0 || rb.velocity.y == 0))
         {
+            //Debug.Log("PlayedDust");
+            //playerController.dustParticles.Play(true);
             return new PlayerIdleState();
         }
 

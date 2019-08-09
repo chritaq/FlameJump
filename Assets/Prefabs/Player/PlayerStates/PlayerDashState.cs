@@ -11,6 +11,8 @@ public class PlayerDashState : PlayerState
 
     public override void Enter(PlayerController playerController)
     {
+        
+
         ServiceLocator.GetAudio().PlaySound("Player_Dash");
         counterName = "Dash";
 
@@ -23,6 +25,22 @@ public class PlayerDashState : PlayerState
         dashStartDelay = playerController.GetDashStartDelay();
         dashRequest = true;
         dashTime = playerController.GetDashTime();
+
+        //FIRE PARTICLES
+        if (playerController.GetPlayerHealth() == 0)
+        {
+            if (playerController.dashCharges != 0)
+            {
+                playerController.redFlameParticles.SetActive(true);
+                playerController.blueFlameParticles.SetActive(false);
+            }
+            else
+            {
+                playerController.blueFlameParticles.SetActive(true);
+                playerController.redFlameParticles.SetActive(false);
+            }
+        }
+
     }
 
 
@@ -35,6 +53,7 @@ public class PlayerDashState : PlayerState
 
     public override void Exit(PlayerController playerController)
     {
+
         TurnOnGravity(playerController);
         playerController.canMove = true;
     }
@@ -59,6 +78,7 @@ public class PlayerDashState : PlayerState
 
         if (dashRequest == true && dashStartDelay <= 0)
         {
+            ServiceLocator.GetScreenShake().StartScreenShake(dashTime, 0.2f);
             AddDashVelocityOnce(playerController);
         }
 

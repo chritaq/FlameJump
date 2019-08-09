@@ -78,6 +78,7 @@ public class PlayerDashState : PlayerState
 
         if (dashRequest == true && dashStartDelay <= 0)
         {
+            ServiceLocator.GetGamepadRumble().StartGamepadRumble(25, 0.5f);
             ServiceLocator.GetScreenShake().StartScreenShake(dashTime, 0.2f);
             AddDashVelocityOnce(playerController);
         }

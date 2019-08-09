@@ -110,6 +110,7 @@ public class PlayerController : Unit
 
     //isGrounded
     private bool onGround = true;
+    private bool onGroundLastFrame = true;
     [Header("GROUND STUFF")]
     [SerializeField] private Transform feetPos;
     [SerializeField] private float checkFloorRadius;
@@ -119,10 +120,23 @@ public class PlayerController : Unit
     public bool checkIfOnGround()
     {
         onGround = Physics2D.OverlapCircle(feetPos.position, checkFloorRadius, whatIsGround);
+
         if (onGround)
         {
+            if(!onGroundLastFrame)
+            {
+                ServiceLocator.GetGamepadRumble().StartGamepadRumble(7, 1f);
+                ServiceLocator.GetAudio().PlaySound("Player_Land");
+            }
+
             dashCharges = 1;
+            onGroundLastFrame = true;
         }
+        else
+        {
+            onGroundLastFrame = false;
+        }
+
         return onGround;
     }
 

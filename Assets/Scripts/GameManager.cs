@@ -8,11 +8,16 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ServiceLocator.Initialize();
+
         ServiceLocator.ProvideAudio(new NewAudioProvider());
-        ServiceLocator.ProvideScreenShake(new ScreenShakeProvider());
-        ServiceLocator.GetScreenShake().GetCamera();
         ServiceLocator.GetAudio().LoadSounds();
         ServiceLocator.GetAudio().PlaySound("Music_Gameplay01");
+
+        ServiceLocator.ProvideScreenShake(new ScreenShakeProvider());
+        ServiceLocator.GetScreenShake().GetCamera();
+
+        ServiceLocator.ProvideGamepadRumble(new GamepadRumbleProvider());
+        ServiceLocator.GetGamepadRumble().ReferenceGamepadRumble();
     }
 
     // Update is called once per frame

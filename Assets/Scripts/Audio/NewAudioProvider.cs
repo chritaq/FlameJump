@@ -8,8 +8,10 @@ public class NewAudioProvider : IAudioService
     private GameObject audioSourceContainer;
 
     private AudioSource[] jumpAudioSource;
+    private AudioSource[] landAudioSource;
+    private AudioSource[] bounceAudioSource;
     private AudioSource[] dashAudioSource;
-    private AudioSource[] deathAudioSource;
+    private AudioSource deathAudioSource;
     private AudioSource[] pickupAudioSource;
 
     private AudioSource musicGameplay01AudioSource;
@@ -20,8 +22,10 @@ public class NewAudioProvider : IAudioService
 
         jumpAudioSource = InstantiateAudioSources(jumpAudioSource, "Player_Jump");
         dashAudioSource = InstantiateAudioSources(dashAudioSource, "Player_Dash");
-        deathAudioSource = InstantiateAudioSources(deathAudioSource, "Player_Death");
-        pickupAudioSource = InstantiateAudioSources(deathAudioSource, "Pickup_Recharge");
+        landAudioSource = InstantiateAudioSources(landAudioSource, "Player_Land");
+        deathAudioSource = instantiateSingleAudioSource(deathAudioSource, "Player_Death");
+        pickupAudioSource = InstantiateAudioSources(pickupAudioSource, "Pickup_Recharge");
+        bounceAudioSource = InstantiateAudioSources(bounceAudioSource, "Player_Bounce");
 
 
         musicGameplay01AudioSource = instantiateSingleAudioSource(musicGameplay01AudioSource, "Music_Gameplay01");
@@ -74,8 +78,17 @@ public class NewAudioProvider : IAudioService
                 PlaySoundFromArray(dashAudioSource);
                 break;
 
+            case "Player_Bounce":
+                PlaySoundFromArray(bounceAudioSource);
+                break;
+
             case "Player_Death":
-                PlaySoundFromArray(deathAudioSource);
+                deathAudioSource.Play();
+                PlaySoundFromArray(bounceAudioSource);
+                break;
+
+            case "Player_Land":
+                PlaySoundFromArray(landAudioSource);
                 break;
 
             case "Pickup_Recharge":

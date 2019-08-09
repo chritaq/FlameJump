@@ -34,7 +34,6 @@ public class ScreenShaker : MonoBehaviour
             time--;
 
             cameraTransform.position = new Vector3(positionX, positionY, cameraTransform.position.z);
-            Debug.Log("Shaking screen");
             
             yield return new WaitForEndOfFrame();
         }

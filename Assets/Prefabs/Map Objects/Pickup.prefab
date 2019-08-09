@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8828353092703914590}
   - component: {fileID: 8828353092703914591}
   - component: {fileID: 1073706843}
+  - component: {fileID: 8794217156819090441}
   m_Layer: 0
   m_Name: Pickup
   m_TagString: Untagged
@@ -125,3 +126,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundToPlay: Pickup_Recharge
+--- !u!114 &8794217156819090441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8828353092703914585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d94f047f1190a4f94f024e33b45056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vibrationTime: 25
+  vibrationAmount: 0.5

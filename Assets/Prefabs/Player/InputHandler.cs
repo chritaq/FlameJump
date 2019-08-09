@@ -6,6 +6,7 @@ using XInputDotNetPure;
 
 public class InputHandler : MonoBehaviour
 {
+    
     private PlayerController playerController;
     private GameObject playerPrefab;
     [SerializeField] private bool keyboard;
@@ -65,7 +66,6 @@ public class InputHandler : MonoBehaviour
         playerController = playerPrefab.GetComponent<PlayerController>();
 
         player = PlayerIndex.One;
-
     }
 
 

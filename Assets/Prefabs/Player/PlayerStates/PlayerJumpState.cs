@@ -10,6 +10,7 @@ public class PlayerJumpState : PlayerState
 
     public override void Enter(PlayerController playerController)
     {
+        ServiceLocator.GetGamepadRumble().StartGamepadRumble(10, 0.5f);
         ServiceLocator.GetAudio().PlaySound("Player_Jump");
 
         counterName = "Jump";

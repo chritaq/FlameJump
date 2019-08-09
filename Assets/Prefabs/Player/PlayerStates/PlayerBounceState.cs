@@ -11,6 +11,8 @@ public class PlayerBounceState : PlayerState
     public override void Enter(PlayerController playerController)
     {
         ServiceLocator.GetScreenShake().StartScreenShake(2f, 0.2f);
+        ServiceLocator.GetGamepadRumble().StartGamepadRumble(25, 0.75f);
+        ServiceLocator.GetAudio().PlaySound("Player_Bounce");
         counterName = "Bounce";
 
         //Gets the normal gravity for the player.
@@ -69,8 +71,8 @@ public class PlayerBounceState : PlayerState
 
         if (playerController.CheckLateJump())
         {
-            playerController.redFlameParticles.SetActive(false);
-            playerController.blueFlameParticles.SetActive(false);
+            //playerController.redFlameParticles.SetActive(false);
+            //playerController.blueFlameParticles.SetActive(false);
             playerController.activeActionCommand = PlayerController.PlayerActionCommands.LateJump;
         }
 

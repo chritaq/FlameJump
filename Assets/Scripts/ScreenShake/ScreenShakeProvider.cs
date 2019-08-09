@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ScreenShakeProvider : IScreenShakeService
 {
-    private GameObject camera;
     private ScreenShaker screenShaker;
 
     public void GetCamera()

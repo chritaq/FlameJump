@@ -6,6 +6,7 @@ public static class ServiceLocator
 {
     private static IAudioService audio;
     private static IScreenShakeService screenShake;
+    private static IGamepadRumbleService gamepadRumble;
 
     public static void Initialize()
     {
@@ -33,6 +34,16 @@ public static class ServiceLocator
         screenShake = screenShakeService;
     }
 
+    public static void ProvideGamepadRumble(IGamepadRumbleService gamepadRumbleService)
+    {
+        if(gamepadRumbleService == null)
+        {
+            gamepadRumbleService = new NullGamepadRumbleProvider();
+        }
+
+        gamepadRumble = gamepadRumbleService;
+    } 
+
     public static IAudioService GetAudio()
     {
         return audio;
@@ -41,6 +52,11 @@ public static class ServiceLocator
     public static IScreenShakeService GetScreenShake()
     {
         return screenShake;
+    }
+
+    public static IGamepadRumbleService GetGamepadRumble()
+    {
+        return gamepadRumble;
     }
 
 }

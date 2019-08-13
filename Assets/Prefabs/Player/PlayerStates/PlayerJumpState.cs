@@ -58,6 +58,11 @@ public class PlayerJumpState : PlayerState
 
     public override PlayerState Update(PlayerController playerController, float t)
     {
+        if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Exit)
+        {
+            return new PlayerExitState();
+        }
+
         if (playerController.CheckLateJump())
         {
             playerController.activeActionCommand = PlayerController.PlayerActionCommands.LateJump;

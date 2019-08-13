@@ -48,6 +48,11 @@ public class PlayerBounceState : PlayerState
 
     public override PlayerState Update(PlayerController playerController, float t)
     {
+        if(playerController.activeActionCommand == PlayerController.PlayerActionCommands.Exit)
+        {
+            return new PlayerExitState();
+        }
+
         if(playerController.GetPlayerHealth() == 0)
         {
             if (playerController.dashCharges != 0)

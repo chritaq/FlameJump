@@ -20,6 +20,12 @@ public class GameManager : MonoBehaviour
         ServiceLocator.GetGamepadRumble().ReferenceGamepadRumble();
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        ServiceLocator.ProvideScreenShake(new ScreenShakeProvider());
+        ServiceLocator.GetScreenShake().GetCamera();
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -74,6 +74,11 @@ public class PlayerDashState : PlayerState
     
     public override PlayerState Update(PlayerController playerController, float t)
     {
+        if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Exit)
+        {
+            return new PlayerExitState();
+        }
+
         dashStartDelay -= t;
 
         if (dashRequest == true && dashStartDelay <= 0)

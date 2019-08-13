@@ -53,6 +53,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1389077945997782723}
   - component: {fileID: 1389077945997782722}
+  - component: {fileID: 3833153710413883755}
   m_Layer: 0
   m_Name: InputHandler
   m_TagString: InputHandler
@@ -87,6 +88,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e6d02ae7eeb6f4aaa65bffff09dc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyboard: 0
+  keyboard: 1
   horizontalDeadZone: 0.25
   verticalDeadZone: 0.25
+--- !u!114 &3833153710413883755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389077945997782721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b45c822445f63048b19dcb59804c573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tag: InputHandler

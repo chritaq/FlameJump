@@ -5,6 +5,11 @@ using XInputDotNetPure;
 
 public class GamepadRumbler : MonoBehaviour
 {
+    private void OnLevelWasLoaded(int level)
+    {
+        GamePad.SetVibration(PlayerIndex.One, 0, 0);
+    }
+
     public void StartRumble(int vibrationTime, float vibrationAmount)
     {
         StopAllCoroutines();

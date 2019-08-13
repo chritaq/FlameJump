@@ -68,27 +68,41 @@ public class InputHandler : MonoBehaviour
         player = PlayerIndex.One;
     }
 
+    private void OnLevelWasLoaded(int level)
+    {
+        playerPrefab = GameObject.FindWithTag("Player");
+        playerController = playerPrefab.GetComponent<PlayerController>();
+        
+        
+    }
+
 
     private void Update()
     {
-        state = GamePad.GetState(player, GamePadDeadZone.Circular);
 
-        ToggleKeyboardAndGamepad();
-
-        if (keyboard)
+        if (playerController.activeActionCommand != PlayerController.PlayerActionCommands.Exit)
         {
-            HandleKeyboardActionInput();
-            HandleKeyboardMovementInput();
-        }
-        else
-        {
-            HandleGamepadActionInputs();
-            HandleGamepadMovementInput();
+            state = GamePad.GetState(player, GamePadDeadZone.Circular);
+
+            ToggleKeyboardAndGamepad();
+
+            if (keyboard)
+            {
+                HandleKeyboardActionInput();
+                HandleKeyboardMovementInput();
+            }
+            else
+            {
+                HandleGamepadActionInputs();
+                HandleGamepadMovementInput();
+            }
+
+            ExcecuteSelectedCommand(actionInputQueue, true);
+            ExcecuteSelectedCommand(horizontalInputQueue);
+            ExcecuteSelectedCommand(verticalInputQueue);
         }
 
-        ExcecuteSelectedCommand(actionInputQueue, true);
-        ExcecuteSelectedCommand(horizontalInputQueue);
-        ExcecuteSelectedCommand(verticalInputQueue);
+        
     }
 
 

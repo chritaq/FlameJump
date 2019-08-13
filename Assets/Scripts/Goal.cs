@@ -6,11 +6,27 @@ using UnityEngine.SceneManagement;
 public class Goal : MonoBehaviour
 {
 
+    [SerializeField] private int transitionTime;
+    private ExitCommand exitCommand = new ExitCommand();
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if (collision.tag == "Player")
         {
-            SceneManager.LoadScene(1);
+            exitCommand.Excecute(collision.GetComponent<PlayerController>());
+            StartCoroutine(Exit());
         }
+    }
+
+    private IEnumerator Exit()
+    {
+        while(transitionTime > 0)
+        {
+            transitionTime--;
+            yield return new WaitForEndOfFrame();
+        }
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        yield return null;
     }
 }

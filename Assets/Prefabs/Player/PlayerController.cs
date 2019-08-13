@@ -172,7 +172,7 @@ public class PlayerController : Unit
     PlayerState currentState;
     PlayerState returnedState;
 
-    [HideInInspector] public enum PlayerActionCommands { Nothing, Jump, JumpHold, Dash, LateJump };
+    [HideInInspector] public enum PlayerActionCommands { Nothing, Jump, JumpHold, Dash, LateJump, Exit };
     [HideInInspector] public PlayerActionCommands activeActionCommand;
 
     [HideInInspector] public enum PlayerHorizontalCommands { Nothing, Left, Right };
@@ -200,33 +200,7 @@ public class PlayerController : Unit
 
     private void Update()
     {
-        //Lägg in i states istället?
-        //if(health == 0)
-        //{
 
-        //    if(!redFlameParticles.activeSelf && dashCharges != 0)
-        //    {
-        //        redFlameParticles.SetActive(true);
-        //        blueFlameParticles.SetActive(false);
-        //    }
-        //    if (!blueFlameParticles.activeSelf && dashCharges == 0)
-        //    {
-        //        blueFlameParticles.SetActive(true);
-        //        redFlameParticles.SetActive(false);
-        //    }
-        //}
-        //else if(health != 0)
-        //{
-        //    if(redFlameParticles.activeSelf)
-        //    {
-        //        redFlameParticles.SetActive(false);
-        //    }
-        //    if (blueFlameParticles.activeSelf)
-        //    {
-        //        blueFlameParticles.SetActive(false);
-        //    }
-            
-        //}
 
         returnedState = currentState.Update(this, Time.deltaTime);
 
@@ -239,8 +213,6 @@ public class PlayerController : Unit
     
     private void FixedUpdate()
     {
-        //Returnedstate kan behövas här för att checka state-swaps vid physics-steps?
-        //Just nu verkar den dock inte göra någonting?
         returnedState = currentState.FixedUpdate(this, Time.deltaTime);
 
         if (canMove)

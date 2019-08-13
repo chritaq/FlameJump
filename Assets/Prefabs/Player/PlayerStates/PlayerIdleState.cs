@@ -24,6 +24,11 @@ public class PlayerIdleState : PlayerState
 
     public override PlayerState Update(PlayerController playerController, float t)
     {
+        if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Exit)
+        {
+            return new PlayerExitState();
+        }
+
         //FIRE PARTICLES
         if (playerController.GetPlayerHealth() != 0)
         {

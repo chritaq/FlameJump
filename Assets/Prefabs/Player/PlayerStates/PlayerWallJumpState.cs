@@ -65,6 +65,10 @@ public class PlayerWallJumpState : PlayerState
 
     public override PlayerState Update(PlayerController playerController, float t)
     {
+        if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Exit)
+        {
+            return new PlayerExitState();
+        }
 
         //if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Dash && playerController.dashCharges != 0)
         //{

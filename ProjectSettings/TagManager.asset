@@ -7,6 +7,8 @@ TagManager:
   - SpawnPosition
   - AudioSources
   - InputHandler
+  - GameManager
+  - ObserverSystems
   layers:
   - Default
   - TransparentFX

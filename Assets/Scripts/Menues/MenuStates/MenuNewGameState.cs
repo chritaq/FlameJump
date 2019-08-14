@@ -10,6 +10,13 @@ public class MenuNewGameState : MenuState
     public override void Enter(MenuController menuController)
     {
         transitionTime = menuController.longMenuTransitionTime;
+
+        ServiceLocator.GetAudio().PlaySound("Menu_StartGame");
+        //ServiceLocator.GetScreenShake().StartScreenShake(transitionTime, 1);
+        ServiceLocator.GetScreenShake().StartTransition((int)transitionTime, true);
+        ServiceLocator.GetGamepadRumble().StartGamepadRumble((int)transitionTime, 1);
+        ServiceLocator.GetScreenShake().StartScreenFlash(2, 1);
+
         //Need to disable controls
         Debug.Log("New Game Pressed");
     }
@@ -21,7 +28,8 @@ public class MenuNewGameState : MenuState
 
     public override MenuState Update(MenuController menuController, float t)
     {
-        transitionTime -= t;
+        //transitionTime -= t;
+        transitionTime--;
         if (transitionTime <= 0)
         {
             //Behöver fixa ett snyggare upplägg för scenemanagern och dessutom få in Continue/New Game

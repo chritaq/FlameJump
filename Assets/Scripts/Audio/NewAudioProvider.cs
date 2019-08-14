@@ -16,6 +16,8 @@ public class NewAudioProvider : IAudioService
 
     private AudioSource musicGameplay01AudioSource;
 
+    private AudioSource menuStartGameAudioSource;
+
     public void LoadSounds()
     {
         audioSourceContainer = GameObject.FindGameObjectWithTag("AudioSources");
@@ -29,6 +31,10 @@ public class NewAudioProvider : IAudioService
 
 
         musicGameplay01AudioSource = instantiateSingleAudioSource(musicGameplay01AudioSource, "Music_Gameplay01");
+
+        menuStartGameAudioSource = instantiateSingleAudioSource(menuStartGameAudioSource, "Menu_StartGame");
+
+
     }
 
     private AudioSource instantiateSingleAudioSource(AudioSource audioSource, string soundID)
@@ -97,6 +103,10 @@ public class NewAudioProvider : IAudioService
 
             case "Music_Gameplay01":
                 musicGameplay01AudioSource.Play();
+                break;
+
+            case "Menu_StartGame":
+                menuStartGameAudioSource.Play();
                 break;
         }
 

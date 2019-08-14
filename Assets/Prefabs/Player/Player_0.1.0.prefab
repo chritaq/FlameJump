@@ -47798,7 +47798,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   rb: {fileID: 4865448684398400109}
-  respawnTime: 2
+  respawnTime: 1
   activeActionCommand: 0
   activeHorizontalCommand: 0
   activeVerticalCommand: 0

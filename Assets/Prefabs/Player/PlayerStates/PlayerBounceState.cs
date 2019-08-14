@@ -13,6 +13,7 @@ public class PlayerBounceState : PlayerState
         ServiceLocator.GetScreenShake().StartScreenShake(2f, 0.2f);
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(25, 0.75f);
         ServiceLocator.GetAudio().PlaySound("Player_Bounce");
+        ServiceLocator.GetScreenShake().StartScreenFlash(2, 0.05f);
         counterName = "Bounce";
 
         //Gets the normal gravity for the player.

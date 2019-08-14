@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e6d02ae7eeb6f4aaa65bffff09dc32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyboard: 1
+  keyboard: 0
   horizontalDeadZone: 0.25
   verticalDeadZone: 0.25
 --- !u!114 &3833153710413883755

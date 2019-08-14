@@ -10,6 +10,7 @@ public class MenuStartGameState : MenuState
         Debug.Log("Entered menustargame state");
         menuController.SetAboveState(new MenuMainState());
         menuController.startGameMenuObject.SetActive(true);
+
     }
 
     public override void Exit(MenuController menuController)

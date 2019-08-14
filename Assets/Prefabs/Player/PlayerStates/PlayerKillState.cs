@@ -13,6 +13,7 @@ public class PlayerKillState : PlayerState
         ServiceLocator.GetScreenShake().StartScreenShake(50, 1f);
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(25, 1f);
         ServiceLocator.GetAudio().PlaySound("Player_Death");
+        ServiceLocator.GetScreenShake().StartScreenFlash(2, 0.3f);
 
         playerController.deathParticles.Play();
         playerController.redFlameParticles.SetActive(false);
@@ -21,6 +22,7 @@ public class PlayerKillState : PlayerState
         counterName = "Death";
 
         respawnTime = playerController.GetRespawnTime();
+        //ServiceLocator.GetScreenShake().StartTransition((int)respawnTime * 30, true);
 
         playerController.canMove = false;
 
@@ -41,6 +43,8 @@ public class PlayerKillState : PlayerState
 
     public override void Exit(PlayerController playerController)
     {
+        //ServiceLocator.GetScreenShake().StartTransition(25, false);
+
         rb.gravityScale = playerController.CheckInitialGravityScale();
         //Set playerpos to spawn
         playerController.transform.position = playerController.GetSpawnPosition();
@@ -62,6 +66,7 @@ public class PlayerKillState : PlayerState
         rb.transform.transform.Translate(new Vector2(0, 0));
         //Timedelay for death
         respawnTime -= t;
+
         if(respawnTime <= 0)
         {
             return new PlayerIdleState();

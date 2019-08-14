@@ -15,6 +15,7 @@ public class Goal : MonoBehaviour
         {
             exitCommand.Excecute(collision.GetComponent<PlayerController>());
             StartCoroutine(Exit());
+            ServiceLocator.GetScreenShake().StartTransition(transitionTime, true);
         }
     }
 

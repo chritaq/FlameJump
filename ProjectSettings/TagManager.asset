@@ -9,6 +9,7 @@ TagManager:
   - InputHandler
   - GameManager
   - ObserverSystems
+  - Canvas
   layers:
   - Default
   - TransparentFX

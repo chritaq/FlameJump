@@ -148,7 +148,7 @@ public class DialougeManagerV2 : MonoBehaviour
 
         if(isTextShaking)
         {
-            //StartCoroutine(ShakingText());
+            StartCoroutine(ShakingText());
         }
 
         //Hides text based on each character's alpha value

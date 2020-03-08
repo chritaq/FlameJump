@@ -30,8 +30,8 @@ public class PlayerKillState : PlayerState
         //Instantiate specific particleFX
 
         //Hides player sprite
-        spriteRenderer = playerController.GetComponent<SpriteRenderer>();
-        spriteRenderer.enabled = false;
+        //spriteRenderer = playerController.GetComponent<SpriteRenderer>();
+        //spriteRenderer.enabled = false;
 
         //Makes sure the player gets pinned to the place he died
         //Dosen't work!
@@ -50,7 +50,7 @@ public class PlayerKillState : PlayerState
         playerController.transform.position = playerController.GetSpawnPosition();
 
         //Shows player sprite
-        spriteRenderer.enabled = true;
+        //spriteRenderer.enabled = true;
 
         playerController.canMove = true;
 

@@ -1313,7 +1313,7 @@ PrefabInstance:
     - target: {fileID: 3955897868660593755, guid: b2424e990ea2e0f4fa2fb6013ae54d33,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_RefCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3955897868660593755, guid: b2424e990ea2e0f4fa2fb6013ae54d33,
         type: 3}
@@ -1706,8 +1706,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_Data
       value: 
-      objectReference: {fileID: 2920381291094582510, guid: 14b58b9116cf91a41b840cbef8838324,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3955897868660593755, guid: b2424e990ea2e0f4fa2fb6013ae54d33,
         type: 3}
       propertyPath: m_TileMatrixArray.Array.data[0].m_Data.e00
@@ -1986,13 +1985,14 @@ PrefabInstance:
     - target: {fileID: 3955897868660593755, guid: b2424e990ea2e0f4fa2fb6013ae54d33,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[6].m_RefCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3955897868660593755, guid: b2424e990ea2e0f4fa2fb6013ae54d33,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[6].m_Data
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2920381291094582510, guid: 14b58b9116cf91a41b840cbef8838324,
+        type: 3}
     - target: {fileID: 3955897868660593755, guid: b2424e990ea2e0f4fa2fb6013ae54d33,
         type: 3}
       propertyPath: m_Tiles.Array.data[39].second.m_TileIndex
@@ -2141,7 +2141,7 @@ PrefabInstance:
     - target: {fileID: 3955897868660593755, guid: b2424e990ea2e0f4fa2fb6013ae54d33,
         type: 3}
       propertyPath: m_Tiles.Array.data[44].second.m_TileSpriteIndex
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3955897868660593755, guid: b2424e990ea2e0f4fa2fb6013ae54d33,
         type: 3}
@@ -7104,7 +7104,7 @@ PrefabInstance:
     - target: {fileID: 8095976009912458929, guid: 451cf622d3edd5d43933b60e345f1c7b,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
-      value: 15
+      value: 15.000001
       objectReference: {fileID: 0}
     - target: {fileID: 8095976009912458929, guid: 451cf622d3edd5d43933b60e345f1c7b,
         type: 3}

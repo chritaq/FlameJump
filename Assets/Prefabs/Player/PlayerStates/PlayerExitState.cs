@@ -18,8 +18,8 @@ public class PlayerExitState : PlayerState
         counterName = "Exit";
 
         //Hides player sprite
-        spriteRenderer = playerController.GetComponent<SpriteRenderer>();
-        spriteRenderer.enabled = false;
+        //spriteRenderer = playerController.GetComponent<SpriteRenderer>();
+        //spriteRenderer.enabled = false;
 
         //Need to pin the player to one place
     }

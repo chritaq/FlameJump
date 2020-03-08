@@ -100,6 +100,14 @@ public class PlayerDashState : PlayerState
     private void AddDashVelocityOnce(PlayerController playerController)
     {
         rb.velocity = playerController.GetDirectionFromCommand().normalized * playerController.GetDashVelocity();
+        //if((rb.velocity.x > 0 || rb.velocity.x < 0) && rb.velocity.y == 0)
+        //{
+        //    playerController.heightAnimator.SetTrigger("Squash");
+        //}
+        //else if((rb.velocity.y > 0 || rb.velocity.y < 0) && rb.velocity.x == 0)
+        //{
+        //    playerController.heightAnimator.SetTrigger("Stretch");
+        //}
         dashRequest = false;
     }
 

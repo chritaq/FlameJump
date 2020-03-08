@@ -88,6 +88,9 @@ public class PlayerController : Unit
         StateSwap();
     }
 
+
+
+    
     public override void Bounce()
     {
         if (returnedState == null)
@@ -127,6 +130,7 @@ public class PlayerController : Unit
             {
                 ServiceLocator.GetGamepadRumble().StartGamepadRumble(7, 1f);
                 ServiceLocator.GetAudio().PlaySound("Player_Land");
+                heightAnimator.SetTrigger("Squash");
             }
 
             dashCharges = 1;
@@ -197,10 +201,9 @@ public class PlayerController : Unit
 
 
 
-
+    public Animator heightAnimator;
     private void Update()
     {
-
 
         returnedState = currentState.Update(this, Time.deltaTime);
 

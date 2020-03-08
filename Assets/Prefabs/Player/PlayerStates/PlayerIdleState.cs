@@ -24,6 +24,15 @@ public class PlayerIdleState : PlayerState
 
     public override PlayerState Update(PlayerController playerController, float t)
     {
+        if(playerController.activeVerticalCommand == PlayerController.PlayerVerticalCommands.Down)
+        {
+            playerController.heightAnimator.SetBool("Duck", true);
+        }
+        else
+        {
+            playerController.heightAnimator.SetBool("Duck", false);
+        }
+
         if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Exit)
         {
             return new PlayerExitState();
@@ -56,6 +65,7 @@ public class PlayerIdleState : PlayerState
             if(playerController.checkIfOnGround() || playerController.CheckCoyoteJump())
             {
                 playerController.StopLateJump();
+                playerController.heightAnimator.SetBool("Duck", false);
                 return new PlayerJumpState();
             }
             else if(playerController.activeActionCommand != PlayerController.PlayerActionCommands.LateJump)
@@ -68,6 +78,7 @@ public class PlayerIdleState : PlayerState
 
         if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Dash && playerController.dashCharges != 0)
         {
+            playerController.heightAnimator.SetBool("Duck", false);
             return new PlayerDashState();
         }
 

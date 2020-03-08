@@ -10,6 +10,8 @@ public class PlayerBounceState : PlayerState
 
     public override void Enter(PlayerController playerController)
     {
+        playerController.heightAnimator.SetTrigger("Stretch");
+
         ServiceLocator.GetScreenShake().StartScreenShake(2f, 0.2f);
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(25, 0.75f);
         ServiceLocator.GetAudio().PlaySound("Player_Bounce");

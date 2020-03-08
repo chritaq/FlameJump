@@ -286,23 +286,3 @@ public class DialougeManager : MonoBehaviour
 
     
 }
-
-class SpecialCommand
-{
-    //Command name
-    public string Name { get; set; }
-
-    //A list of all values needed for our command. 
-    //If you only need one value per command, consider not making this a list.
-    public List<string> Values { get; set; }
-
-    //Which character index should we execute this command.
-    public int Index { get; set; }
-
-    public SpecialCommand()
-    {
-        Name = "";
-        Values = new List<string>();
-        Index = 0;
-    }
-}

@@ -9,7 +9,7 @@ public class DialougeTrigger : MonoBehaviour
 
     public void TriggerDialouge()
     {
-        DialougeManager.instance.StartDialouge(dialouge);
+        DialougeManagerV2.instance.StartDialouge(dialouge);
     }
     
 }

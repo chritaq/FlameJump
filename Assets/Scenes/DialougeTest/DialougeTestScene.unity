@@ -1220,7 +1220,7 @@ GameObject:
   - component: {fileID: 1963450441}
   - component: {fileID: 1963450440}
   m_Layer: 0
-  m_Name: DialougeManager (1)
+  m_Name: DialougeManagerV2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1242,7 +1242,10 @@ MonoBehaviour:
   SentenceUIObject: {fileID: 1972122714}
   AvatarUIObject: {fileID: 1694970492}
   speedText: 0.05
-  speedTextFast: 0.025
+  speedTextDot: 0.2
+  speedTextComma: 0.1
+  textSpeedMultiplier: 2
+  isTextShaking: 0
   AngleMultiplier: 1
   CurveScale: 1
 --- !u!4 &1963450441

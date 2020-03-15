@@ -23,8 +23,12 @@ public class DialougeManagerV2 : MonoBehaviour
     [SerializeField] private Image AvatarUIObject;
 
     [SerializeField] private float speedText = 0.05f;
+    [SerializeField] private float speedTextDot = 0.08f;
+    [SerializeField] private float speedTextComma = 0.08f;
     private float speedTextStart;
-    [SerializeField] private float speedTextFast = 0.025f;
+    private float speedTextDotStart;
+    private float speedTextCommaStart;
+    [SerializeField] private float textSpeedMultiplier = 2;
 
     //Commands
     private List<SpecialCommand> specialCommands;
@@ -34,7 +38,7 @@ public class DialougeManagerV2 : MonoBehaviour
     private bool hasTextChanged = false;
 
     //Make the text shake, if true before animating
-    private bool isTextShaking = true;
+    [SerializeField] private bool isTextShaking = false;
 
     //Related to shaking animation
     [SerializeField] private float AngleMultiplier = 1.0f;
@@ -44,17 +48,23 @@ public class DialougeManagerV2 : MonoBehaviour
     {
         sentences = new Queue<Sentence>();
         speedTextStart = speedText;
+        speedTextDotStart = speedTextDot;
+        speedTextCommaStart = speedTextComma;
     }
 
     private void Update()
     {
         if(Input.GetKey(KeyCode.Z))
         {
-            speedText = speedTextFast;
+            speedText = speedTextStart / textSpeedMultiplier;
+            speedTextDot = speedTextDotStart / textSpeedMultiplier;
+            speedTextComma = speedTextCommaStart / textSpeedMultiplier;
         }
         else
         {
             speedText = speedTextStart;
+            speedTextDot = speedTextDotStart;
+            speedTextComma = speedTextCommaStart;
         }
     }
 
@@ -157,13 +167,18 @@ public class DialougeManagerV2 : MonoBehaviour
         //SentenceUIObject.text = "";
         int i = 0;
 
+
+        //Loop for the text
         while(i < totalCharacters)
         {
+            
+
+
 
             //If we change the text live on runtime in our inspector, adjust the character count
             //Do i really need this?? For my project, I already have functionality where 
             //the sentences are updated each by their own, so this shouldnt really be needed I think
-            if(hasTextChanged)
+            if (hasTextChanged)
             {
                 totalCharacters = textInfo.characterCount;
                 hasTextChanged = false;
@@ -174,7 +189,7 @@ public class DialougeManagerV2 : MonoBehaviour
              *  of the base c0 color. A second command can put isColorizing to false.
              *  I leave it up to you to figure this out.
             */
-            if(specialCommands.Count > 0)
+            if (specialCommands.Count > 0)
             {
                 CheckForCommands(i);
             }
@@ -202,9 +217,27 @@ public class DialougeManagerV2 : MonoBehaviour
                 SentenceUIObject.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
             }
 
-            i++;
-            yield return new WaitForSeconds(speedText);
+            
+            if (textInfo.characterInfo[i].character == ' ')
+            {
+                //Don't delay if there's a space!
+            }
+            else if(textInfo.characterInfo[i].character == '.' || textInfo.characterInfo[i].character == '?' || textInfo.characterInfo[i].character == '!')
+            {
+                yield return new WaitForSeconds(speedTextDot);
+            }
+            else if(textInfo.characterInfo[i].character ==  ',')
+            {
+                Debug.Log("Was a comma");
+                yield return new WaitForSeconds(speedTextComma);
+            }
+            else
+            {
+                yield return new WaitForSeconds(speedText);
+            }
 
+
+            i++;
         }
         
         Debug.Log("End of animations");
@@ -447,6 +480,8 @@ public class DialougeManagerV2 : MonoBehaviour
         string pattern = "\\{.[^}]+\\}";
 
         cleanString = Regex.Replace(text, pattern, "");
+        cleanString = Regex.Replace(cleanString, "   ", " ");
+        cleanString = Regex.Replace(cleanString, "  ", " ");
         return cleanString;
     }
 

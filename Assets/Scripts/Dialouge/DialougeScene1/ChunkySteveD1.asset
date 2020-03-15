@@ -18,12 +18,11 @@ MonoBehaviour:
     leftSide: 0
     characterAvatar: {fileID: 8375619264480416996, guid: 14b58b9116cf91a41b840cbef8838324,
       type: 3}
-    sentence: "Hi, name\xB4s {sound:1} {color:red} Chunky Steve! But you can call
-      me Frank!"
+    sentence: "{startTextShake:1}Hi, name\xB4s Chunky Steve! But you can call me Frank!"
   - characterActive: 0
     leftSide: 1
     characterAvatar: {fileID: 0}
-    sentence: Why Frank?
+    sentence: '{stopTextShake:1}Why Frank?'
   - characterActive: 1
     leftSide: 0
     characterAvatar: {fileID: 0}

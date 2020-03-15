@@ -1243,7 +1243,7 @@ MonoBehaviour:
   AvatarUIObject: {fileID: 1694970492}
   speedText: 0.05
   speedTextDot: 0.2
-  speedTextComma: 0.1
+  speedTextComma: 0.15
   textSpeedMultiplier: 2
   isTextShaking: 0
   AngleMultiplier: 1

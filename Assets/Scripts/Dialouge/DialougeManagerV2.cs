@@ -43,7 +43,7 @@ public class DialougeManagerV2 : MonoBehaviour
     //Related to shaking animation
     [SerializeField] private float AngleMultiplier = 1.0f;
     [SerializeField] private float CurveScale = 1.0f;
-
+    
     private void Start()
     {
         sentences = new Queue<Sentence>();
@@ -171,18 +171,6 @@ public class DialougeManagerV2 : MonoBehaviour
         //Loop for the text
         while(i < totalCharacters)
         {
-            
-
-
-
-            //If we change the text live on runtime in our inspector, adjust the character count
-            //Do i really need this?? For my project, I already have functionality where 
-            //the sentences are updated each by their own, so this shouldnt really be needed I think
-            if (hasTextChanged)
-            {
-                totalCharacters = textInfo.characterCount;
-                hasTextChanged = false;
-            }
 
             /*  Note: implementing a color command is easy now! All you need to do is
              *  extract the value, create a bool isColorizing = true, and use this color instead

@@ -40,7 +40,7 @@ public class DialougeManagerV2 : MonoBehaviour
     //Make the text shake, if true before animating
     [SerializeField] private bool isTextShaking = false;
 
-    //Related to shaking animation
+    //Related to shaking animation. Might remove this from this script later?
     [SerializeField] private float AngleMultiplier = 1.0f;
     [SerializeField] private float CurveScale = 1.0f;
     
@@ -70,19 +70,21 @@ public class DialougeManagerV2 : MonoBehaviour
 
     public void StartDialouge(Dialouge dialouge)
     {
-        //Debug.Log("starting dialouge with " + dialouge.sentences[0].nameOfCharacter);
-        sentences.Clear();
-
-        foreach(Sentence sentence in dialouge.sentences)
-        {
-            sentences.Enqueue(sentence);
-        }
-
+        ClearAndAddNewSentences(dialouge);
         DisplayNextSentence();
     }
 
+    private void ClearAndAddNewSentences(Dialouge dialouge)
+    {
+        sentences.Clear();
+        foreach (Sentence sentence in dialouge.sentences)
+        {
+            sentences.Enqueue(sentence);
+        }
+    }
 
-    private Coroutine coroutine;
+
+    private Coroutine animateTextCoroutine;
     public void DisplayNextSentence()
     {
         if(sentences.Count == 0)
@@ -91,9 +93,22 @@ public class DialougeManagerV2 : MonoBehaviour
             return;
         }
 
-        
         Sentence sentence = sentences.Dequeue();
-        //string nameOfCharacter = ConvertEnumToCharacterName.instance.GetNameOfCharacter(sentence.characterActive);
+        SetNameAndAvatarInSentence(sentence);
+
+        //SentenceUIObject.text = sentence.sentence;
+        if(animateTextCoroutine != null)
+        {
+            StopCoroutine(animateTextCoroutine);
+        }
+        
+        animateTextCoroutine = StartCoroutine(AnimateTextCoroutine(sentence.sentence));
+
+        Debug.Log(sentence.sentence);
+    }
+
+    private void SetNameAndAvatarInSentence(Sentence sentence)
+    {
         DialougeSingleCharacterData characterData = DialougeCharacterData.instance.GetSingleCharacterData(sentence.characterActive);
 
         if (characterData != null)
@@ -103,48 +118,25 @@ public class DialougeManagerV2 : MonoBehaviour
                 Debug.Log("Set to sentence avatar");
                 AvatarUIObject.sprite = sentence.characterAvatar;
             }
-            else if(characterData.characterAvatar != null)
+            else if (characterData.characterAvatar != null)
             {
                 Debug.Log("Set to character avatar");
                 AvatarUIObject.sprite = characterData.characterAvatar;
             }
-
             if (characterData.characterName != null)
             {
                 NPCNameUIObject.text = characterData.characterName;
             }
         }
-
-
-        //SentenceUIObject.text = sentence.sentence;
-        if(coroutine != null)
-        {
-            StopCoroutine(coroutine);
-        }
-        
-
-        coroutine = StartCoroutine(AnimateTextCoroutine(sentence.sentence));
-
-        Debug.Log(sentence.sentence);
     }
 
 
-    
-    public void EraseLastSentence()
-    {
-        
-    }
-
-
-    //Coroutine for animating the dialogue text.
-    //Instead of using maxVisibleCharacters, we know animate based on the character's alpha value.
+    //TODO
+    //Continue re-working the text from here
     private IEnumerator AnimateTextCoroutine(string text)
     {
         //Du sätter in text, tar bort alla commands från det och lägger in det i ui-objektet
-        SentenceUIObject.text = StripAllCommands(text);
-        SentenceUIObject.ForceMeshUpdate();
-
-        specialCommands = BuildSpecialCommandList(text);
+        StripCommandsFromTextAndCreateCommandList(text);
 
         TMP_TextInfo textInfo = SentenceUIObject.textInfo;
         //Här gjorde jag annorlunda
@@ -166,7 +158,6 @@ public class DialougeManagerV2 : MonoBehaviour
 
         //SentenceUIObject.text = "";
         int i = 0;
-
 
         //Loop for the text
         while(i < totalCharacters)
@@ -205,30 +196,42 @@ public class DialougeManagerV2 : MonoBehaviour
                 SentenceUIObject.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
             }
 
-            
-            if (textInfo.characterInfo[i].character == ' ')
-            {
-                //Don't delay if there's a space!
-            }
-            else if(textInfo.characterInfo[i].character == '.' || textInfo.characterInfo[i].character == '?' || textInfo.characterInfo[i].character == '!')
-            {
-                yield return new WaitForSeconds(speedTextDot);
-            }
-            else if(textInfo.characterInfo[i].character ==  ',')
-            {
-                Debug.Log("Was a comma");
-                yield return new WaitForSeconds(speedTextComma);
-            }
-            else
-            {
-                yield return new WaitForSeconds(speedText);
-            }
-
+            yield return new WaitForSeconds(SetDelayBeforeNextLetter(textInfo, i));
 
             i++;
         }
         
         Debug.Log("End of animations");
+    }
+
+    private void StripCommandsFromTextAndCreateCommandList(string text)
+    {
+        SentenceUIObject.text = StripAllCommands(text);
+        SentenceUIObject.ForceMeshUpdate();
+        specialCommands = BuildSpecialCommandList(text);
+    }
+
+    private float SetDelayBeforeNextLetter(TMP_TextInfo textInfo, int i)
+    {
+        char character = textInfo.characterInfo[i].character;
+
+        //Set delay to 0 if it's a space
+        if (character == ' ')
+        {
+            return 0f;
+        }
+        else if (character == '.' || character == '?' || character == '!')
+        {
+            return speedTextDot;
+        }
+        else if (character == ',')
+        {
+            return speedTextComma;
+        }
+        else
+        {
+            return speedText;
+        }
     }
 
     //Hide our text by making all our characters invisible
@@ -296,6 +299,8 @@ public class DialougeManagerV2 : MonoBehaviour
     }
 
     //Shaking example taken from the TextMeshPro demo.
+    //TODO
+    //Create seperate class for FXs
     private IEnumerator ShakingText()
     {
 

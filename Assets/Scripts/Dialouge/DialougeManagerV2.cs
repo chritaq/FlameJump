@@ -17,11 +17,19 @@ public class DialougeManagerV2 : MonoBehaviour
             Destroy(gameObject);
     }
 
+
+
+    [Space]
+    [Header("Dialouge objects")]
     private Queue<Sentence> sentences;
     [SerializeField] private Text NPCNameUIObject;
     [SerializeField] private TMP_Text SentenceUIObject;
     [SerializeField] private Image AvatarUIObject;
+    private Coroutine animateTextCoroutine;
 
+
+    [Space]
+    [Header("Dialouge speeds")]
     [SerializeField] private float speedText = 0.05f;
     [SerializeField] private float speedTextDot = 0.08f;
     [SerializeField] private float speedTextComma = 0.08f;
@@ -30,20 +38,35 @@ public class DialougeManagerV2 : MonoBehaviour
     private float speedTextCommaStart;
     [SerializeField] private float textSpeedMultiplier = 2;
 
-    //Commands
+
+
+    [HideInInspector]
+    [Header("Commands")]
     private List<SpecialCommand> specialCommands;
 
     //TextMeshPro uses this to adjust the text object if we change its content while a coroutine is going on.
     //This means we can change the dialogue live and the shaking text animation will adjust itself to the new content!
     private bool hasTextChanged = false;
 
+
+    
+    [Space]
+    [Header("FXs")]
     //Make the text shake, if true before animating
     [SerializeField] private bool isTextShaking = false;
 
     //Related to shaking animation. Might remove this from this script later?
     [SerializeField] private float AngleMultiplier = 1.0f;
     [SerializeField] private float CurveScale = 1.0f;
-    
+
+
+
+    [Space]
+    [Header("Audio")]
+    [SerializeField] private AudioSource dotSound;
+
+
+
     private void Start()
     {
         sentences = new Queue<Sentence>();
@@ -68,6 +91,11 @@ public class DialougeManagerV2 : MonoBehaviour
         }
     }
 
+
+
+
+    /*    DIALOUGE MANAGEMENT    */
+
     public void StartDialouge(Dialouge dialouge)
     {
         ClearAndAddNewSentences(dialouge);
@@ -83,8 +111,6 @@ public class DialougeManagerV2 : MonoBehaviour
         }
     }
 
-
-    private Coroutine animateTextCoroutine;
     public void DisplayNextSentence()
     {
         if(sentences.Count == 0)
@@ -106,6 +132,15 @@ public class DialougeManagerV2 : MonoBehaviour
 
         Debug.Log(sentence.sentence);
     }
+
+    public void EndDialouge()
+    {
+        Debug.Log("End of conversation");
+    }
+
+
+
+    /*    SINGLE SENTENCE MANAGEMENT    */
 
     private void SetNameAndAvatarInSentence(Sentence sentence)
     {
@@ -130,9 +165,6 @@ public class DialougeManagerV2 : MonoBehaviour
         }
     }
 
-
-    //TODO
-    //Continue re-working the text from here
     private IEnumerator AnimateTextCoroutine(string text)
     {
         //Du sätter in text, tar bort alla commands från det och lägger in det i ui-objektet
@@ -159,6 +191,9 @@ public class DialougeManagerV2 : MonoBehaviour
         //Loop for the text
         while(i < totalCharacters)
         {
+            //Every other
+            //if((i % 2) == 0)
+
 
             /*  Note: implementing a color command is easy now! All you need to do is
              *  extract the value, create a bool isColorizing = true, and use this color instead
@@ -227,16 +262,25 @@ public class DialougeManagerV2 : MonoBehaviour
         }
         else if (character == '.' || character == '?' || character == '!')
         {
+            PlayDotSound();
             return speedTextDot;
         }
         else if (character == ',')
         {
+            PlayDotSound();
             return speedTextComma;
         }
         else
         {
+            PlayDotSound();
             return speedText;
         }
+    }
+
+    private void PlayDotSound()
+    {
+        dotSound.Stop();
+        dotSound.Play();
     }
 
     private void HideText()
@@ -273,7 +317,12 @@ public class DialougeManagerV2 : MonoBehaviour
     }
 
 
-    //No clue what these does or if they're even needed
+
+
+    /*    FXS    */
+
+    //TODO
+    //I think these are needed to change the FXs of the text, but I'm unsure. Look it up.
     void OnEnable()
     {
         // Subscribe to event fired when text object has been regenerated.
@@ -284,7 +333,6 @@ public class DialougeManagerV2 : MonoBehaviour
     {
         TMPro_EventManager.TEXT_CHANGED_EVENT.Remove(ON_TEXT_CHANGED);
     }
-
 
     // Event received when the text object has changed.
     void ON_TEXT_CHANGED(Object obj)
@@ -305,9 +353,10 @@ public class DialougeManagerV2 : MonoBehaviour
     //Shaking example taken from the TextMeshPro demo.
     //TODO
     //Create seperate class for FXs
+    //TODO
+    //Continue re-working the text from here
     private IEnumerator ShakingText()
     {
-
         // We force an update of the text object since it would only be updated at the end of the frame. Ie. before this code is executed on the first frame.
         // Alternatively, we could yield and wait until the end of the frame when the text object will be generated.
         SentenceUIObject.ForceMeshUpdate();
@@ -415,10 +464,7 @@ public class DialougeManagerV2 : MonoBehaviour
 
 
 
-
-
-
-
+    /*    COMMANDS    */
 
     //Used to build a list containing ALL our commands
     private List<SpecialCommand> BuildSpecialCommandList(string text)
@@ -554,17 +600,6 @@ public class DialougeManagerV2 : MonoBehaviour
             Debug.Log("Command " + command.Name + " doesn't exist");
         }
     }
-
-
-
-    public void EndDialouge()
-    {
-        Debug.Log("End of conversation");
-    }
-
-
-
-    
 }
 
 

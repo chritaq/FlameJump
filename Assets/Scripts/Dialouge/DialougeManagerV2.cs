@@ -138,16 +138,6 @@ public class DialougeManagerV2 : MonoBehaviour
         //Du sätter in text, tar bort alla commands från det och lägger in det i ui-objektet
         StripCommandsFromTextAndCreateCommandList(text);
 
-        TMP_TextInfo textInfo = SentenceUIObject.textInfo;
-        //Här gjorde jag annorlunda
-        int totalCharacters = textInfo.characterCount;
-
-        //Color of all chracters vertices
-        Color32[] newVertexColors;
-
-        //Base color for our text.
-        Color32 c0 = SentenceUIObject.color;
-
         if(isTextShaking)
         {
             StartCoroutine(ShakingText());
@@ -155,6 +145,13 @@ public class DialougeManagerV2 : MonoBehaviour
 
         //Hides text based on each character's alpha value
         HideText();
+
+        TMP_TextInfo textInfo = SentenceUIObject.textInfo;
+        //Här gjorde jag annorlunda
+        int totalCharacters = textInfo.characterCount;
+
+        //Base color for our text.
+        Color32 baseColor = SentenceUIObject.color;
 
         //SentenceUIObject.text = "";
         int i = 0;
@@ -173,28 +170,7 @@ public class DialougeManagerV2 : MonoBehaviour
                 CheckForCommands(i);
             }
 
-            //Instead of incrementing maxVisibleCharacters or add the current character to our string, we do this :
-
-            // Get the index of the material used by the current character.
-            int materialIndex = textInfo.characterInfo[i].materialReferenceIndex;
-
-            // Get the vertex colors of the mesh used by this text element (character or sprite).
-            newVertexColors = textInfo.meshInfo[materialIndex].colors32;
-
-            // Get the index of the first vertex used by this text element.
-            int vertexIndex = textInfo.characterInfo[i].vertexIndex;
-
-            // Only change the vertex color if the text element is visible. (It's visible, only the alpha color is 0)
-            if(textInfo.characterInfo[i].isVisible)
-            {
-                newVertexColors[vertexIndex + 0] = c0;
-                newVertexColors[vertexIndex + 1] = c0;
-                newVertexColors[vertexIndex + 2] = c0;
-                newVertexColors[vertexIndex + 3] = c0;
-
-                // New function which pushes (all) updated vertex data to the appropriate meshes when using either the Mesh Renderer or CanvasRenderer.
-                SentenceUIObject.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
-            }
+            ShowCharacter(i, textInfo, baseColor);
 
             yield return new WaitForSeconds(SetDelayBeforeNextLetter(textInfo, i));
 
@@ -209,6 +185,35 @@ public class DialougeManagerV2 : MonoBehaviour
         SentenceUIObject.text = StripAllCommands(text);
         SentenceUIObject.ForceMeshUpdate();
         specialCommands = BuildSpecialCommandList(text);
+    }
+
+    private void ShowCharacter(int i, TMP_TextInfo textInfo, Color32 c0)
+    {
+        //Color of all chracters vertices
+        Color32[] newVertexColors;
+
+        //Instead of incrementing maxVisibleCharacters or add the current character to our string, we do this :
+
+        // Get the index of the material used by the current character.
+        int materialIndex = textInfo.characterInfo[i].materialReferenceIndex;
+
+        // Get the vertex colors of the mesh used by this text element (character or sprite).
+        newVertexColors = textInfo.meshInfo[materialIndex].colors32;
+
+        // Get the index of the first vertex used by this text element.
+        int vertexIndex = textInfo.characterInfo[i].vertexIndex;
+
+        // Only change the vertex color if the text element is visible. (It's visible, only the alpha color is 0)
+        if (textInfo.characterInfo[i].isVisible)
+        {
+            newVertexColors[vertexIndex + 0] = c0;
+            newVertexColors[vertexIndex + 1] = c0;
+            newVertexColors[vertexIndex + 2] = c0;
+            newVertexColors[vertexIndex + 3] = c0;
+
+            // New function which pushes (all) updated vertex data to the appropriate meshes when using either the Mesh Renderer or CanvasRenderer.
+            SentenceUIObject.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+        }
     }
 
     private float SetDelayBeforeNextLetter(TMP_TextInfo textInfo, int i)
@@ -234,7 +239,6 @@ public class DialougeManagerV2 : MonoBehaviour
         }
     }
 
-    //Hide our text by making all our characters invisible
     private void HideText()
     {
         SentenceUIObject.ForceMeshUpdate();
@@ -269,7 +273,7 @@ public class DialougeManagerV2 : MonoBehaviour
     }
 
 
-    //No clue what these does
+    //No clue what these does or if they're even needed
     void OnEnable()
     {
         // Subscribe to event fired when text object has been regenerated.

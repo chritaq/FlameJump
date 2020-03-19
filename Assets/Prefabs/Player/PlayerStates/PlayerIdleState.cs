@@ -38,6 +38,14 @@ public class PlayerIdleState : PlayerState
             return new PlayerExitState();
         }
 
+        //TODO
+        //Add state for entering dialouge
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            return new PlayerDialougeState();
+        }
+
+
         //FIRE PARTICLES
         if (playerController.GetPlayerHealth() != 0)
         {

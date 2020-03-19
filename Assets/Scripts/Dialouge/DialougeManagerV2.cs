@@ -63,12 +63,26 @@ public class DialougeManagerV2 : MonoBehaviour
 
     [Space]
     [Header("Audio")]
-    [SerializeField] private AudioSource dotSound;
+    [SerializeField] private AudioClip basicDotSound;
+    [SerializeField] private AudioSource dotSoundAudioSource;
+
+
+
+    [Space]
+    [Header("Misc")]
+    [SerializeField] private Canvas canvas;
+    [HideInInspector] public int sentencesLeft;
+
+
+    [Space]
+    [Header("Testing & Debug")]
+    public Dialouge testDialouge;
 
 
 
     private void Start()
     {
+        sentencesLeft = 0;
         sentences = new Queue<Sentence>();
         speedTextStart = speedText;
         speedTextDotStart = speedTextDot;
@@ -77,27 +91,42 @@ public class DialougeManagerV2 : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKey(KeyCode.Z))
-        {
-            speedText = speedTextStart / textSpeedMultiplier;
-            speedTextDot = speedTextDotStart / textSpeedMultiplier;
-            speedTextComma = speedTextCommaStart / textSpeedMultiplier;
-        }
-        else
-        {
-            speedText = speedTextStart;
-            speedTextDot = speedTextDotStart;
-            speedTextComma = speedTextCommaStart;
-        }
+        //if(Input.GetKey(KeyCode.Z))
+        //{
+        //    speedText = speedTextStart / textSpeedMultiplier;
+        //    speedTextDot = speedTextDotStart / textSpeedMultiplier;
+        //    speedTextComma = speedTextCommaStart / textSpeedMultiplier;
+        //}
+        //else
+        //{
+        //    speedText = speedTextStart;
+        //    speedTextDot = speedTextDotStart;
+        //    speedTextComma = speedTextCommaStart;
+        //}
+    }
+
+    public void SpeedUpDialouge()
+    {
+        speedText = speedTextStart / textSpeedMultiplier;
+        speedTextDot = speedTextDotStart / textSpeedMultiplier;
+        speedTextComma = speedTextCommaStart / textSpeedMultiplier;
+    }
+
+    public void SetDialougeSpeedToNormal()
+    {
+        speedText = speedTextStart;
+        speedTextDot = speedTextDotStart;
+        speedTextComma = speedTextCommaStart;
     }
 
 
 
 
     /*    DIALOUGE MANAGEMENT    */
-
+    
     public void StartDialouge(Dialouge dialouge)
     {
+        canvas.enabled = true;
         ClearAndAddNewSentences(dialouge);
         DisplayNextSentence();
     }
@@ -109,6 +138,7 @@ public class DialougeManagerV2 : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
+        sentencesLeft = sentences.Count;
     }
 
     public void DisplayNextSentence()
@@ -120,7 +150,8 @@ public class DialougeManagerV2 : MonoBehaviour
         }
 
         Sentence sentence = sentences.Dequeue();
-        SetNameAndAvatarInSentence(sentence);
+        sentencesLeft = sentences.Count;
+        SetNameAvatarAndAudioDotInSentence(sentence);
 
         //SentenceUIObject.text = sentence.sentence;
         if(animateTextCoroutine != null)
@@ -135,6 +166,7 @@ public class DialougeManagerV2 : MonoBehaviour
 
     public void EndDialouge()
     {
+        canvas.enabled = false;
         Debug.Log("End of conversation");
     }
 
@@ -142,9 +174,11 @@ public class DialougeManagerV2 : MonoBehaviour
 
     /*    SINGLE SENTENCE MANAGEMENT    */
 
-    private void SetNameAndAvatarInSentence(Sentence sentence)
+    private void SetNameAvatarAndAudioDotInSentence(Sentence sentence)
     {
         DialougeSingleCharacterData characterData = DialougeCharacterData.instance.GetSingleCharacterData(sentence.characterActive);
+
+        dotSoundAudioSource.clip = basicDotSound;
 
         if (characterData != null)
         {
@@ -161,6 +195,10 @@ public class DialougeManagerV2 : MonoBehaviour
             if (characterData.characterName != null)
             {
                 NPCNameUIObject.text = characterData.characterName;
+            }
+            if(characterData.characterAudioDot != null)
+            {
+                dotSoundAudioSource.clip = characterData.characterAudioDot;
             }
         }
     }
@@ -279,8 +317,8 @@ public class DialougeManagerV2 : MonoBehaviour
 
     private void PlayDotSound()
     {
-        dotSound.Stop();
-        dotSound.Play();
+        dotSoundAudioSource.Stop();
+        dotSoundAudioSource.Play();
     }
 
     private void HideText()

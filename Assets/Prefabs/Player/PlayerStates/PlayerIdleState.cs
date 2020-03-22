@@ -38,13 +38,13 @@ public class PlayerIdleState : PlayerState
             return new PlayerExitState();
         }
 
-        //TODO
-        //Add state for entering dialouge
-        Debug.Log("activeMiscCommand was: " + playerController.activeMiscCommand);
-        if(playerController.activeMiscCommand == PlayerController.PlayerMiscCommands.Dialouge)
-        {
-            return new PlayerDialougeState();
-        }
+        ////TODO
+        ////Add state for entering dialouge
+        //Debug.Log("activeMiscCommand was: " + playerController.activeMiscCommand);
+        //if(playerController.activeMiscCommand == PlayerController.PlayerMiscCommands.Dialouge)
+        //{
+        //    return new PlayerDialougeState();
+        //}
 
 
         //FIRE PARTICLES

@@ -10,6 +10,7 @@ public enum DialougeCharacterActive
 {
     Player,
     ChunkySteve,
+    Sprite,
     Other
 }
 

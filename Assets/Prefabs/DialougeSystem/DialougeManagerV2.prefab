@@ -49,6 +49,9 @@ MonoBehaviour:
   ChunkySteveImage: {fileID: 7756370206698791624, guid: 14b58b9116cf91a41b840cbef8838324,
     type: 3}
   ChunkySteveName: Chunky Steve
+  SpriteImage: {fileID: -5629730957622660238, guid: 14b58b9116cf91a41b840cbef8838324,
+    type: 3}
+  SpriteName: Sprite
 --- !u!1 &8794318822882454710
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +100,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8794318822882454710}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -123,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -168,7 +171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8794318822988553072
 RectTransform:
   m_ObjectHideFlags: 0
@@ -269,12 +272,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: TriggerDialouge
-        m_Mode: 1
+      - m_Target: {fileID: 8794318824720529491}
+        m_MethodName: StartDialouge
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: cd92aa83b3007544481a573662c3da20,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: Dialouge, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -400,8 +404,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 125}
-  m_SizeDelta: {x: 550, y: 150}
+  m_AnchoredPosition: {x: 0, y: 152.1}
+  m_SizeDelta: {x: 650, y: 95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8794318824122076134
 CanvasRenderer:
@@ -555,8 +559,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 29.5, y: 54}
-  m_SizeDelta: {x: 289, y: 30}
+  m_AnchoredPosition: {x: -70.6, y: 24.309992}
+  m_SizeDelta: {x: 297.77, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8794318824373402662
 CanvasRenderer:
@@ -634,8 +638,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -200, y: 0.000005722}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchoredPosition: {x: -267.8, y: 0}
+  m_SizeDelta: {x: 85, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8794318824452106854
 CanvasRenderer:
@@ -692,7 +696,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8794318824596489441
 RectTransform:
   m_ObjectHideFlags: 0
@@ -841,8 +845,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 72.7, y: -10.949997}
-  m_SizeDelta: {x: 375.18, y: 103.4}
+  m_AnchoredPosition: {x: 47.46, y: -12}
+  m_SizeDelta: {x: 533.63, y: 46.14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8794318824711433280
 CanvasRenderer:
@@ -880,7 +884,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Hi! Name's Chunky Steve, but you can call me frank
+  m_text: Hi! Name's Chunky Steve, but you can call me frankHi! Name's Chunky Steve,
+    but you can call me frankHi! Name's Chunky Steve, but you can call me frank Hi!
+    Name's Chunky Steve, but you can call.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e9fb0d5a0dcf54040baf7e1ba4af6475, type: 2}
   m_sharedMaterial: {fileID: 3781500605427001293, guid: e9fb0d5a0dcf54040baf7e1ba4af6475,
@@ -926,7 +932,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 125
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -950,13 +956,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 8794318824711433281}
-    characterCount: 50
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 9
-    wordCount: 10
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 2
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -1031,6 +1037,9 @@ MonoBehaviour:
   CurveScale: 1
   basicDotSound: {fileID: 8300000, guid: 96fd026123e7d834b8e95c3ac1973f73, type: 3}
   dotSoundAudioSource: {fileID: 8794318824720529489}
+  canvas: {fileID: 8794318822882454699}
+  sentencesLeft: 0
+  testDialouge: {fileID: 11400000, guid: cd92aa83b3007544481a573662c3da20, type: 2}
 --- !u!82 &8794318824720529489
 AudioSource:
   m_ObjectHideFlags: 0

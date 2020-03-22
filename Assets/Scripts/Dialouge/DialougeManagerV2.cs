@@ -12,10 +12,15 @@ public class DialougeManagerV2 : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
+        {
+            DontDestroyOnLoad(this);
             instance = this;
+        }
         else if (instance != this)
             Destroy(gameObject);
     }
+
+
 
 
 
@@ -26,6 +31,7 @@ public class DialougeManagerV2 : MonoBehaviour
     [SerializeField] private TMP_Text SentenceUIObject;
     [SerializeField] private Image AvatarUIObject;
     private Coroutine animateTextCoroutine;
+    private bool inDialouge = false;
 
 
     [Space]
@@ -126,6 +132,7 @@ public class DialougeManagerV2 : MonoBehaviour
     
     public void StartDialouge(Dialouge dialouge)
     {
+        inDialouge = true;
         canvas.enabled = true;
         ClearAndAddNewSentences(dialouge);
         DisplayNextSentence();
@@ -166,6 +173,8 @@ public class DialougeManagerV2 : MonoBehaviour
 
     public void EndDialouge()
     {
+        inDialouge = false;
+        StopCoroutine(animateTextCoroutine);
         canvas.enabled = false;
         Debug.Log("End of conversation");
     }
@@ -638,6 +647,12 @@ public class DialougeManagerV2 : MonoBehaviour
             Debug.Log("Command " + command.Name + " doesn't exist");
         }
     }
+
+    public bool CheckInDialouge()
+    {
+        bool newInDialouge = inDialouge;
+        return newInDialouge;
+    } 
 }
 
 

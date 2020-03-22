@@ -394,16 +394,20 @@ public class PlayerController : Unit
     }
 
 
-    //DIALOUGE
-    //Is this weirdly set up? Because of how the rest of the states work.
-    public void startDialouge()
+    public void GoToDialougeState()
     {
-        if(currentState.Equals(new PlayerIdleState()))
-        {
-            //Start dialouge
-            Debug.Log("Dialouge started in playerController");
-        }
+        returnedState = new PlayerDialougeState();
+        StateSwap();
     }
 
+    public void GoToLockedInputState()
+    {
+        returnedState = new PlayerLockedInputState();
+        StateSwap();
+    }
 
+    public PlayerState readCurrentPlayerState()
+    {
+        return currentState;
+    }
 }

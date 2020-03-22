@@ -10,7 +10,7 @@ public class PlayerDialougeState : PlayerState
         playerController.canMove = false;
 
         //Starting should be done in the NPC?
-        DialougeManagerV2.instance.StartDialouge(DialougeManagerV2.instance.testDialouge);
+        //DialougeManagerV2.instance.StartDialouge(DialougeManagerV2.instance.testDialouge);
     }
 
     public override void Exit(PlayerController playerController)
@@ -38,6 +38,7 @@ public class PlayerDialougeState : PlayerState
 
         if(playerController.activeActionCommand == PlayerController.PlayerActionCommands.Dash)
         {
+            Debug.Log("Player is going to next sentence");
             if (DialougeManagerV2.instance.sentencesLeft <= 0)
             {
                 DialougeManagerV2.instance.DisplayNextSentence();

@@ -287,7 +287,7 @@ public class InputHandler : MonoBehaviour
 
     private void ExcecuteSelectedCommand(Queue<Command> inputQueue)
     {
-        if (inputQueue.Count != 0)
+        if (inputQueue.Count > 0)
         {
             Command selectedCommand = inputQueue.Dequeue();
             selectedCommand.Excecute(playerController);
@@ -308,7 +308,7 @@ public class InputHandler : MonoBehaviour
             }
             
         }
-        else
+        else if(inputQueue.Count > 0)
         {
             ExcecuteSelectedCommand(inputQueue);
         }

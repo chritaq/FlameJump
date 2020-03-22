@@ -10,6 +10,7 @@ public class PlayerExitState : PlayerState
     {
         Debug.Log("Exited");
         playerController.canMove = false;
+        playerController.AccessRigidBody().velocity = Vector2.zero;
 
         ServiceLocator.GetScreenShake().StartScreenShake(150, 1f);
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(2, 1f);

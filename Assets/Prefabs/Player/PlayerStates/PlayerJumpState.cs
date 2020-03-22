@@ -11,6 +11,7 @@ public class PlayerJumpState : PlayerState
     public override void Enter(PlayerController playerController)
     {
         playerController.heightAnimator.SetTrigger("Stretch");
+        playerController.spriteAnimator.SetBool("JumpUp", true);
 
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(10, 0.5f);
         ServiceLocator.GetAudio().PlaySound("Player_Jump");
@@ -31,6 +32,8 @@ public class PlayerJumpState : PlayerState
     public override void Exit(PlayerController playerController)
     {
         rb.gravityScale = initialGravityScale;
+        playerController.spriteAnimator.SetBool("JumpUp", false);
+        playerController.spriteAnimator.SetBool("Fall", false);
     }
 
     
@@ -39,6 +42,8 @@ public class PlayerJumpState : PlayerState
         //Falls faster after height of jump
         if (rb.velocity.y < 0)
         {
+            playerController.spriteAnimator.SetBool("Fall", true);
+            playerController.spriteAnimator.SetBool("JumpUp", false);
             rb.gravityScale = playerController.fallMultiplier;
 
         }

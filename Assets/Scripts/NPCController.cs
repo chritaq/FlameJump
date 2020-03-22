@@ -17,7 +17,7 @@ public class NPCController : MonoBehaviour
 
     [Header("Camera Zoom")]
     [SerializeField] private bool zoomInDuringDialouge;
-    [SerializeField] private Camera mainCamera;
+    private Camera mainCamera;
     [SerializeField] private Transform newCameraTransform;
     [SerializeField] private float zoomInTarget;
     
@@ -27,6 +27,7 @@ public class NPCController : MonoBehaviour
     {
         dialougeManager = DialougeManagerV2.instance;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        mainCamera = Camera.main;
     }
 
     private float xDistance;

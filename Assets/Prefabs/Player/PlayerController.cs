@@ -131,6 +131,7 @@ public class PlayerController : Unit
                 ServiceLocator.GetGamepadRumble().StartGamepadRumble(7, 1f);
                 ServiceLocator.GetAudio().PlaySound("Player_Land");
                 heightAnimator.SetTrigger("Squash");
+                spriteAnimator.SetTrigger("Player_Land");
             }
 
             dashCharges = 1;
@@ -205,6 +206,9 @@ public class PlayerController : Unit
 
 
     public Animator heightAnimator;
+    public Animator spriteAnimator;
+    [SerializeField] private SpriteRenderer playerSprite;
+
     private void Update()
     {
 
@@ -245,9 +249,11 @@ public class PlayerController : Unit
         switch(activeHorizontalCommand)
         {
             case PlayerHorizontalCommands.Left:
+                playerSprite.flipX = false;
                 horizontalDirection = -1;
                 break;
             case PlayerHorizontalCommands.Right:
+                playerSprite.flipX = true;
                 horizontalDirection = 1;
                 break;
         }

@@ -120,12 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &10283241 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4398785206147159340, guid: 8620efbf139cc9b47a50c6423ea3f219,
-    type: 3}
-  m_PrefabInstance: {fileID: 4398785204853333314}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &265428286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -192,16 +186,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437378455433955410, guid: b0089ba7e869db24b8b52e8d3473c7de,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437378455433955410, guid: b0089ba7e869db24b8b52e8d3473c7de,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0089ba7e869db24b8b52e8d3473c7de, type: 3}
@@ -271,21 +255,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8794318822882454699, guid: e86667388ebfe7b4d8060dffa2a9bf14,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8794318822882454699, guid: e86667388ebfe7b4d8060dffa2a9bf14,
-        type: 3}
-      propertyPath: m_PixelPerfect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8794318824122076135, guid: e86667388ebfe7b4d8060dffa2a9bf14,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e86667388ebfe7b4d8060dffa2a9bf14, type: 3}
@@ -4729,36 +4698,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5e15c799384e59418efa9e8354d4c56, type: 3}
---- !u!1 &1862216514
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1862216515}
-  m_Layer: 0
-  m_Name: ZoomInCameraPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1862216515
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862216514}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 10283241}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1937150400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4975,25 +4914,5 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1973361600}
-    - target: {fileID: 4398785206147159343, guid: 8620efbf139cc9b47a50c6423ea3f219,
-        type: 3}
-      propertyPath: newCameraTransform
-      value: 
-      objectReference: {fileID: 1862216515}
-    - target: {fileID: 4398785206147159343, guid: 8620efbf139cc9b47a50c6423ea3f219,
-        type: 3}
-      propertyPath: zoomInTarget
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4398785206147159343, guid: 8620efbf139cc9b47a50c6423ea3f219,
-        type: 3}
-      propertyPath: zoomInDuringDialouge
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4398785206147159343, guid: 8620efbf139cc9b47a50c6423ea3f219,
-        type: 3}
-      propertyPath: zoomSpeed
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8620efbf139cc9b47a50c6423ea3f219, type: 3}

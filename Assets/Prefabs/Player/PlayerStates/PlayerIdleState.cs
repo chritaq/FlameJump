@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerIdleState : PlayerState
 {
+    private bool grounded;
+
     public override void Enter(PlayerController playerController)
     {
         
@@ -12,7 +14,8 @@ public class PlayerIdleState : PlayerState
 
     public override void Exit(PlayerController playerController)
     {
-        
+        playerController.spriteAnimator.SetBool("Duck", false);
+        playerController.spriteAnimator.SetBool("MovingGround", false);
     }
 
 
@@ -24,13 +27,27 @@ public class PlayerIdleState : PlayerState
 
     public override PlayerState Update(PlayerController playerController, float t)
     {
-        if(playerController.activeVerticalCommand == PlayerController.PlayerVerticalCommands.Down)
+        //Used to only set the bools to true if the player is grounded
+        grounded = playerController.checkIfOnGround();
+
+        if (playerController.activeVerticalCommand == PlayerController.PlayerVerticalCommands.Down && grounded)
         {
-            playerController.heightAnimator.SetBool("Duck", true);
+            playerController.heightAnimator.SetBool("Duck", grounded);
+            playerController.spriteAnimator.SetBool("Duck", grounded);
         }
         else
         {
             playerController.heightAnimator.SetBool("Duck", false);
+            playerController.spriteAnimator.SetBool("Duck", false);
+        }
+
+        if (playerController.activeHorizontalCommand == PlayerController.PlayerHorizontalCommands.Left || playerController.activeHorizontalCommand == PlayerController.PlayerHorizontalCommands.Right)
+        {
+            playerController.spriteAnimator.SetBool("MovingGround", grounded);
+        }
+        else
+        {
+            playerController.spriteAnimator.SetBool("MovingGround", false);
         }
 
         if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Exit)

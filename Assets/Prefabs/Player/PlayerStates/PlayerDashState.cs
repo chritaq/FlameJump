@@ -11,7 +11,9 @@ public class PlayerDashState : PlayerState
 
     public override void Enter(PlayerController playerController)
     {
-        
+        playerController.heightAnimator.SetTrigger("Expand");
+        //Enter dash, choose correct animation
+        //if(playerController.activeHorizontalCommand != PlayerController.PlayerHorizontalCommands.Nothing)
 
         ServiceLocator.GetAudio().PlaySound("Player_Dash");
         counterName = "Dash";
@@ -56,6 +58,21 @@ public class PlayerDashState : PlayerState
 
         TurnOnGravity(playerController);
         playerController.canMove = true;
+        //if(!playerController.checkIfOnGround())
+        //{
+        //    if (playerController.GetPlayerHealth() <= 0)
+        //    {
+        //        playerController.spriteAnimator.SetBool("BurnedNoDash", true);
+        //    }
+        //    else if (playerController.dashCharges <= 0)
+        //    {
+        //        playerController.spriteAnimator.SetBool("NoDash", true);
+        //    }
+        //}
+
+
+        playerController.spriteAnimator.SetBool("DashUp", false);
+        playerController.spriteAnimator.SetBool("DashSides", false);
     }
 
 
@@ -83,6 +100,7 @@ public class PlayerDashState : PlayerState
 
         if (dashRequest == true && dashStartDelay <= 0)
         {
+
             ServiceLocator.GetGamepadRumble().StartGamepadRumble(25, 0.5f);
             ServiceLocator.GetScreenShake().StartScreenShake(dashTime, 0.2f);
             AddDashVelocityOnce(playerController);
@@ -100,6 +118,17 @@ public class PlayerDashState : PlayerState
     private void AddDashVelocityOnce(PlayerController playerController)
     {
         rb.velocity = playerController.GetDirectionFromCommand().normalized * playerController.GetDashVelocity();
+
+        if(playerController.activeVerticalCommand != PlayerController.PlayerVerticalCommands.Nothing)
+        {
+            playerController.spriteAnimator.SetBool("DashUp", true);
+            playerController.heightAnimator.SetTrigger("Stretch");
+        }
+        else if(playerController.activeHorizontalCommand != PlayerController.PlayerHorizontalCommands.Nothing)
+        {
+            playerController.spriteAnimator.SetBool("DashSides", true);
+            playerController.heightAnimator.SetTrigger("Squash");
+        }
         //if((rb.velocity.x > 0 || rb.velocity.x < 0) && rb.velocity.y == 0)
         //{
         //    playerController.heightAnimator.SetTrigger("Squash");

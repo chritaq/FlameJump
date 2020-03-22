@@ -8,6 +8,8 @@ public class PlayerDialougeState : PlayerState
     {
         playerController.AccessRigidBody().velocity = Vector2.zero;
         playerController.canMove = false;
+
+        //Starting should be done in the NPC?
         DialougeManagerV2.instance.StartDialouge(DialougeManagerV2.instance.testDialouge);
     }
 

@@ -40,7 +40,8 @@ public class PlayerIdleState : PlayerState
 
         //TODO
         //Add state for entering dialouge
-        if(Input.GetKeyDown(KeyCode.U))
+        Debug.Log("activeMiscCommand was: " + playerController.activeMiscCommand);
+        if(playerController.activeMiscCommand == PlayerController.PlayerMiscCommands.Dialouge)
         {
             return new PlayerDialougeState();
         }

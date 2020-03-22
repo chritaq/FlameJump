@@ -184,6 +184,9 @@ public class PlayerController : Unit
     [HideInInspector] public enum PlayerVerticalCommands { Nothing, Up, Down };
     [HideInInspector] public PlayerVerticalCommands activeVerticalCommand;
 
+    [HideInInspector] public enum PlayerMiscCommands {Nothing, Dialouge };
+    [HideInInspector] public PlayerMiscCommands activeMiscCommand;
+
 
     private void Start()
     {
@@ -391,6 +394,16 @@ public class PlayerController : Unit
     }
 
 
+    //DIALOUGE
+    //Is this weirdly set up? Because of how the rest of the states work.
+    public void startDialouge()
+    {
+        if(currentState.Equals(new PlayerIdleState()))
+        {
+            //Start dialouge
+            Debug.Log("Dialouge started in playerController");
+        }
+    }
 
 
 }

@@ -10,10 +10,12 @@ public class CountingSystem : Observer
         //Used for testing:
         //PlayerPrefs.DeleteAll();
 
+        //TODO
         //Ändra detta till spelare istället?
-        foreach (var poi in FindObjectsOfType<Unit>())
+        //poi står för
+        foreach (var pointsOfInterest in FindObjectsOfType<Unit>())
         {
-            poi.AddObserver(this);
+            pointsOfInterest.AddObserver(this);
         }
     }
 

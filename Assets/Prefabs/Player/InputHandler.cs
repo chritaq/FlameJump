@@ -14,6 +14,7 @@ public class InputHandler : MonoBehaviour
     private Queue<Command> actionInputQueue = new Queue<Command>();
     private Queue<Command> horizontalInputQueue = new Queue<Command>();
     private Queue<Command> verticalInputQueue = new Queue<Command>();
+    private Queue<Command> miscCommandQueue = new Queue<Command>();
 
 
     //GAMEPAD COMMANDS
@@ -54,6 +55,10 @@ public class InputHandler : MonoBehaviour
     private Command noHorizontalCommand = new NoHorizontalCommand();
     private Command noVerticalCommand = new NoVerticalCommand();
 
+
+    //Misc Commands
+    private Command interactCommand = new InteractCommand();
+
     PlayerIndex player;
     GamePadState state;
     private Vector2 stickInput;
@@ -90,16 +95,19 @@ public class InputHandler : MonoBehaviour
             {
                 HandleKeyboardActionInput();
                 HandleKeyboardMovementInput();
+                HandleKeyboardMiscInput();
             }
             else
             {
                 HandleGamepadActionInputs();
                 HandleGamepadMovementInput();
+                HandleGamepadMiscInput();
             }
 
-            ExcecuteSelectedCommand(actionInputQueue, true);
+            ExcecuteSelectedCommand(actionInputQueue, CommandType.actionCommand);
             ExcecuteSelectedCommand(horizontalInputQueue);
             ExcecuteSelectedCommand(verticalInputQueue);
+            ExcecuteSelectedCommand(miscCommandQueue, CommandType.miscCommand);
         }
 
         
@@ -249,6 +257,33 @@ public class InputHandler : MonoBehaviour
         }
     }
 
+    private void HandleKeyboardMiscInput()
+    {
+        if (Input.GetKeyDown(upKey))
+        {
+            miscCommandQueue.Enqueue(interactCommand);
+            //miscCommand = interactCommand;
+            //verticalInputQueue.Enqueue(moveUpCommand);
+        }
+    }
+
+    private void HandleGamepadMiscInput()
+    {
+        if (state.ThumbSticks.Left.Y > verticalDeadZone)
+        {
+            miscCommandQueue.Enqueue(interactCommand);
+            //verticalInputQueue.Enqueue(moveUpCommand);
+        }
+    }
+
+
+    private enum CommandType
+    {
+        verticalCommand,
+        horizontalCommand,
+        actionCommand,
+        miscCommand
+    }
 
     private void ExcecuteSelectedCommand(Queue<Command> inputQueue)
     {
@@ -259,16 +294,23 @@ public class InputHandler : MonoBehaviour
         }
     }
 
-    private void ExcecuteSelectedCommand(Queue<Command> inputQueue, bool actionCommand)
+    private void ExcecuteSelectedCommand(Queue<Command> inputQueue, CommandType commandTypeToExcecute)
     {
-        if (inputQueue.Count != 0)
+        if (inputQueue.Count == 0)
         {
-            Command selectedCommand = inputQueue.Dequeue();
-            selectedCommand.Excecute(playerController);
+            if(commandTypeToExcecute == CommandType.actionCommand)
+            {
+                playerController.activeActionCommand = PlayerController.PlayerActionCommands.Nothing;
+            }
+            else if(commandTypeToExcecute == CommandType.miscCommand)
+            {
+                playerController.activeMiscCommand = PlayerController.PlayerMiscCommands.Nothing;
+            }
+            
         }
-        else if (actionCommand)
+        else
         {
-            playerController.activeActionCommand = PlayerController.PlayerActionCommands.Nothing;
+            ExcecuteSelectedCommand(inputQueue);
         }
     }
 

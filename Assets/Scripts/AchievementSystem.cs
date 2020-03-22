@@ -6,11 +6,15 @@ public class AchievementSystem : Observer
 {
     private void Start()
     {
+        //TODO
+        //Remove this
         //Used for testing:
         PlayerPrefs.DeleteAll();
-        foreach (var poi in FindObjectsOfType<PointOfInterest>())
+
+
+        foreach (var pointOfInterest in FindObjectsOfType<PointOfInterest>())
         {
-            poi.AddObserver(this);
+            pointOfInterest.AddObserver(this);
         }
     }
 

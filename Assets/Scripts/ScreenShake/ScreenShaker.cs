@@ -17,7 +17,7 @@ public class ScreenShaker : MonoBehaviour
     public void StartScreenShake(float time, float amount)
     {
         //StopCoroutine(ScreenShake());
-        cameraTransform.position = startPosition;
+        //cameraTransform.position = startPosition;
         StartCoroutine(ScreenShake(time, amount));
         
     }
@@ -26,8 +26,9 @@ public class ScreenShaker : MonoBehaviour
     private float positionY;
     private IEnumerator ScreenShake(float time, float amount)
     {
+        startPosition = cameraTransform.position;
         //Start Screenshake
-        while(time > 0)
+        while (time > 0)
         {
             positionX = Random.Range(-amount, amount) + startPosition.x;
             positionY = Random.Range(-amount, amount) + startPosition.y;

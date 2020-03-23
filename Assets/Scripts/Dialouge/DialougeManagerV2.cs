@@ -95,22 +95,6 @@ public class DialougeManagerV2 : MonoBehaviour
         speedTextCommaStart = speedTextComma;
     }
 
-    private void Update()
-    {
-        //if(Input.GetKey(KeyCode.Z))
-        //{
-        //    speedText = speedTextStart / textSpeedMultiplier;
-        //    speedTextDot = speedTextDotStart / textSpeedMultiplier;
-        //    speedTextComma = speedTextCommaStart / textSpeedMultiplier;
-        //}
-        //else
-        //{
-        //    speedText = speedTextStart;
-        //    speedTextDot = speedTextDotStart;
-        //    speedTextComma = speedTextCommaStart;
-        //}
-    }
-
     public void SpeedUpDialouge()
     {
         speedText = speedTextStart / textSpeedMultiplier;
@@ -629,6 +613,7 @@ public class DialougeManagerV2 : MonoBehaviour
         }
     }
 
+
     private void ExecuteCommand(SpecialCommand command)
     {
         if(command == null)
@@ -638,14 +623,35 @@ public class DialougeManagerV2 : MonoBehaviour
 
         Debug.Log("Command " + command.Name + " found");
 
-        if(command.Name == "sound")
+        if(command.Name == "Sound")
         {
-            Debug.Log("BOOOOM! Command played a sound");
+            ServiceLocator.GetAudio().PlaySound(command.Values[0]);
         }
         else
         {
             Debug.Log("Command " + command.Name + " doesn't exist");
         }
+
+        if(command.Name == "ScreenShake")
+        {
+            
+            if (command.Values.Count <= 0)
+            {
+                ServiceLocator.GetScreenShake().StartScreenShake(2f, 1f);
+            }
+            else if(command.Values.Count <= 1)
+            {
+                Debug.Log(command.Values[0]);
+                ServiceLocator.GetScreenShake().StartScreenShake(float.Parse(command.Values[0]), 1f);
+            }
+            else
+            {
+                Debug.Log(command.Values[0]);
+                Debug.Log(command.Values[1]);
+                ServiceLocator.GetScreenShake().StartScreenShake(float.Parse(command.Values[0]), float.Parse(command.Values[1]));
+            }
+        }
+
     }
 
     public bool CheckInDialouge()

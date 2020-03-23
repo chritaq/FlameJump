@@ -22,3 +22,15 @@ MonoBehaviour:
     leftSide: 1
     characterAvatar: {fileID: 0}
     sentence: Ah alright... Cool
+  - characterActive: 2
+    leftSide: 1
+    characterAvatar: {fileID: 0}
+    sentence: Like.. B{ScreenShake:10:0.5}{Sound:Player_Death}LAM!
+  - characterActive: 0
+    leftSide: 1
+    characterAvatar: {fileID: 0}
+    sentence: '...'
+  - characterActive: 0
+    leftSide: 1
+    characterAvatar: {fileID: 0}
+    sentence: Calm your tits brother

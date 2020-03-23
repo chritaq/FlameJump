@@ -621,7 +621,11 @@ public class DialougeManagerV2 : MonoBehaviour
             return;
         }
 
-        Debug.Log("Command " + command.Name + " found");
+        //Dialouge
+
+        //Nothing here atm
+
+        //Audio
 
         if(command.Name == "Sound")
         {
@@ -631,6 +635,9 @@ public class DialougeManagerV2 : MonoBehaviour
         {
             Debug.Log("Command " + command.Name + " doesn't exist");
         }
+
+
+        //FXs
 
         if(command.Name == "ScreenShake")
         {
@@ -649,6 +656,23 @@ public class DialougeManagerV2 : MonoBehaviour
                 Debug.Log(command.Values[0]);
                 Debug.Log(command.Values[1]);
                 ServiceLocator.GetScreenShake().StartScreenShake(float.Parse(command.Values[0]), float.Parse(command.Values[1]));
+            }
+        }
+
+        if (command.Name == "ScreenFlash")
+        {
+
+            if (command.Values.Count <= 0)
+            {
+                ServiceLocator.GetScreenShake().StartScreenFlash(2, 0.3f);
+            }
+            else if (command.Values.Count <= 1)
+            {
+                ServiceLocator.GetScreenShake().StartScreenFlash(int.Parse(command.Values[0]), 1f);
+            }
+            else
+            {
+                ServiceLocator.GetScreenShake().StartScreenFlash(int.Parse(command.Values[0]), float.Parse(command.Values[1]));
             }
         }
 

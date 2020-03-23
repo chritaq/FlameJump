@@ -25,7 +25,7 @@ MonoBehaviour:
   - characterActive: 2
     leftSide: 1
     characterAvatar: {fileID: 0}
-    sentence: Like.. B{ScreenShake:10:0.5}{Sound:Player_Death}LAM!
+    sentence: Like.. B{ScreenShake:10:0.5}{Sound:Player_Death}{ScreenFlash:2:0.3}LAM!
   - characterActive: 0
     leftSide: 1
     characterAvatar: {fileID: 0}

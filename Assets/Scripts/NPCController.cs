@@ -11,7 +11,7 @@ public class NPCController : MonoBehaviour
     [SerializeField] private Dialouge dialouge;
 
     [SerializeField] private float xDistanceBeforeDialogeCanBeActive;
-    private float yDistanceBeforeDialogeCanBeActive = 0.1f;
+    private float yDistanceBeforeDialogeCanBeActive = 0.5f;
 
 
 
@@ -34,8 +34,10 @@ public class NPCController : MonoBehaviour
     private float yDistance;
     private void Update()
     {
-        xDistance = transform.position.x - player.transform.position.x;
-        yDistance = transform.position.y - player.transform.position.y;
+        xDistance = Mathf.Abs(transform.position.x - player.transform.position.x);
+        yDistance = Mathf.Abs(transform.position.y - player.transform.position.y);
+        Debug.Log("xDistance: " + xDistance);
+        Debug.Log("yDistance: " + yDistance);
         if (xDistance < xDistanceBeforeDialogeCanBeActive && yDistance < yDistanceBeforeDialogeCanBeActive)
         {
             Debug.Log("In good distance to NPC");

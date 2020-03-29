@@ -84,7 +84,7 @@ public class PlayerBounceState : PlayerState
             playerController.activeActionCommand = PlayerController.PlayerActionCommands.LateJump;
         }
 
-        if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Jump || playerController.activeActionCommand == PlayerController.PlayerActionCommands.LateJump)
+        if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.JumpTap || playerController.activeActionCommand == PlayerController.PlayerActionCommands.LateJump)
         {
             if (playerController.checkIfOnGround())
             {

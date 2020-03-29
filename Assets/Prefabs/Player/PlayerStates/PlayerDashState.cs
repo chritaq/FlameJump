@@ -106,7 +106,7 @@ public class PlayerDashState : PlayerState
             AddDashVelocityOnce(playerController);
         }
 
-        if (playerController.checkIfOnGround() && playerController.activeActionCommand == PlayerController.PlayerActionCommands.Jump)
+        if (playerController.checkIfOnGround() && playerController.activeActionCommand == PlayerController.PlayerActionCommands.JumpTap)
         {
             return new PlayerJumpState();
         }

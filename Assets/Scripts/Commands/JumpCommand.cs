@@ -6,6 +6,6 @@ public class JumpCommand : Command
 {
     public override void Excecute(PlayerController playerController)
     {
-        playerController.activeActionCommand = PlayerController.PlayerActionCommands.Jump;
+        playerController.activeActionCommand = PlayerController.PlayerActionCommands.JumpTap;
     }
 }

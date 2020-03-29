@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerDialougeState : PlayerState
 {
+    private float skipTextStartTimer = 2.2f;
+    private float skipTextTimer;
+    private Coroutine skipTextTimerCoroutine;
+    //private bool waitForHoldReleaseTrigger = false;
+
     public override void Enter(PlayerController playerController)
     {
         playerController.AccessRigidBody().velocity = Vector2.zero;
@@ -25,27 +30,83 @@ public class PlayerDialougeState : PlayerState
 
     public override PlayerState Update(PlayerController playerController, float t)
     {
+        //if(playerController.activeActionCommand != PlayerController.PlayerActionCommands.JumpHold)
+        //{
+        //    waitForHoldReleaseTrigger = false;
+        //}
+
+
         if(playerController.activeActionCommand == PlayerController.PlayerActionCommands.JumpHold)
         {
             DialougeManagerV2.instance.SpeedUpDialouge();
+
+            //if (!waitForHoldReleaseTrigger)
+            //{
+            //    if (skipTextTimerCoroutine != null)
+            //    {
+            //        playerController.StopCoroutine(skipTextTimerCoroutine);
+            //    }
+            //    skipTextTimerCoroutine = playerController.StartCoroutine(StartSkipTextTimer());
+            //}
+
+            if (skipTextTimerCoroutine != null)
+            {
+                playerController.StopCoroutine(skipTextTimerCoroutine);
+            }
+            skipTextTimerCoroutine = playerController.StartCoroutine(StartSkipTextTimer());
+
+
+
         }
         else
         {
             DialougeManagerV2.instance.SetDialougeSpeedToNormal();
         }
 
-        //if(DialougeManagerV2.instance.sen)
 
-        if(playerController.activeActionCommand == PlayerController.PlayerActionCommands.Dash)
+        if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.JumpTap)
         {
-            Debug.Log("Player is going to next sentence");
-            if (DialougeManagerV2.instance.sentencesLeft <= 0)
+            if (DialougeManagerV2.instance.endOfAnimations)
             {
+                if(skipTextTimerCoroutine != null)
+                {
+                    playerController.StopCoroutine(skipTextTimerCoroutine);
+                }
+
+                skipTextTimer = 0;
+                Debug.Log("Player is going to next sentence");
+                if (DialougeManagerV2.instance.sentencesLeft <= 0)
+                {
+                    DialougeManagerV2.instance.DisplayNextSentence();
+                    return new PlayerIdleState();
+                }
                 DialougeManagerV2.instance.DisplayNextSentence();
-                return new PlayerIdleState();
+
+                //waitForHoldReleaseTrigger = true;
             }
-            DialougeManagerV2.instance.DisplayNextSentence();
+
+
+            if (skipTextTimer > 0)
+            {
+                DialougeManagerV2.instance.quicklySkipText = true;
+                skipTextTimer = 0;
+                
+                Debug.Log("Quickly skipped text");
+            }
         }
         return null;
+    }
+
+    private IEnumerator StartSkipTextTimer()
+    {
+        skipTextTimer = skipTextStartTimer;
+        while (skipTextTimer > 0)
+        {
+            skipTextTimer -= Time.deltaTime;
+            Debug.Log("SkipTextTimer is: " + skipTextTimer);
+            yield return new WaitForEndOfFrame();
+                
+        }
+        yield return null;
     }
 }

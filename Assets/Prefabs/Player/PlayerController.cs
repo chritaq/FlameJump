@@ -177,7 +177,7 @@ public class PlayerController : Unit
     PlayerState currentState;
     PlayerState returnedState;
 
-    [HideInInspector] public enum PlayerActionCommands { Nothing, Jump, JumpHold, Dash, LateJump, Exit };
+    [HideInInspector] public enum PlayerActionCommands { Nothing, JumpTap, JumpHold, Dash, LateJump, Exit };
     [HideInInspector] public PlayerActionCommands activeActionCommand;
 
     [HideInInspector] public enum PlayerHorizontalCommands { Nothing, Left, Right };

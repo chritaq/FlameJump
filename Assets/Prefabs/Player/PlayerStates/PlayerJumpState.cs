@@ -49,7 +49,7 @@ public class PlayerJumpState : PlayerState
         }
 
         //Goes to lowjump if the player isn't pressing or holding down the jumpButton
-        else if (rb.velocity.y > 0 && playerController.activeActionCommand != PlayerController.PlayerActionCommands.JumpHold && playerController.activeActionCommand != PlayerController.PlayerActionCommands.Jump)
+        else if (rb.velocity.y > 0 && playerController.activeActionCommand != PlayerController.PlayerActionCommands.JumpHold && playerController.activeActionCommand != PlayerController.PlayerActionCommands.JumpTap)
         {
             rb.gravityScale = playerController.lowJumpMultiplier;
         }
@@ -75,7 +75,7 @@ public class PlayerJumpState : PlayerState
             playerController.activeActionCommand = PlayerController.PlayerActionCommands.LateJump;
         }
 
-        if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Jump || playerController.activeActionCommand == PlayerController.PlayerActionCommands.LateJump)
+        if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.JumpTap || playerController.activeActionCommand == PlayerController.PlayerActionCommands.LateJump)
         {
             if (playerController.checkIfOnGround())
             {

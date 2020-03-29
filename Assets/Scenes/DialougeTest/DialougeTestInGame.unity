@@ -4920,5 +4920,11 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1973361600}
+    - target: {fileID: 4398785206147159343, guid: 8620efbf139cc9b47a50c6423ea3f219,
+        type: 3}
+      propertyPath: dialouge
+      value: 
+      objectReference: {fileID: 11400000, guid: 06f265e20d058a541b5c998eab6110b1,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8620efbf139cc9b47a50c6423ea3f219, type: 3}

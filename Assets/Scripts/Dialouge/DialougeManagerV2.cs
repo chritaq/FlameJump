@@ -33,6 +33,11 @@ public class DialougeManagerV2 : MonoBehaviour
     private Coroutine animateTextCoroutine;
     private bool inDialouge = false;
 
+    [Space]
+    [Header("Dialouge Controllers")]
+    [HideInInspector] public bool quicklySkipText = false;
+    [HideInInspector] public bool endOfAnimations = false;
+
 
     [Space]
     [Header("Dialouge speeds")]
@@ -43,7 +48,6 @@ public class DialougeManagerV2 : MonoBehaviour
     private float speedTextDotStart;
     private float speedTextCommaStart;
     [SerializeField] private float textSpeedMultiplier = 2;
-
 
 
     [HideInInspector]
@@ -83,6 +87,8 @@ public class DialougeManagerV2 : MonoBehaviour
     [Space]
     [Header("Testing & Debug")]
     public Dialouge testDialouge;
+
+
 
 
 
@@ -134,7 +140,8 @@ public class DialougeManagerV2 : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if(sentences.Count == 0)
+        endOfAnimations = false;
+        if (sentences.Count == 0)
         {
             EndDialouge();
             return;
@@ -198,6 +205,8 @@ public class DialougeManagerV2 : MonoBehaviour
 
     private IEnumerator AnimateTextCoroutine(string text)
     {
+        
+
         //Du sätter in text, tar bort alla commands från det och lägger in det i ui-objektet
         StripCommandsFromTextAndCreateCommandList(text);
 
@@ -238,11 +247,17 @@ public class DialougeManagerV2 : MonoBehaviour
 
             ShowCharacter(i, textInfo, baseColor);
 
-            yield return new WaitForSeconds(SetDelayBeforeNextLetter(textInfo, i));
+            if(!quicklySkipText)
+            {
+                yield return new WaitForSeconds(SetDelayBeforeNextLetter(textInfo, i));
+            }
+            
 
             i++;
         }
-        
+
+        quicklySkipText = false;
+        endOfAnimations = true;
         Debug.Log("End of animations");
     }
 

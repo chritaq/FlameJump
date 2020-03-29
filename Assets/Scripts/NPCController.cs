@@ -36,14 +36,10 @@ public class NPCController : MonoBehaviour
     {
         xDistance = Mathf.Abs(transform.position.x - player.transform.position.x);
         yDistance = Mathf.Abs(transform.position.y - player.transform.position.y);
-        Debug.Log("xDistance: " + xDistance);
-        Debug.Log("yDistance: " + yDistance);
         if (xDistance < xDistanceBeforeDialogeCanBeActive && yDistance < yDistanceBeforeDialogeCanBeActive)
         {
-            Debug.Log("In good distance to NPC");
             if(player.activeMiscCommand == PlayerController.PlayerMiscCommands.Dialouge && player.readCurrentPlayerState().GetType() == new PlayerIdleState().GetType())
             {
-                Debug.Log("Started dialouge");
                 StartDialouge();
             }
         }

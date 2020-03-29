@@ -33,10 +33,13 @@ public class DialougeManagerV2 : MonoBehaviour
     private Coroutine animateTextCoroutine;
     private bool inDialouge = false;
 
+
     [Space]
     [Header("Dialouge Controllers")]
-    [HideInInspector] public bool quicklySkipText = false;
+    private bool displayFullSentence = false;
     [HideInInspector] public bool endOfAnimations = false;
+    private bool lockPlayerInputForRestOfSentence = false;
+    private bool goToNextSentenceAutomatically = false;
 
 
     [Space]
@@ -48,7 +51,8 @@ public class DialougeManagerV2 : MonoBehaviour
     private float speedTextDotStart;
     private float speedTextCommaStart;
     [SerializeField] private float textSpeedMultiplier = 2;
-    [SerializeField] private float commandTextSpeedMultiplier = 1;
+    private float commandTextSpeedMultiplier = 1;
+    private bool displayFullWordAtTheTime = false;
 
 
     [HideInInspector]
@@ -104,9 +108,12 @@ public class DialougeManagerV2 : MonoBehaviour
 
     public void SpeedUpDialouge()
     {
-        speedText = speedTextStart / textSpeedMultiplier;
-        speedTextDot = speedTextDotStart / textSpeedMultiplier;
-        speedTextComma = speedTextCommaStart / textSpeedMultiplier;
+        if(!lockPlayerInputForRestOfSentence)
+        {
+            speedText = speedTextStart / textSpeedMultiplier;
+            speedTextDot = speedTextDotStart / textSpeedMultiplier;
+            speedTextComma = speedTextCommaStart / textSpeedMultiplier;
+        }
     }
 
     public void SetDialougeSpeedToNormal()
@@ -118,7 +125,11 @@ public class DialougeManagerV2 : MonoBehaviour
 
     public void QuicklySkipText()
     {
-        quicklySkipText = true;
+        if(!lockPlayerInputForRestOfSentence)
+        {
+            displayFullSentence = true;
+        }
+        
     }
 
 
@@ -145,6 +156,9 @@ public class DialougeManagerV2 : MonoBehaviour
     public void DisplayNextSentence()
     {
         endOfAnimations = false;
+        lockPlayerInputForRestOfSentence = false;
+        displayFullWordAtTheTime = false;
+
         if (sentences.Count == 0)
         {
             EndDialouge();
@@ -251,19 +265,60 @@ public class DialougeManagerV2 : MonoBehaviour
 
             ShowCharacter(i, textInfo, baseColor);
 
-            if(!quicklySkipText)
+            if(!displayFullSentence)
             {
-                yield return new WaitForSeconds(SetDelayBeforeNextLetter(textInfo, i));
+                //If not in perWordMode
+                if(!displayFullWordAtTheTime)
+                {
+                    yield return new WaitForSeconds(SetDelayBeforeNextLetter(textInfo, i));
+                }
+                else
+                {
+                    if (textInfo.characterInfo[i].character == ' ')
+                    {
+                        yield return new WaitForSeconds(SetDelayBeforeNextWord(textInfo, i));
+                        
+                    }
+                    else
+                    {
+                        PlayDotSound();
+                        //TODO
+                        //Fix so dotsound only plays once per word
+                        //PlayDotSound();
+                        //Should be nothing here as it's taken care of above?
+                    }
+                    
+                }
+
+                while (pauseTime > 0)
+                {
+                    pauseTime -= Time.deltaTime;
+                    yield return new WaitForEndOfFrame();
+                }
             }
+
             
+
 
             i++;
         }
 
-        quicklySkipText = false;
+        ResetValuesForDialougeAnimation();
+
+        if (goToNextSentenceAutomatically)
+        {
+            goToNextSentenceAutomatically = false;
+            DisplayNextSentence();
+        }
+        
+        Debug.Log("End of animations");
+    }
+
+    private void ResetValuesForDialougeAnimation()
+    {
+        displayFullSentence = false;
         endOfAnimations = true;
         commandTextSpeedMultiplier = 1;
-        Debug.Log("End of animations");
     }
 
     private void StripCommandsFromTextAndCreateCommandList(string text)
@@ -327,6 +382,19 @@ public class DialougeManagerV2 : MonoBehaviour
             PlayDotSound();
             return speedText / commandTextSpeedMultiplier;
         }
+    }
+
+    private float SetDelayBeforeNextWord(TMP_TextInfo textInfo, int i)
+    {
+        char character = textInfo.characterInfo[i].character;
+
+        //Set delay to 0 if it's a space
+        if (character == ' ')
+        {
+            return speedTextDot / commandTextSpeedMultiplier;
+        }
+
+        return 0;
     }
 
     private void PlayDotSound()
@@ -630,11 +698,13 @@ public class DialougeManagerV2 : MonoBehaviour
 
                 //Take a step back since we removed one command from the list. Otherwise, the script will skip one command.
                 i--;
+                
             }
         }
     }
 
 
+    private float pauseTime = 0f;
     private void ExecuteCommand(SpecialCommand command)
     {
         if(command == null)
@@ -642,11 +712,54 @@ public class DialougeManagerV2 : MonoBehaviour
             return;
         }
 
+        Debug.Log("Command: " + command.Name + " Was started");
+
         //Dialouge
 
         if(command.Name == "Speed")
         {
             commandTextSpeedMultiplier = float.Parse(command.Values[0]);
+        }
+
+        if(command.Name == "FullWords")
+        {
+            if (command.Values.Count > 0)
+            {
+                if(int.Parse(command.Values[0]) == 0)
+                {
+                    displayFullWordAtTheTime = false;
+                }
+                else
+                {
+                    displayFullWordAtTheTime = true;
+                }
+            }
+            else
+            {
+                displayFullWordAtTheTime = true;
+            }
+        }
+
+        if(command.Name == "LockInput")
+        {
+            lockPlayerInputForRestOfSentence = true;
+        }
+        if(command.Name == "UnlockInput")
+        {
+            lockPlayerInputForRestOfSentence = false;
+        }
+
+        if(command.Name == "NextSentenceAuto")
+        {
+            goToNextSentenceAutomatically = true;
+        }
+
+        if(command.Name == "Pause")
+        {
+            if(command.Values.Count > 0)
+            {
+                pauseTime = float.Parse(command.Values[0]);
+            }
         }
 
         //Audio

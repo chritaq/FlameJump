@@ -17,13 +17,14 @@ MonoBehaviour:
   - characterActive: 0
     leftSide: 0
     characterAvatar: {fileID: 0}
-    sentence: '{Speed:3}Here I talk and talk and talk and talk and talk and talk and
-      talk and talk and talk and talk and talk and talk and talk and talk'
+    sentence: '{Speed:5}Here I talk and talk and talk and talk and talk and talk and
+      talk derp  and talk and talk and talk and talk and talk and talk and talk'
   - characterActive: 2
     leftSide: 0
     characterAvatar: {fileID: 0}
-    sentence: 'fuck fuck fuck fuck fuck fuck fuck fuck fuck fuck fuck fuck fuck fuck
-      fuck fuck fuck '
+    sentence: '{FullWords} {LockInput} {NextSentenceAuto} {ScreenShake:10:0.5}{Sound:Player_Death}{ScreenFlash:2:0.3}
+      fuck fuck fuck fuck {FullWords:0} {ScreenShake:10:0.5}{Sound:Player_Death}{ScreenFlash:2:0.3}
+      FUUUUUUUUUUUUUUUUUUUUUCK!! '
   - characterActive: 0
     leftSide: 0
     characterAvatar: {fileID: 0}

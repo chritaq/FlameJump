@@ -133,7 +133,6 @@ public class PlayerDialougeState : PlayerState
         while (skipTextTimer > 0)
         {
             skipTextTimer -= Time.deltaTime;
-            Debug.Log("SkipTextTimer is: " + skipTextTimer);
             yield return new WaitForEndOfFrame();
                 
         }

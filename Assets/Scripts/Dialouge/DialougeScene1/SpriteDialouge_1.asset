@@ -21,11 +21,11 @@ MonoBehaviour:
   - characterActive: 0
     leftSide: 1
     characterAvatar: {fileID: 0}
-    sentence: Ah alright... Coolio.
+    sentence: Ah alright...{FullWords} Coo{Pause:0.5}li{Pause:0.5}o
   - characterActive: 2
     leftSide: 1
     characterAvatar: {fileID: 0}
-    sentence: Like.. B{ScreenShake:10:0.5}{Sound:Player_Death}{ScreenFlash:2:0.3}LAM!
+    sentence: Like.. {FullWords}  B{ScreenShake:10:0.5}{Sound:Player_Death}{ScreenFlash:2:0.3}LAM!
   - characterActive: 0
     leftSide: 1
     characterAvatar: {fileID: 0}
@@ -33,4 +33,4 @@ MonoBehaviour:
   - characterActive: 0
     leftSide: 1
     characterAvatar: {fileID: 0}
-    sentence: Calm your tits brother.
+    sentence: '{FullWords}{Speed:0.5}Calm your tits  {FullWords:0}{Speed:1} brother.'

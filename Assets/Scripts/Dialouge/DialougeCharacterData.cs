@@ -24,9 +24,9 @@ public class DialougeCharacterData : MonoBehaviour
             case DialougeCharacterActive.Player:
                 return new DialougeSingleCharacterData(PlayerImage, PlayerName, PlayerAudioDot);
             case DialougeCharacterActive.ChunkySteve:
-                return new DialougeSingleCharacterData(ChunkySteveImage, ChunkySteveName);
+                return new DialougeSingleCharacterData(ChunkySteveImage, ChunkySteveName, ChunkySteveAudioDot);
             case DialougeCharacterActive.Sprite:
-                return new DialougeSingleCharacterData(SpriteImage, SpriteName);
+                return new DialougeSingleCharacterData(SpriteImage, SpriteName, SpriteAudioDot);
             default:
                 break;
         }
@@ -41,9 +41,11 @@ public class DialougeCharacterData : MonoBehaviour
 
     [SerializeField] private Sprite ChunkySteveImage;
     [SerializeField] private string ChunkySteveName;
+    [SerializeField] private AudioClip ChunkySteveAudioDot;
 
     [SerializeField] private Sprite SpriteImage;
     [SerializeField] private string SpriteName;
+    [SerializeField] private AudioClip SpriteAudioDot;
 }
 
 

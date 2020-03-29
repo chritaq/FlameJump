@@ -316,6 +316,7 @@ public class DialougeManagerV2 : MonoBehaviour
 
     private void ResetValuesForDialougeAnimation()
     {
+        pauseTime = 0;
         displayFullSentence = false;
         endOfAnimations = true;
         commandTextSpeedMultiplier = 1;

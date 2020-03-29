@@ -262,6 +262,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8794318822869829026, guid: e86667388ebfe7b4d8060dffa2a9bf14,
+        type: 3}
+      propertyPath: SpriteAudioDot
+      value: 
+      objectReference: {fileID: 8300000, guid: b4715ad0e48fa244198f911e806ef534, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e86667388ebfe7b4d8060dffa2a9bf14, type: 3}
 --- !u!1001 &381050227

@@ -33,4 +33,4 @@ MonoBehaviour:
   - characterActive: 0
     leftSide: 1
     characterAvatar: {fileID: 0}
-    sentence: '{FullWords}{Speed:0.5}Calm your tits  {FullWords:0}{Speed:1} brother.'
+    sentence: '{Speed:1.5}Calm your tits brother.'

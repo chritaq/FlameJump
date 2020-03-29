@@ -21,7 +21,7 @@ MonoBehaviour:
   - characterActive: 0
     leftSide: 1
     characterAvatar: {fileID: 0}
-    sentence: Ah alright... Cool
+    sentence: Ah alright... Coolio.
   - characterActive: 2
     leftSide: 1
     characterAvatar: {fileID: 0}
@@ -33,4 +33,4 @@ MonoBehaviour:
   - characterActive: 0
     leftSide: 1
     characterAvatar: {fileID: 0}
-    sentence: Calm your tits brother
+    sentence: Calm your tits brother.

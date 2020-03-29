@@ -17,8 +17,8 @@ MonoBehaviour:
   - characterActive: 0
     leftSide: 0
     characterAvatar: {fileID: 0}
-    sentence: Here I talk and talk and talk and talk and talk and talk and talk and
-      talk and talk and talk and talk and talk and talk and talk
+    sentence: '{Speed:3}Here I talk and talk and talk and talk and talk and talk and
+      talk and talk and talk and talk and talk and talk and talk and talk'
   - characterActive: 2
     leftSide: 0
     characterAvatar: {fileID: 0}

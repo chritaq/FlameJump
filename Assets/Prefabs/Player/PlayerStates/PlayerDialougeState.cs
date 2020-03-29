@@ -88,14 +88,44 @@ public class PlayerDialougeState : PlayerState
 
             if (skipTextTimer > 0)
             {
-                DialougeManagerV2.instance.quicklySkipText = true;
+                DialougeManagerV2.instance.QuicklySkipText();
                 skipTextTimer = 0;
                 
                 Debug.Log("Quickly skipped text");
             }
         }
+
+
+        if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Dash)
+        {
+
+            if(DialougeManagerV2.instance.endOfAnimations)
+            {
+                if (skipTextTimerCoroutine != null)
+                {
+                    playerController.StopCoroutine(skipTextTimerCoroutine);
+                }
+                skipTextTimer = 0;
+                Debug.Log("Player is going to next sentence");
+                if (DialougeManagerV2.instance.sentencesLeft <= 0)
+                {
+                    DialougeManagerV2.instance.DisplayNextSentence();
+                    return new PlayerIdleState();
+                }
+                DialougeManagerV2.instance.DisplayNextSentence();
+            }
+            else
+            {
+                DialougeManagerV2.instance.QuicklySkipText();
+            }
+
+            
+        }
+
         return null;
     }
+
+    
 
     private IEnumerator StartSkipTextTimer()
     {

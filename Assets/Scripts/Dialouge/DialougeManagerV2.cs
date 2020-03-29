@@ -48,6 +48,7 @@ public class DialougeManagerV2 : MonoBehaviour
     private float speedTextDotStart;
     private float speedTextCommaStart;
     [SerializeField] private float textSpeedMultiplier = 2;
+    [SerializeField] private float commandTextSpeedMultiplier = 1;
 
 
     [HideInInspector]
@@ -115,11 +116,14 @@ public class DialougeManagerV2 : MonoBehaviour
         speedTextComma = speedTextCommaStart;
     }
 
-
+    public void QuicklySkipText()
+    {
+        quicklySkipText = true;
+    }
 
 
     /*    DIALOUGE MANAGEMENT    */
-    
+
     public void StartDialouge(Dialouge dialouge)
     {
         inDialouge = true;
@@ -258,6 +262,7 @@ public class DialougeManagerV2 : MonoBehaviour
 
         quicklySkipText = false;
         endOfAnimations = true;
+        commandTextSpeedMultiplier = 1;
         Debug.Log("End of animations");
     }
 
@@ -306,20 +311,21 @@ public class DialougeManagerV2 : MonoBehaviour
         {
             return 0f;
         }
-        else if (character == '.' || character == '?' || character == '!')
+
+        if (character == '.' || character == '?' || character == '!')
         {
             PlayDotSound();
-            return speedTextDot;
+            return speedTextDot / commandTextSpeedMultiplier;
         }
         else if (character == ',')
         {
             PlayDotSound();
-            return speedTextComma;
+            return speedTextComma / commandTextSpeedMultiplier;
         }
         else
         {
             PlayDotSound();
-            return speedText;
+            return speedText / commandTextSpeedMultiplier;
         }
     }
 
@@ -638,17 +644,16 @@ public class DialougeManagerV2 : MonoBehaviour
 
         //Dialouge
 
-        //Nothing here atm
+        if(command.Name == "Speed")
+        {
+            commandTextSpeedMultiplier = float.Parse(command.Values[0]);
+        }
 
         //Audio
 
         if(command.Name == "Sound")
         {
             ServiceLocator.GetAudio().PlaySound(command.Values[0]);
-        }
-        else
-        {
-            Debug.Log("Command " + command.Name + " doesn't exist");
         }
 
 

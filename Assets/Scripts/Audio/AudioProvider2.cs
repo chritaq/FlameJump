@@ -102,18 +102,6 @@ public class AudioProvider2 : IAudioService
 
         audioSource.Play();
 
-        //switch (soundFile.soundFileData.soundType)
-        //{
-        //    case SoundFileData.SoundType.oneShot:
-        //        DebugLogger("Sound was a oneshot");
-        //        break;
-        //    case SoundFileData.SoundType.random:
-        //        DebugLogger("Sound was random");
-        //        break;
-        //    case SoundFileData.SoundType.sequence:
-        //        DebugLogger("Sound was sequence");
-        //        break;
-        //}
 
     }
 
@@ -131,6 +119,7 @@ public class AudioProvider2 : IAudioService
                     selected = sources[i];
                     break;
                 }
+                
             }
             else
             {
@@ -139,18 +128,11 @@ public class AudioProvider2 : IAudioService
             
         }
 
-        //foreach (AudioSource source in sources)
-        //{
-        //    if (source.clip != null && !source.isPlaying)
-        //    {
-        //        selected = source;
-        //        break;
-        //    }
-        //}
 
         if(selected == null)
         {
-            sources.Add(new AudioSource());
+            sources.Add(audioSourcesGameObject.AddComponent<AudioSource>());
+            sources[sources.Count - 1].playOnAwake = false;
             selected = sources[sources.Count - 1];
         }
 

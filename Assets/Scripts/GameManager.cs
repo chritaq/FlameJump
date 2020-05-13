@@ -5,12 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
+    [SerializeField] private bool debugSounds;
+
     // Start is called before the first frame update
     void Start()
     {
         ServiceLocator.Initialize();
 
-        ServiceLocator.ProvideAudio(new NewAudioProvider());
+        ServiceLocator.ProvideAudio(new AudioProvider2(debugSounds));
         ServiceLocator.GetAudio().LoadSounds();
 
         ServiceLocator.ProvideScreenShake(new ScreenShakeProvider());

@@ -28,13 +28,11 @@ public class RealAudioProvider : IAudioService
     public void PlaySound(string soundID)
     {
         //Skippa emitter-delen? Eftersom ljudet är i 2D
-        AudioClip clip = (AudioClip)Resources.Load("Audio/" + soundID, typeof(AudioClip));
-
-        
+        AudioClip clip = (AudioClip)Resources.Load("Audio/SoundFiles" + soundID, typeof(AudioClip));
 
         if (!clip)
         {
-            Debug.Log("No Sound");
+            Debug.Log("No Sound with name" + soundID);
             return;
         }
 

@@ -8,6 +8,11 @@ public class NullAudioProvider : IAudioService
     {
     }
 
+    public void PlayMusic(string musicID)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void PlaySound(string soundID)
     {
     }

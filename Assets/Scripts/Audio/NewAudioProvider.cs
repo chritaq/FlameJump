@@ -137,5 +137,8 @@ public class NewAudioProvider : IAudioService
 
     }
 
-    
+    public void PlayMusic(string musicID)
+    {
+        throw new System.NotImplementedException();
+    }
 }

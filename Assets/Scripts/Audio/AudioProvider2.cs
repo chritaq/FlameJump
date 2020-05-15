@@ -10,22 +10,27 @@ public class AudioProvider2 : IAudioService
         shouldDebug = newShouldDebug;
     }
 
+    //Audio sources
     GameObject audioSourcesGameObject;
-
     public const int SOURCE_AMOUNT = 10;
     private List<AudioSource> sources = new List<AudioSource>();
+
+    //Sound Files
     private SoundFileData[] soundFileDatas;
-    //private SoundFile[] soundFiles;
-
     private List<SoundFile> soundFiles = new List<SoundFile>();
-
     Dictionary<string, SoundFile> soundDictionary = new Dictionary<string, SoundFile>();
+
+    //Music Files
+    private MusicFileData[] musicFileDatas;
+    private List<MusicFile> musicfiles = new List<MusicFile>();
+    Dictionary<string, MusicFile> musicDictionary = new Dictionary<string, MusicFile>();
 
     public void LoadSounds()
     {
         //Here we'll put all sounds to load.
         //Texture2D[] textures = Resources.LoadAll<Texture2D>("Textures");
         soundFileDatas = Resources.LoadAll<SoundFileData>("SoundFileDatas");
+        musicFileDatas = Resources.LoadAll<MusicFileData>("MusicFileDatas");
 
         audioSourcesGameObject = new GameObject("AudioSourcesGameObject");
 
@@ -58,8 +63,27 @@ public class AudioProvider2 : IAudioService
             }
 
         }
-        
+
+        for (int i = 0; i < musicFileDatas.Length; i++)
+        {
+            //soundFiles.Add(new SoundFile());
+            //soundFiles[i].soundFileData = soundFileDatas[i];
+            if (!musicDictionary.ContainsKey(musicFileDatas[i].name))
+            {
+                musicDictionary.Add(musicFileDatas[i].name, new MusicFile(musicFileDatas[i]));
+                DebugLogger("Added music: " + musicFileDatas[i].name);
+            }
+            else
+            {
+                musicDictionary[musicFileDatas[i].name] = new MusicFile(musicFileDatas[i]);
+                DebugLogger("Set music to: " + musicFileDatas[i].name);
+            }
+
+        }
+
     }
+
+
 
     public void PlaySound(string soundID)
     {
@@ -105,6 +129,52 @@ public class AudioProvider2 : IAudioService
 
     }
 
+    public void PlayMusic(string musicID)
+    {
+        MusicFile musicFile;
+
+        if (musicDictionary.ContainsKey(musicID))
+        {
+            musicFile = musicDictionary[musicID];
+            DebugLogger("Got music in provider: " + musicDictionary[musicID].musicFileData.name);
+        }
+        else
+        {
+            DebugLogger("No music with name " + musicID);
+            return;
+        }
+
+        AudioClip[] audioClips = musicFile.GetAudioClips();
+
+        if (audioClips[0] == null)
+        {
+            DebugLogger("No audioclips in musicFile object");
+            return;
+        }
+
+        musicFile.audioSources = new AudioSource[audioClips.Length];
+
+        for (int i = 0; i < audioClips.Length; i++)
+        {
+            musicFile.audioSources[i] = GetAvaliableAudioSource();
+
+            musicFile.audioSources[i].clip = audioClips[i];
+
+            musicFile.audioSources[i].outputAudioMixerGroup = musicFile.GetMixerGroup(i);
+
+            musicFile.audioSources[i].loop = musicFile.musicFileData.loop;
+
+            musicFile.audioSources[i].Play();
+        }
+
+        if (!musicFile.audioSources[0])
+        {
+            DebugLogger("No source avaible");
+            return;
+        }
+
+    }
+
     private AudioSource GetAvaliableAudioSource()
     {
         AudioSource selected = null;
@@ -127,7 +197,6 @@ public class AudioProvider2 : IAudioService
             }
             
         }
-
 
         if(selected == null)
         {

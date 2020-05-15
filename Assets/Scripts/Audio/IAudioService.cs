@@ -6,6 +6,7 @@ public interface IAudioService
 {
     void LoadSounds();
     void PlaySound(string soundID);
+    void PlayMusic(string musicID);
     /// <summary>
     /// This stops all sound
     /// </summary>

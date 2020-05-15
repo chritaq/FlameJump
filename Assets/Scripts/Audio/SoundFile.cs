@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class SoundFile : MonoBehaviour
+public class SoundFile 
 {
 
     public SoundFileData soundFileData;
@@ -54,7 +54,6 @@ public class SoundFile : MonoBehaviour
 
         return audioClipToReturn;
     }
-
 
     public AudioMixerGroup GetMixerGroup()
     {

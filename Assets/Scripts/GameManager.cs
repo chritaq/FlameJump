@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         //Fullösning, måste fixas!
         if(level == 1)
         {
-            ServiceLocator.GetAudio().PlaySound("Music_Gameplay01");
+            ServiceLocator.GetAudio().PlayMusic("Music_Gameplay01");
         }
 
         ServiceLocator.ProvideScreenShake(new ScreenShakeProvider());

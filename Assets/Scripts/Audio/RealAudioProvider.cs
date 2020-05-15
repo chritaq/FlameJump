@@ -97,4 +97,9 @@ public class RealAudioProvider : IAudioService
 
         return selected;
     }
+
+    public void PlayMusic(string musicID)
+    {
+        throw new System.NotImplementedException();
+    }
 }

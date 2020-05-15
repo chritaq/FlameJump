@@ -7,6 +7,7 @@ public static class ServiceLocator
     private static IAudioService audio;
     private static IScreenShakeService screenShake;
     private static IGamepadRumbleService gamepadRumble;
+    private static ITimeManagementService timeManagement;
 
     public static void Initialize()
     {

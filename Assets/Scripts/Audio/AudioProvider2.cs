@@ -25,6 +25,8 @@ public class AudioProvider2 : IAudioService
     private List<MusicFile> musicfiles = new List<MusicFile>();
     Dictionary<string, MusicFile> musicDictionary = new Dictionary<string, MusicFile>();
 
+    
+
     public void LoadSounds()
     {
         //Here we'll put all sounds to load.
@@ -33,6 +35,8 @@ public class AudioProvider2 : IAudioService
         musicFileDatas = Resources.LoadAll<MusicFileData>("MusicFileDatas");
 
         audioSourcesGameObject = new GameObject("AudioSourcesGameObject");
+        Object.DontDestroyOnLoad(audioSourcesGameObject);
+
 
         for (int i = 0; i < SOURCE_AMOUNT; i++)
         {

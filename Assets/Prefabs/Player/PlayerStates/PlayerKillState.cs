@@ -11,7 +11,7 @@ public class PlayerKillState : PlayerState
     public override void Enter(PlayerController playerController)
     {
         ServiceLocator.GetScreenShake().StartScreenShake(50, 1f);
-        ServiceLocator.GetGamepadRumble().StartGamepadRumble(25, 1f);
+        ServiceLocator.GetGamepadRumble().StartGamepadRumble(2, 0.1f);
         ServiceLocator.GetAudio().PlaySound("Player_Death");
         ServiceLocator.GetScreenShake().StartScreenFlash(2, 0.3f);
 

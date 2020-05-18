@@ -4,26 +4,45 @@ using UnityEngine;
 
 public class TimeManagementProvider : MonoBehaviour, ITimeManagementService
 {
-    private Coroutine timeCoroutine;
-    private float unPausedTime;
+    private float unPausedTime = Time.timeScale;
+    private TimeManagement timeManagement;
 
-    public void PauseTime(bool pause)
+
+
+    public void PauseTime()
     {
-        if (Time.timeScale != 0)
+        Debug.Log("tried to pause");
+        if (Time.timeScale > 0)
+        {
             unPausedTime = Time.timeScale;
 
-        Time.timeScale = 0;
+            Debug.Log("Timescale set to 0");
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = unPausedTime;
+        }
+        
     }
 
     public void ResetTimescale()
     {
+        timeManagement.StopActiveCoroutine();
         Time.timeScale = 1;
     }
 
     public void SetTimeScale(float timeScale)
     {
+        timeManagement.StopActiveCoroutine();
         Time.timeScale = timeScale;
     }
+
+    public void SlowDown(float speedUpRate, bool unscaled)
+    {
+        timeManagement.SlowDown(speedUpRate, unscaled);
+    }
+
 
     public void ChangeTime(float newtimeScale, float rate)
     {
@@ -35,29 +54,9 @@ public class TimeManagementProvider : MonoBehaviour, ITimeManagementService
 
     }
 
-    //private IEnumerator TimeChanger(float timeScale, float rate, float step)
-    //{
-    //    bool AutomateDown;
-    //    if(Time.timeScale < )
-
-    //    yield return null;
-    //}
-
-    //private IEnumerator TimeChanger(float newTimeScale, float rate)
-    //{
-    //    if (Time.timeScale > newTimeScale)
-    //        slowDownTime = true;
-    //    else if(Time.timeScale < newTimeScale)
-    //    {
-    //        slowDownTime = false;
-    //    }
-    //}
-
-    private void StopActiveCoroutine()
+    public void InstantiateTimeManagement()
     {
-        if(timeCoroutine != null)
-        {
-            StopCoroutine(timeCoroutine);
-        }
+        timeManagement = Instantiate(new GameObject().AddComponent<TimeManagement>());
+        Object.DontDestroyOnLoad(timeManagement.gameObject);
     }
 }

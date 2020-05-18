@@ -43,7 +43,17 @@ public static class ServiceLocator
         }
 
         gamepadRumble = gamepadRumbleService;
-    } 
+    }
+
+    public static void ProvideTimeManagement(ITimeManagementService timeManagementService)
+    {
+        if (timeManagementService == null)
+        {
+            timeManagementService = new NullTimeManagementProvider();
+        }
+
+        timeManagement = timeManagementService;
+    }
 
     public static IAudioService GetAudio()
     {
@@ -58,6 +68,11 @@ public static class ServiceLocator
     public static IGamepadRumbleService GetGamepadRumble()
     {
         return gamepadRumble;
+    }
+
+    public static ITimeManagementService GetTimeManagement()
+    {
+        return timeManagement;
     }
 
 }

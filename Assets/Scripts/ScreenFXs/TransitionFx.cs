@@ -8,12 +8,17 @@ public class TransitionFx : MonoBehaviour
     //[SerializeField] private Color overlayColor = new Color(0,0,0,0);
 
     [SerializeField] private RawImage overlayImage;
+    private Coroutine transitionCoroutine;
 
     private float colorAlpha = 0;
 
     public void StartTransition(int fadeTime, bool fadeIn)
     {
-        StartCoroutine(Transition(fadeTime, fadeIn));
+        if(transitionCoroutine != null)
+        {
+            StopCoroutine(transitionCoroutine);
+        }
+        transitionCoroutine = StartCoroutine(Transition(fadeTime, fadeIn));
     }
 
     private IEnumerator Transition(int fadeTime, bool fadeIn)

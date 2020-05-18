@@ -16,6 +16,8 @@ public class Goal : MonoBehaviour
             exitCommand.Excecute(collision.GetComponent<PlayerController>());
             StartCoroutine(Exit());
             ServiceLocator.GetScreenShake().StartTransition(transitionTime, true);
+            ServiceLocator.GetTimeManagement().SlowDown(0.01f, true);
+            ServiceLocator.GetAudio().PlaySound("Environment_DoorTransition");
         }
     }
 

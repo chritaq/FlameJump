@@ -36,7 +36,7 @@ public class ScreenShaker : MonoBehaviour
 
             cameraTransform.position = new Vector3(positionX, positionY, cameraTransform.position.z);
             
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
         //Stop Screenshake
 

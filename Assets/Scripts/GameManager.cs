@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
         ServiceLocator.ProvideGamepadRumble(new GamepadRumbleProvider());
         ServiceLocator.GetGamepadRumble().ReferenceGamepadRumble();
 
+        ServiceLocator.ProvideTimeManagement(new TimeManagementProvider());
+        ServiceLocator.GetTimeManagement().InstantiateTimeManagement();
+
+
         //ServiceLocator.ProvideScreenOverlay(new ScreenOverlayProvider());
         //ServiceLocator.GetScreenOverlay().ReferenceScreenOverlay();
     }

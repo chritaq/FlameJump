@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384dc2f319fca834aad1e5d1432d1f88, type: 3}
+  m_Name: DialougeDataTesssst
+  m_EditorClassIdentifier: 
+  character1:
+    value: {fileID: 11400000, guid: 044978d096997b64690a2cca4488de7b, type: 2}
+  character2:
+    value: {fileID: 11400000, guid: c722c90bc07a88f458c1c2c7d0810757, type: 2}
+  character3:
+    value: {fileID: 0}
+  character4:
+    value: {fileID: 0}
+  character5:
+    value: {fileID: 0}
+  sentences:
+  - character: 1
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    lockInput: 0
+    sentence: Heyyo! I'm the janitor of this place
+  - character: 0
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    lockInput: 0
+    sentence: Huh.. what do you even do as a Janitor here?
+  - character: 1
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    lockInput: 0
+    sentence: Not much, just sweeping
+  - character: 0
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    lockInput: 0
+    sentence: So sweeping the floors eyy?
+  - character: 1
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    lockInput: 0
+    sentence: Nope the roof.
+  - character: 0
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    lockInput: 0
+    sentence: '...'
+  - character: 1
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    lockInput: 0
+    sentence: '*Here the janitor floats up with a classic cartoony "whistle, wooOOP"-sound
+      and then stands on the roof.'

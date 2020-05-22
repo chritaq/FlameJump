@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca42ca60dcd46d84b9a2bb1537587e36, type: 3}
+  m_Name: CharacterPlayer
+  m_EditorClassIdentifier: 
+  characterAvatar: {fileID: -2261365613018476311, guid: 14b58b9116cf91a41b840cbef8838324,
+    type: 3}
+  characterName: Player
+  characterAudioDot:
+    value: {fileID: 11400000, guid: 56d5b494ba4dab4469432e054e975e05, type: 2}
+  emotions:
+  - {fileID: 9205411000483879360, guid: 14b58b9116cf91a41b840cbef8838324, type: 3}
+  - {fileID: -4178924672992774477, guid: 14b58b9116cf91a41b840cbef8838324, type: 3}
+  - {fileID: 8078766608239179299, guid: 2ac517e6e6cc7ef44b44e7c9973d2deb, type: 3}

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCController : MonoBehaviour
+public class NPCControllerV2 : MonoBehaviour
 {
     //private PlayerController player;
     private PlayerController player;
 
     private DialougeManagerV2 dialougeManager;
-    [SerializeField] private Dialouge dialouge;
+    [SerializeField] private DialougeV2 dialouge;
 
     [SerializeField] private float xDistanceBeforeDialogeCanBeActive;
     private float yDistanceBeforeDialogeCanBeActive = 0.5f;
@@ -20,7 +20,7 @@ public class NPCController : MonoBehaviour
     private Camera mainCamera;
     [SerializeField] private Transform newCameraTransform;
     [SerializeField] private float zoomInTarget;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,13 +38,13 @@ public class NPCController : MonoBehaviour
         yDistance = Mathf.Abs(transform.position.y - player.transform.position.y);
         if (xDistance < xDistanceBeforeDialogeCanBeActive && yDistance < yDistanceBeforeDialogeCanBeActive)
         {
-            if(player.activeMiscCommand == PlayerController.PlayerMiscCommands.Dialouge && player.readCurrentPlayerState().GetType() == new PlayerIdleState().GetType())
+            if (player.activeMiscCommand == PlayerController.PlayerMiscCommands.Dialouge && player.readCurrentPlayerState().GetType() == new PlayerIdleState().GetType())
             {
                 StartDialouge();
             }
         }
     }
-    
+
     public void StartDialouge()
     {
         player.GoToLockedInputState();
@@ -95,7 +95,7 @@ public class NPCController : MonoBehaviour
 
     private IEnumerator WaitUntilDialougeIsDoneToZoomOut()
     {
-        while(dialougeManager.CheckInDialouge())
+        while (dialougeManager.CheckInDialouge())
         {
             yield return new WaitForEndOfFrame();
         }
@@ -124,9 +124,7 @@ public class NPCController : MonoBehaviour
     private void DialougeBegin()
     {
         player.GoToDialougeState();
-        dialougeManager.StartDialouge(dialouge);
+        dialougeManager.StartDialougeV2(dialouge);
         StartCoroutine(WaitUntilDialougeIsDoneToZoomOut());
     }
-
-    //Zoom out should be in dialouge-manager.
 }

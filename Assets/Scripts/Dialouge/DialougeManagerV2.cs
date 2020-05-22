@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using TMPro;
+using ScriptableObjectDropdown;
 
 public class DialougeManagerV2 : MonoBehaviour
 {
@@ -21,12 +22,11 @@ public class DialougeManagerV2 : MonoBehaviour
     }
 
 
-
-
-
+    
     [Space]
     [Header("Dialouge objects")]
     private Queue<Sentence> sentences;
+    private Queue<SentenceV2> sentencesV2;
     [SerializeField] private Text NPCNameUIObject;
     [SerializeField] private TMP_Text SentenceUIObject;
     [SerializeField] private Image AvatarUIObject;
@@ -101,6 +101,7 @@ public class DialougeManagerV2 : MonoBehaviour
     {
         sentencesLeft = 0;
         sentences = new Queue<Sentence>();
+        sentencesV2 = new Queue<SentenceV2>();
         speedTextStart = speedText;
         speedTextDotStart = speedTextDot;
         speedTextCommaStart = speedTextComma;
@@ -143,12 +144,30 @@ public class DialougeManagerV2 : MonoBehaviour
         DisplayNextSentence();
     }
 
+    public void StartDialougeV2(DialougeV2 dialouge)
+    {
+        inDialouge = true;
+        canvas.enabled = true;
+        ClearAndAddNewSentencesV2(dialouge);
+        DisplayNextSentenceV2(dialouge);
+    }
+
     private void ClearAndAddNewSentences(Dialouge dialouge)
     {
         sentences.Clear();
         foreach (Sentence sentence in dialouge.sentences)
         {
             sentences.Enqueue(sentence);
+        }
+        sentencesLeft = sentences.Count;
+    }
+
+    private void ClearAndAddNewSentencesV2(DialougeV2 dialouge)
+    {
+        sentencesV2.Clear();
+        foreach (SentenceV2 sentence in dialouge.sentences)
+        {
+            sentencesV2.Enqueue(sentence);
         }
         sentencesLeft = sentences.Count;
     }
@@ -178,6 +197,33 @@ public class DialougeManagerV2 : MonoBehaviour
         animateTextCoroutine = StartCoroutine(AnimateTextCoroutine(sentence.sentence));
 
         Debug.Log(sentence.sentence);
+    }
+
+    public void DisplayNextSentenceV2(DialougeV2 dialouge)
+    {
+        endOfAnimations = false;
+        lockPlayerInputForRestOfSentence = false;
+        displayFullWordAtTheTime = false;
+
+        if (sentencesV2.Count == 0)
+        {
+            EndDialouge();
+            return;
+        }
+
+        SentenceV2 sentenceV2 = sentencesV2.Dequeue();
+        sentencesLeft = sentencesV2.Count;
+        SetNameAvatarAndAudioDotInSentenceV2(sentenceV2, dialouge);
+
+        //SentenceUIObject.text = sentence.sentence;
+        if (animateTextCoroutine != null)
+        {
+            StopCoroutine(animateTextCoroutine);
+        }
+
+        animateTextCoroutine = StartCoroutine(AnimateTextCoroutine(sentenceV2.sentence));
+
+        Debug.Log(sentenceV2.sentence);
     }
 
     public void EndDialouge()
@@ -219,6 +265,80 @@ public class DialougeManagerV2 : MonoBehaviour
                 dotSoundAudioSource.clip = characterData.characterAudioDot;
             }
         }
+    }
+
+
+    private void SetNameAvatarAndAudioDotInSentenceV2(SentenceV2 sentence, DialougeV2 dialouge)
+    {
+        DialougeCharacterDataV2 activeCharacter = new DialougeCharacterDataV2();
+        //[ScriptableObjectDropdown(typeof(DialougeCharacterDataV2))] ScriptableObjectReference character;
+        switch (sentence.character)
+        {
+            case CharacterDialougeSelection.characterOne:
+                activeCharacter = (DialougeCharacterDataV2)dialouge.character1.value;
+                break;
+            case CharacterDialougeSelection.characterTwo:
+                activeCharacter = (DialougeCharacterDataV2)dialouge.character2.value;
+                break;
+            case CharacterDialougeSelection.characterThree:
+                activeCharacter = (DialougeCharacterDataV2)dialouge.character3.value;
+                break;
+            case CharacterDialougeSelection.characterFour:
+                activeCharacter = (DialougeCharacterDataV2)dialouge.character4.value;
+                break;
+            case CharacterDialougeSelection.characterFive:
+                activeCharacter = (DialougeCharacterDataV2)dialouge.character5.value;
+                break;
+        }
+
+        dotSoundAudioSource.clip = basicDotSound;
+
+        if(activeCharacter != null)
+        {
+            if(sentence.emotionSprite != null)
+            {
+                Debug.Log("Set to sentence emotion sprite");
+                AvatarUIObject.sprite = sentence.emotionSprite;
+            }
+            else if(activeCharacter.characterAvatar != null)
+            {
+                Debug.Log("Set to character avatar");
+                AvatarUIObject.sprite = activeCharacter.characterAvatar;
+            }
+            if (activeCharacter.characterName != null)
+            {
+                NPCNameUIObject.text = activeCharacter.characterName;
+            }
+            if (activeCharacter.characterAudioDot != null)
+            {
+                //SoundFileData soundFile;
+                //soundFile = (SoundFileData)activeCharacter.characterAudioDot.value;
+                ////dotSoundAudioSource.clip = soundFile.;
+                //ServiceLocator.GetAudio().PlaySound(soundFile.name);
+            }
+        }
+
+        //if (characterData != null)
+        //{
+        //    if (sentence.characterAvatar != null)
+        //    {
+        //        Debug.Log("Set to sentence avatar");
+        //        AvatarUIObject.sprite = sentence.characterAvatar;
+        //    }
+        //    else if (characterData.characterAvatar != null)
+        //    {
+        //        Debug.Log("Set to character avatar");
+        //        AvatarUIObject.sprite = characterData.characterAvatar;
+        //    }
+        //    if (characterData.characterName != null)
+        //    {
+        //        NPCNameUIObject.text = characterData.characterName;
+        //    }
+        //    if (characterData.characterAudioDot != null)
+        //    {
+        //        dotSoundAudioSource.clip = characterData.characterAudioDot;
+        //    }
+        //}
     }
 
     private IEnumerator AnimateTextCoroutine(string text)

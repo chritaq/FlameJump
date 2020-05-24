@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ScriptableObjectDropdown;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "DialougeData", menuName = "Dialouge/DialougeData", order = 1)]
-public class DialougeV2 : ScriptableObject
+public class DialougeDataV2 : ScriptableObject
 {
     [Header("CHARACTERS")]
     [ScriptableObjectDropdown(typeof(DialougeCharacterDataV2))] public ScriptableObjectReference character1;
@@ -22,9 +23,20 @@ public class DialougeV2 : ScriptableObject
 [System.Serializable]
 public class SentenceV2
 {
+    public enum WordingStyle
+    {
+        standard,
+        fullWords,
+        fullSentence
+    }
+
     public CharacterDialougeSelection character;
     public Sprite emotionSprite;
     public bool leftSide;
+
+    [Space]
+    public WordingStyle wordingStyle;
+    public float textSpeedMultiplier = 1;
     public bool lockInput;
     [Space]
     [TextArea(3, 10)]
@@ -39,4 +51,6 @@ public enum CharacterDialougeSelection
     characterFour,
     characterFive
 }
+
+
 

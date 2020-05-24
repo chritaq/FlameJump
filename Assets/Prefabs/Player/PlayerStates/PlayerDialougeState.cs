@@ -77,10 +77,10 @@ public class PlayerDialougeState : PlayerState
                 Debug.Log("Player is going to next sentence");
                 if (DialougeManagerV2.instance.sentencesLeft <= 0)
                 {
-                    DialougeManagerV2.instance.DisplayNextSentence();
+                    DialougeManagerV2.instance.DisplayNextSentenceV2();
                     return new PlayerIdleState();
                 }
-                DialougeManagerV2.instance.DisplayNextSentence();
+                DialougeManagerV2.instance.DisplayNextSentenceV2();
 
                 //waitForHoldReleaseTrigger = true;
             }
@@ -109,10 +109,10 @@ public class PlayerDialougeState : PlayerState
                 Debug.Log("Player is going to next sentence");
                 if (DialougeManagerV2.instance.sentencesLeft <= 0)
                 {
-                    DialougeManagerV2.instance.DisplayNextSentence();
+                    DialougeManagerV2.instance.DisplayNextSentenceV2();
                     return new PlayerIdleState();
                 }
-                DialougeManagerV2.instance.DisplayNextSentence();
+                DialougeManagerV2.instance.DisplayNextSentenceV2();
             }
             else
             {

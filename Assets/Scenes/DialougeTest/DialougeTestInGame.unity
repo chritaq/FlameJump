@@ -5048,7 +5048,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52b9efac50b16c9468813a99ea34907a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialouge: {fileID: 11400000, guid: 55b006deaa3c6ea4eb0b621302f94fb8, type: 2}
+  dialouge: {fileID: 0}
   xDistanceBeforeDialogeCanBeActive: 2
   zoomInDuringDialouge: 0
   newCameraTransform: {fileID: 1197128821}
@@ -5276,5 +5276,42 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8ad9abaeef696e44d8ba6d91438480e9,
         type: 2}
-    m_RemovedComponents: []
+    - target: {fileID: 4398785206147159341, guid: 8620efbf139cc9b47a50c6423ea3f219,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1975522920652746352, guid: 2ac517e6e6cc7ef44b44e7c9973d2deb,
+        type: 3}
+    m_RemovedComponents:
+    - {fileID: 4398785206147159343, guid: 8620efbf139cc9b47a50c6423ea3f219, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8620efbf139cc9b47a50c6423ea3f219, type: 3}
+--- !u!1 &4398785204853333315 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4398785206147159342, guid: 8620efbf139cc9b47a50c6423ea3f219,
+    type: 3}
+  m_PrefabInstance: {fileID: 4398785204853333314}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4398785204853333316 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1862216515, guid: 8620efbf139cc9b47a50c6423ea3f219,
+    type: 3}
+  m_PrefabInstance: {fileID: 4398785204853333314}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4398785204853333317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4398785204853333315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52b9efac50b16c9468813a99ea34907a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialouge: {fileID: 11400000, guid: 8b0c2060146fdca429e73bab6a34eb84, type: 2}
+  xDistanceBeforeDialogeCanBeActive: 2
+  zoomInDuringDialouge: 1
+  newCameraTransform: {fileID: 4398785204853333316}
+  zoomInTarget: 5
+  zoomSpeed: 5

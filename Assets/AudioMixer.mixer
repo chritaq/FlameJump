@@ -66,6 +66,20 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-5232900321428394226
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: cee2319d9d97a4e42be23d5c60c12897
+  m_EffectName: Attenuation
+  m_MixLevel: 6ad549fc05bd7c14686f6d9cdac3f5de
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-4556809493199996327
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -157,6 +171,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &-3118519730557873186
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: DialougeDots
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: db63263f843c1ae409900ca3f1debaff
+  m_Children: []
+  m_Volume: 02814b3064c727647b82786ec2956f76
+  m_Pitch: b9c5fdca5a97fb94c87b122d10cf09b5
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -5232900321428394226}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &-2693663119028118578
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -236,6 +269,7 @@ AudioMixerController:
     - 66271e60adb55264187c2e8a6b8d6914
     - 61400c718e3bfdf43afa5af52c6000d0
     - c589f86c792dd1d4fb9cc33bf597cabb
+    - db63263f843c1ae409900ca3f1debaff
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -284,6 +318,7 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: bafa2b30b7d793e40a58ec3a5cc38876
   m_FloatValues:
+    02814b3064c727647b82786ec2956f76: 2.850226
     272a700799d5a034ab13d4c3528890bc: -2.2889833
     4d5386f8921aec24b918d61c3191a720: -2.018036
     8ed5c97921d6c0d479dd19958de6d528: -3.8468575
@@ -412,6 +447,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: -3261867997423552849}
   - {fileID: -7542814123619607583}
+  - {fileID: -3118519730557873186}
   m_Volume: 272a700799d5a034ab13d4c3528890bc
   m_Pitch: 7036c2dc5203ae64a98f799520681d8f
   m_Send: 00000000000000000000000000000000

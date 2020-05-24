@@ -8,7 +8,7 @@ public class NPCControllerV2 : MonoBehaviour
     private PlayerController player;
 
     private DialougeManagerV2 dialougeManager;
-    [SerializeField] private DialougeV2 dialouge;
+    [SerializeField] private DialougeDataV2 dialouge;
 
     [SerializeField] private float xDistanceBeforeDialogeCanBeActive;
     private float yDistanceBeforeDialogeCanBeActive = 0.5f;

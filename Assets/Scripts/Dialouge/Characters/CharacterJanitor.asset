@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca42ca60dcd46d84b9a2bb1537587e36, type: 3}
   m_Name: CharacterJanitor
   m_EditorClassIdentifier: 
-  characterAvatar: {fileID: 8078766608239179299, guid: 2ac517e6e6cc7ef44b44e7c9973d2deb,
+  characterAvatar: {fileID: 1975522920652746352, guid: 2ac517e6e6cc7ef44b44e7c9973d2deb,
     type: 3}
   characterName: The Janitor
   characterAudioDot:
-    value: {fileID: 0}
+    value: {fileID: 11400000, guid: a5664032bbba694438bb84ef8ad5c0fe, type: 2}

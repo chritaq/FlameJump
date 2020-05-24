@@ -32,6 +32,8 @@ public class DialougeManagerV2 : MonoBehaviour
     [SerializeField] private Image AvatarUIObject;
     private Coroutine animateTextCoroutine;
     private bool inDialouge = false;
+    private DialougeDataV2 activeDialouge;
+    private SoundFileData activeAudioDot;
 
 
     [Space]
@@ -50,7 +52,7 @@ public class DialougeManagerV2 : MonoBehaviour
     private float speedTextStart;
     private float speedTextDotStart;
     private float speedTextCommaStart;
-    [SerializeField] private float textSpeedMultiplier = 2;
+    [SerializeField] private float playerInputTextSpeedMultiplier = 2;
     private float commandTextSpeedMultiplier = 1;
     private bool displayFullWordAtTheTime = false;
 
@@ -111,9 +113,9 @@ public class DialougeManagerV2 : MonoBehaviour
     {
         if(!lockPlayerInputForRestOfSentence)
         {
-            speedText = speedTextStart / textSpeedMultiplier;
-            speedTextDot = speedTextDotStart / textSpeedMultiplier;
-            speedTextComma = speedTextCommaStart / textSpeedMultiplier;
+            speedText = speedTextStart / playerInputTextSpeedMultiplier;
+            speedTextDot = speedTextDotStart / playerInputTextSpeedMultiplier;
+            speedTextComma = speedTextCommaStart / playerInputTextSpeedMultiplier;
         }
     }
 
@@ -144,12 +146,13 @@ public class DialougeManagerV2 : MonoBehaviour
         DisplayNextSentence();
     }
 
-    public void StartDialougeV2(DialougeV2 dialouge)
+    public void StartDialougeV2(DialougeDataV2 dialouge)
     {
+        activeDialouge = dialouge;
         inDialouge = true;
         canvas.enabled = true;
         ClearAndAddNewSentencesV2(dialouge);
-        DisplayNextSentenceV2(dialouge);
+        DisplayNextSentenceV2();
     }
 
     private void ClearAndAddNewSentences(Dialouge dialouge)
@@ -162,7 +165,7 @@ public class DialougeManagerV2 : MonoBehaviour
         sentencesLeft = sentences.Count;
     }
 
-    private void ClearAndAddNewSentencesV2(DialougeV2 dialouge)
+    private void ClearAndAddNewSentencesV2(DialougeDataV2 dialouge)
     {
         sentencesV2.Clear();
         foreach (SentenceV2 sentence in dialouge.sentences)
@@ -199,7 +202,7 @@ public class DialougeManagerV2 : MonoBehaviour
         Debug.Log(sentence.sentence);
     }
 
-    public void DisplayNextSentenceV2(DialougeV2 dialouge)
+    public void DisplayNextSentenceV2()
     {
         endOfAnimations = false;
         lockPlayerInputForRestOfSentence = false;
@@ -213,7 +216,7 @@ public class DialougeManagerV2 : MonoBehaviour
 
         SentenceV2 sentenceV2 = sentencesV2.Dequeue();
         sentencesLeft = sentencesV2.Count;
-        SetNameAvatarAndAudioDotInSentenceV2(sentenceV2, dialouge);
+        SetNameAvatarAndAudioDotInSentenceV2(sentenceV2, activeDialouge);
 
         //SentenceUIObject.text = sentence.sentence;
         if (animateTextCoroutine != null)
@@ -268,7 +271,7 @@ public class DialougeManagerV2 : MonoBehaviour
     }
 
 
-    private void SetNameAvatarAndAudioDotInSentenceV2(SentenceV2 sentence, DialougeV2 dialouge)
+    private void SetNameAvatarAndAudioDotInSentenceV2(SentenceV2 sentence, DialougeDataV2 dialouge)
     {
         DialougeCharacterDataV2 activeCharacter = new DialougeCharacterDataV2();
         //[ScriptableObjectDropdown(typeof(DialougeCharacterDataV2))] ScriptableObjectReference character;
@@ -311,12 +314,31 @@ public class DialougeManagerV2 : MonoBehaviour
             }
             if (activeCharacter.characterAudioDot != null)
             {
-                //SoundFileData soundFile;
-                //soundFile = (SoundFileData)activeCharacter.characterAudioDot.value;
-                ////dotSoundAudioSource.clip = soundFile.;
-                //ServiceLocator.GetAudio().PlaySound(soundFile.name);
+
+                activeAudioDot = (SoundFileData)activeCharacter.characterAudioDot.value;
+                //dotSoundAudioSource.clip = soundFile.;
+                //ServiceLocator.GetAudio().PlaySound(activeAudioDot.name);
             }
         }
+
+        if(commandTextSpeedMultiplier == 1 && sentence.textSpeedMultiplier != 0)
+        {
+            commandTextSpeedMultiplier = sentence.textSpeedMultiplier;
+        }
+
+        switch(sentence.wordingStyle)
+        {
+            case SentenceV2.WordingStyle.standard:
+                break;
+            case SentenceV2.WordingStyle.fullWords:
+                displayFullWordAtTheTime = true;
+                break;
+            case SentenceV2.WordingStyle.fullSentence:
+                displayFullSentence = true;
+                break;
+        }
+
+        lockPlayerInputForRestOfSentence = sentence.lockInput;
 
         //if (characterData != null)
         //{
@@ -520,8 +542,18 @@ public class DialougeManagerV2 : MonoBehaviour
 
     private void PlayDotSound()
     {
-        dotSoundAudioSource.Stop();
-        dotSoundAudioSource.Play();
+        //ServiceLocator.GetAudio().StopSound(activeAudioDot.name);
+        if(activeAudioDot != null)
+        {
+            ServiceLocator.GetAudio().PlaySound(activeAudioDot.name);
+        }
+        else
+        {
+            ServiceLocator.GetAudio().PlaySound("Dialouge_StandardAudioDot");
+        }
+
+        //dotSoundAudioSource.Stop();
+        //dotSoundAudioSource.Play();
     }
 
     private void HideText()

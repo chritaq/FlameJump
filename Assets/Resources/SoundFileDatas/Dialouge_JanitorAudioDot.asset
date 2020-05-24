@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c59236ce914366343bf183e31d99e28a, type: 3}
+  m_Name: Dialouge_JanitorAudioDot
+  m_EditorClassIdentifier: 
+  soundType: 1
+  audioClips:
+  - {fileID: 8300000, guid: 97ed5c58f001aa54eb0215dea8de46ce, type: 3}
+  - {fileID: 8300000, guid: 50f977b032d82554db71954df97c29f2, type: 3}
+  - {fileID: 8300000, guid: 398030198db172948b5d70fd8c02c9a8, type: 3}
+  - {fileID: 8300000, guid: acd1299d1e1857a46b51786ab3fc45db, type: 3}
+  - {fileID: 8300000, guid: 356fc858209969a47b0cc22dfe4c272e, type: 3}
+  - {fileID: 8300000, guid: 27c43f56e39a12143b6f542f67bf5b65, type: 3}
+  - {fileID: 8300000, guid: 3fe9f3bdb7800ad4e9413f2229b3039d, type: 3}
+  - {fileID: 8300000, guid: 1b4650a4f812bcc44b97a31e380a0e20, type: 3}
+  - {fileID: 8300000, guid: 876c01486b287414fb270457c7abbfb6, type: 3}
+  audioMixerGroup: {fileID: -3118519730557873186, guid: 5f836ee0210a4594899191d0a08fe410,
+    type: 2}

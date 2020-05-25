@@ -13,7 +13,6 @@ public class SoundFileData : ScriptableObject
 
     public SoundType soundType;
 
-    private AudioSource audiosource;
     public AudioClip[] audioClips;
     public AudioMixerGroup audioMixerGroup;
 }

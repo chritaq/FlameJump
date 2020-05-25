@@ -30,6 +30,11 @@ public class SoundFile
         return null;
     }
 
+    public AudioClip GetSound(int index)
+    {
+        return soundFileData.audioClips[index];
+    }
+
     private AudioClip GetOneShot()
     {
         return soundFileData.audioClips[0];
@@ -59,5 +64,7 @@ public class SoundFile
     {
         return soundFileData.audioMixerGroup;
     }
+
+    [HideInInspector] public AudioSource audioSource;
 
 }

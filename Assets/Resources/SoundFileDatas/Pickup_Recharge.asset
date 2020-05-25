@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundType: 1
   audioClips:
-  - {fileID: 8300000, guid: 239e140c7a54af0468c2051724f6be92, type: 3}
-  - {fileID: 8300000, guid: 30a33fe504aeddb49a68931266cda8f3, type: 3}
-  - {fileID: 8300000, guid: 17770853a116eed44bac169a4620158a, type: 3}
-  - {fileID: 8300000, guid: 6232661b38efdb54aa3de5f0e3e52aec, type: 3}
+  - {fileID: 8300000, guid: 5672410da9614f647b722bb170a9a3ec, type: 3}
+  - {fileID: 8300000, guid: 58eb75840b97ba24290f223cd4239f6b, type: 3}
+  - {fileID: 8300000, guid: de7cc743947ff4b4ba03582e4f0cda59, type: 3}
+  - {fileID: 8300000, guid: 38fe099ca2dfe744b82ef67f3e8736fc, type: 3}
   audioMixerGroup: {fileID: 2791716947862737181, guid: 5f836ee0210a4594899191d0a08fe410,
     type: 2}

@@ -18,7 +18,7 @@ public class AudioProvider2 : IAudioService
     //Sound Files
     private SoundFileData[] soundFileDatas;
     private List<SoundFile> soundFiles = new List<SoundFile>();
-    Dictionary<string, SoundFile> soundDictionary = new Dictionary<string, SoundFile>();
+    Dictionary<string, SoundFile> soundDataDictionary = new Dictionary<string, SoundFile>();
 
     //Music Files
     private MusicFileData[] musicFileDatas;
@@ -55,14 +55,14 @@ public class AudioProvider2 : IAudioService
         {
             //soundFiles.Add(new SoundFile());
             //soundFiles[i].soundFileData = soundFileDatas[i];
-            if(!soundDictionary.ContainsKey(soundFileDatas[i].name))
+            if(!soundDataDictionary.ContainsKey(soundFileDatas[i].name))
             {
-                soundDictionary.Add(soundFileDatas[i].name, new SoundFile(soundFileDatas[i]));
+                soundDataDictionary.Add(soundFileDatas[i].name, new SoundFile(soundFileDatas[i]));
                 DebugLogger("Added sound: " + soundFileDatas[i].name);
             }
             else
             {
-                soundDictionary[soundFileDatas[i].name] = new SoundFile(soundFileDatas[i]);
+                soundDataDictionary[soundFileDatas[i].name] = new SoundFile(soundFileDatas[i]);
                 DebugLogger("Set sound to: " + soundFileDatas[i].name);
             }
 
@@ -97,10 +97,10 @@ public class AudioProvider2 : IAudioService
 
         SoundFile soundFile;
 
-        if(soundDictionary.ContainsKey(soundID))
+        if(soundDataDictionary.ContainsKey(soundID))
         {
-            soundFile = soundDictionary[soundID];
-            DebugLogger("Got sound in provider: " + soundDictionary[soundID].soundFileData.name);
+            soundFile = soundDataDictionary[soundID];
+            DebugLogger("Got sound in provider: " + soundDataDictionary[soundID].soundFileData.name);
         }
         else
         {
@@ -116,20 +116,36 @@ public class AudioProvider2 : IAudioService
             return;
         }
 
-        AudioSource audioSource = GetAvaliableAudioSource();
-
-        if (!audioSource)
+        if(soundFile.audioSource == null || soundFile.audioSource.clip != soundFile.GetSound(0))
         {
-            DebugLogger("No source avaible");
-            return;
+
+            soundFile.audioSource = GetAvaliableAudioSource();
+            if (!soundFile.audioSource)
+            {
+                DebugLogger("No source avaible");
+                return;
+            }
+
+            if(soundFile.audioSource.clip == null)
+            {
+                //This is to show that the audiosource is used already
+                soundFile.audioSource.clip = soundFile.GetSound(0);
+            }
+
+            soundFile.audioSource.outputAudioMixerGroup = soundFile.GetMixerGroup();
         }
 
-        audioSource.clip = audioClip;
+        //AudioSource audioSource = GetAvaliableAudioSource();
 
-        audioSource.outputAudioMixerGroup = soundFile.GetMixerGroup();
 
-        audioSource.Play();
 
+        //soundFile.audioSource.clip = audioClip;
+
+
+
+        soundFile.audioSource.PlayOneShot(audioClip);
+
+        //soundFile.audioSource.Play();
 
     }
 
@@ -190,7 +206,12 @@ public class AudioProvider2 : IAudioService
             {
                 if(sources[i].clip == null || !sources[i].isPlaying)
                 {
+                    //TODO
+                    //Need to add a way in which the audiosource gets avaiable again! Re-added to the pool.
+
+                    sources[i].clip = null;
                     selected = sources[i];
+                    sources.RemoveAt(i);
                     break;
                 }
                 

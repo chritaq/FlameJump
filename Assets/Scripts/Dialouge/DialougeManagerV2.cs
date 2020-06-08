@@ -545,11 +545,11 @@ public class DialougeManagerV2 : MonoBehaviour
         //ServiceLocator.GetAudio().StopSound(activeAudioDot.name);
         if(activeAudioDot != null)
         {
-            ServiceLocator.GetAudio().PlaySound(activeAudioDot.name);
+            ServiceLocator.GetAudio().PlaySound(activeAudioDot.name, SoundType.interuptLast);
         }
         else
         {
-            ServiceLocator.GetAudio().PlaySound("Dialouge_StandardAudioDot");
+            ServiceLocator.GetAudio().PlaySound("Dialouge_StandardAudioDot", SoundType.interuptLast);
         }
 
         //dotSoundAudioSource.Stop();
@@ -919,7 +919,7 @@ public class DialougeManagerV2 : MonoBehaviour
 
         if(command.Name == "Sound")
         {
-            ServiceLocator.GetAudio().PlaySound(command.Values[0]);
+            ServiceLocator.GetAudio().PlaySound(command.Values[0], SoundType.normal);
         }
 
 

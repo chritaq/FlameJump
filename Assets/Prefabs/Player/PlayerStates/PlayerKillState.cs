@@ -12,7 +12,7 @@ public class PlayerKillState : PlayerState
     {
         ServiceLocator.GetScreenShake().StartScreenShake(50, 1f);
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(2, 0.1f);
-        ServiceLocator.GetAudio().PlaySound("Player_Death");
+        ServiceLocator.GetAudio().PlaySound("Player_Death", SoundType.interuptLast);
         ServiceLocator.GetScreenShake().StartScreenFlash(2, 0.3f);
 
         playerController.deathParticles.Play();

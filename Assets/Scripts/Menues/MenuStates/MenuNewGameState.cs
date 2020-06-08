@@ -11,7 +11,7 @@ public class MenuNewGameState : MenuState
     {
         transitionTime = menuController.longMenuTransitionTime;
 
-        ServiceLocator.GetAudio().PlaySound("Menu_StartGame");
+        ServiceLocator.GetAudio().PlaySound("Menu_StartGame", SoundType.normal);
         //ServiceLocator.GetScreenShake().StartScreenShake(transitionTime, 1);
         ServiceLocator.GetScreenShake().StartTransition((int)transitionTime, true);
         ServiceLocator.GetGamepadRumble().StartGamepadRumble((int)transitionTime, 1f);

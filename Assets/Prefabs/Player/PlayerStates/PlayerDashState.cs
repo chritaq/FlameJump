@@ -15,7 +15,7 @@ public class PlayerDashState : PlayerState
         //Enter dash, choose correct animation
         //if(playerController.activeHorizontalCommand != PlayerController.PlayerHorizontalCommands.Nothing)
 
-        ServiceLocator.GetAudio().PlaySound("Player_Dash");
+        ServiceLocator.GetAudio().PlaySound("Player_Dash", SoundType.interuptLast);
         counterName = "Dash";
 
         rb = playerController.AccessRigidBody();

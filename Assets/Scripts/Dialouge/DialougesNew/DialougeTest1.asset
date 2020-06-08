@@ -23,7 +23,7 @@ MonoBehaviour:
   character5:
     value: {fileID: 0}
   sentences:
-  - character: 0
+  - character: 1
     emotionSprite: {fileID: 0}
     leftSide: 0
     wordingStyle: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
     sentence: I lock your sentence, talk in full words and very very very very very
       very very very very very very very very very very very very very very very very
       very very very very very very very very very very fast
-  - character: 1
+  - character: 0
     emotionSprite: {fileID: 0}
     leftSide: 0
     wordingStyle: 0

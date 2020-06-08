@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlaySoundOnCollission : MonoBehaviour
 {
-    [SerializeField]private string soundToPlay;
+    [SerializeField] private string soundToPlay;
+    [SerializeField] private SoundType interuptLast;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            ServiceLocator.GetAudio().PlaySound(soundToPlay);
+            ServiceLocator.GetAudio().PlaySound(soundToPlay, interuptLast);
         }
 
     }

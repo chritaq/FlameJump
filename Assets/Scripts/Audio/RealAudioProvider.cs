@@ -25,7 +25,7 @@ public class RealAudioProvider : IAudioService
 
     
 
-    public void PlaySound(string soundID)
+    public void PlaySound(string soundID, bool interuptLast)
     {
         //Skippa emitter-delen? Eftersom ljudet är i 2D
         AudioClip clip = (AudioClip)Resources.Load("Audio/SoundFiles" + soundID, typeof(AudioClip));
@@ -99,6 +99,11 @@ public class RealAudioProvider : IAudioService
     }
 
     public void PlayMusic(string musicID)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void PlaySound(string soundID, SoundType soundType)
     {
         throw new System.NotImplementedException();
     }

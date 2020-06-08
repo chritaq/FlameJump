@@ -88,8 +88,7 @@ public class AudioProvider2 : IAudioService
     }
 
 
-
-    public void PlaySound(string soundID)
+    public void PlaySound(string soundID, SoundType soundType)
     {
         //TODO
         //Make sure the soundfiles gets loaded at start instead of here. And then references instead.
@@ -116,6 +115,7 @@ public class AudioProvider2 : IAudioService
             return;
         }
 
+
         if(soundFile.audioSource == null || soundFile.audioSource.clip != soundFile.GetSound(0))
         {
 
@@ -129,10 +129,22 @@ public class AudioProvider2 : IAudioService
             if(soundFile.audioSource.clip == null)
             {
                 //This is to show that the audiosource is used already
+                //TODO
+                //Now when we're using the regular play again, this wont work! We need to check all sounds or the correct sound in some way.
+                //Remember that this is only used if we need to assign a new audiosource.
                 soundFile.audioSource.clip = soundFile.GetSound(0);
             }
 
             soundFile.audioSource.outputAudioMixerGroup = soundFile.GetMixerGroup();
+
+            if(soundType == SoundType.menuSound)
+            {
+                soundFile.audioSource.ignoreListenerPause = true;
+            }
+            else
+            {
+                soundFile.audioSource.ignoreListenerPause = false;
+            }
         }
 
         //AudioSource audioSource = GetAvaliableAudioSource();
@@ -140,10 +152,29 @@ public class AudioProvider2 : IAudioService
 
 
         //soundFile.audioSource.clip = audioClip;
+        switch(soundType)
+        {
+            case SoundType.normal:
+                soundFile.audioSource.PlayOneShot(audioClip);
+                break;
+            case SoundType.interuptLast:
+                soundFile.audioSource.Play();
+                break;
+            case SoundType.menuSound:
+                soundFile.audioSource.Play();
+                break;
+        }
 
 
-
-        soundFile.audioSource.PlayOneShot(audioClip);
+        //if(interuptLast)
+        //{
+        //    soundFile.audioSource.PlayOneShot(audioClip);
+        //}
+        //else
+        //{
+        //    soundFile.audioSource.Play();
+        //}
+        
 
         //soundFile.audioSource.Play();
 
@@ -254,6 +285,11 @@ public class AudioProvider2 : IAudioService
             Debug.Log(message);
         }
     }
+}
 
-
+public enum SoundType
+{
+    normal,
+    interuptLast,
+    menuSound
 }

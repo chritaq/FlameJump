@@ -5,7 +5,7 @@ using UnityEngine;
 public interface IAudioService
 {
     void LoadSounds();
-    void PlaySound(string soundID);
+    void PlaySound(string soundID, SoundType soundType);
     void PlayMusic(string musicID);
     /// <summary>
     /// This stops all sound

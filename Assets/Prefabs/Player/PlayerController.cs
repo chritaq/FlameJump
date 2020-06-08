@@ -129,7 +129,7 @@ public class PlayerController : Unit
             if(!onGroundLastFrame)
             {
                 ServiceLocator.GetGamepadRumble().StartGamepadRumble(1, 1f);
-                ServiceLocator.GetAudio().PlaySound("Player_Land");
+                ServiceLocator.GetAudio().PlaySound("Player_Land", SoundType.interuptLast);
                 heightAnimator.SetTrigger("Squash");
                 spriteAnimator.SetTrigger("Player_Land");
             }

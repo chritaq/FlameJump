@@ -13,8 +13,13 @@ public class NullAudioProvider : IAudioService
         throw new System.NotImplementedException();
     }
 
-    public void PlaySound(string soundID)
+    public void PlaySound(string soundID, bool interupLast)
     {
+    }
+
+    public void PlaySound(string soundID, SoundType soundType)
+    {
+        throw new System.NotImplementedException();
     }
 
     public void StopAll()

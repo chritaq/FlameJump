@@ -17,7 +17,7 @@ public class Goal : MonoBehaviour
             StartCoroutine(Exit());
             ServiceLocator.GetScreenShake().StartTransition(transitionTime, true);
             ServiceLocator.GetTimeManagement().SlowDown(0.01f, true);
-            ServiceLocator.GetAudio().PlaySound("Environment_DoorTransition");
+            ServiceLocator.GetAudio().PlaySound("Environment_DoorTransition", SoundType.interuptLast);
         }
     }
 

@@ -72,7 +72,7 @@ public class NewAudioProvider : IAudioService
         return numberOfSounds;
     }
 
-    public void PlaySound(string soundID)
+    public void PlaySound(string soundID, bool interuptLast)
     {
         switch (soundID)
         {
@@ -138,6 +138,11 @@ public class NewAudioProvider : IAudioService
     }
 
     public void PlayMusic(string musicID)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void PlaySound(string soundID, SoundType soundType)
     {
         throw new System.NotImplementedException();
     }

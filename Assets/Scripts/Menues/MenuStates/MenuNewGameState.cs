@@ -18,6 +18,7 @@ public class MenuNewGameState : MenuState
         ServiceLocator.GetScreenShake().StartScreenFlash(2, 1);
 
         //Need to disable controls
+        ServiceLocator.GetAudio().PlaySound("Menu_StartChing", SoundType.menuSound);
         Debug.Log("New Game Pressed");
     }
 

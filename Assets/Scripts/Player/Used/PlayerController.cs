@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : Unit
 {
+    //GameStuff
+    [HideInInspector] public GameManager gameManager;
+
     public GameObject redFlameParticles;
     public GameObject blueFlameParticles;
     public ParticleSystem deathParticles;
@@ -191,6 +194,8 @@ public class PlayerController : Unit
 
     private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         spawnPosition = GameObject.FindGameObjectWithTag("SpawnPosition");
 
         //Puts player on spawnpoint

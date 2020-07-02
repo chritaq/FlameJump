@@ -76,7 +76,10 @@ public class InputHandler : MonoBehaviour
     private void OnLevelWasLoaded(int level)
     {
         playerPrefab = GameObject.FindWithTag("Player");
-        playerController = playerPrefab.GetComponent<PlayerController>();
+        if(playerPrefab != null)
+        {
+            playerController = playerPrefab.GetComponent<PlayerController>();
+        }
         
         
     }

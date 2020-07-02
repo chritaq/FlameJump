@@ -19,6 +19,8 @@ public class PlayerKillState : PlayerState
         playerController.redFlameParticles.SetActive(false);
         playerController.blueFlameParticles.SetActive(false);
 
+        playerController.spriteAnimator.SetBool("Death", true);
+
         counterName = "Death";
 
         respawnTime = playerController.GetRespawnTime();
@@ -39,10 +41,12 @@ public class PlayerKillState : PlayerState
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0;
         
+
     }
 
     public override void Exit(PlayerController playerController)
     {
+        playerController.spriteAnimator.SetBool("Death", false);
         //ServiceLocator.GetScreenShake().StartTransition(25, false);
 
         rb.gravityScale = playerController.CheckInitialGravityScale();
@@ -53,6 +57,8 @@ public class PlayerKillState : PlayerState
         //spriteRenderer.enabled = true;
 
         playerController.canMove = true;
+
+        playerController.gameManager.ResetStage();
 
     }
 

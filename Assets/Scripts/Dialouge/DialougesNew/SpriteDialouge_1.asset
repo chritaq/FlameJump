@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384dc2f319fca834aad1e5d1432d1f88, type: 3}
+  m_Name: SpriteDialouge_1
+  m_EditorClassIdentifier: 
+  character1:
+    value: {fileID: 11400000, guid: 044978d096997b64690a2cca4488de7b, type: 2}
+  character2:
+    value: {fileID: 11400000, guid: 24ef7a030df13ff48861830b5c59e191, type: 2}
+  character3:
+    value: {fileID: 0}
+  character4:
+    value: {fileID: 0}
+  character5:
+    value: {fileID: 0}
+  sentences:
+  - character: 1
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 0
+    sentence: You can dash over this.
+  - character: 0
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 0
+    sentence: Ah alright...{FullWords} Coo{Pause:0.5}li{Pause:0.5}o
+  - character: 1
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 1
+    sentence: Like.. {FullWords}  B{ScreenShake:10:0.5}{Sound:Player_Death}{ScreenFlash:2:0.3}LAM!
+  - character: 0
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 0
+    sentence: '...'
+  - character: 0
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 1.5
+    lockInput: 0
+    sentence: Calm your tits brother.

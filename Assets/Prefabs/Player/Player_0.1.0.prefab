@@ -47827,6 +47827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b21534134bca74980ec534935c775a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   redFlameParticles: {fileID: 1253427584}
   blueFlameParticles: {fileID: 753954139}
   deathParticles: {fileID: 2023398251}

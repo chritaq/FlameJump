@@ -14,11 +14,16 @@ public class RemoveAndRespawnOnPlayerCollission : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
 
+    private Coroutine respawnCoroutine;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
-            StartCoroutine("RemoveAndRespawn");
+            if (respawnCoroutine != null) {
+                StopCoroutine(respawnCoroutine);
+            }
+
+            respawnCoroutine = StartCoroutine("RemoveAndRespawn");
             collision.GetComponent<PlayerController>().SetHealthAndDashChargesToMax();
         }
         
@@ -33,4 +38,16 @@ public class RemoveAndRespawnOnPlayerCollission : MonoBehaviour
         sprite.enabled = true;
         yield return null;
     }
+
+    public void InstantRespawn() {
+        if(respawnCoroutine != null)
+        {
+            StopCoroutine(respawnCoroutine);
+        }
+
+        collider.enabled = true;
+        sprite.enabled = true;
+    }
+
+
 }

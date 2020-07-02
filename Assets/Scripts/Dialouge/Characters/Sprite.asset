@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca42ca60dcd46d84b9a2bb1537587e36, type: 3}
+  m_Name: Sprite
+  m_EditorClassIdentifier: 
+  characterAvatar: {fileID: -5629730957622660238, guid: 14b58b9116cf91a41b840cbef8838324,
+    type: 3}
+  characterName: Sprite
+  characterAudioDot:
+    value: {fileID: 11400000, guid: a5664032bbba694438bb84ef8ad5c0fe, type: 2}

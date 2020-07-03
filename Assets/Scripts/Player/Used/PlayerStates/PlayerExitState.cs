@@ -8,6 +8,8 @@ public class PlayerExitState : PlayerState
 
     public override void Enter(PlayerController playerController)
     {
+        playerController.StopFlash();
+
         Debug.Log("Exited");
         playerController.canMove = false;
         playerController.AccessRigidBody().velocity = Vector2.zero;

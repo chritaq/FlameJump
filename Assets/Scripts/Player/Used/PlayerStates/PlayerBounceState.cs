@@ -11,6 +11,7 @@ public class PlayerBounceState : PlayerState
     public override void Enter(PlayerController playerController)
     {
         playerController.heightAnimator.SetTrigger("Stretch");
+        playerController.spriteAnimator.SetBool("JumpUp", true);
 
         ServiceLocator.GetScreenShake().StartScreenShake(2f, 0.2f);
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(2, 0.75f);
@@ -34,6 +35,10 @@ public class PlayerBounceState : PlayerState
     {
         //Resets gravity for the player
         rb.gravityScale = initialGravityScale;
+        playerController.redFlameParticles.SetActive(false);
+        playerController.blueFlameParticles.SetActive(false);
+        playerController.spriteAnimator.SetBool("JumpUp", false);
+        playerController.spriteAnimator.SetBool("Fall", false);
     }
 
 
@@ -42,6 +47,8 @@ public class PlayerBounceState : PlayerState
         //Falls faster after height of jump
         if (rb.velocity.y < 0)
         {
+            playerController.spriteAnimator.SetBool("Fall", true);
+            playerController.spriteAnimator.SetBool("JumpUp", false);
             rb.gravityScale = playerController.fallMultiplier;
         }
 
@@ -56,7 +63,7 @@ public class PlayerBounceState : PlayerState
             return new PlayerExitState();
         }
 
-        if(playerController.GetPlayerHealth() == 0)
+        if(playerController.GetPlayerHealth() == 0 && rb.velocity.y > 0)
         {
             if (playerController.dashCharges != 0)
             {

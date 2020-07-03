@@ -120,13 +120,16 @@ public class InputHandler : MonoBehaviour
     //Gör om så den kollar alla knappar? if input.anyKey först och sen den långa checken??
     private void ToggleKeyboardAndGamepad()
     {
-        if (Input.GetKeyDown(jumpKey))
-        {
+
+        if (Input.GetKeyDown(jumpKey) || Input.GetKeyDown(dashKey) || Input.GetKeyDown(upKey) 
+                || Input.GetKeyDown(downKey) || Input.GetKeyDown(leftKey) || Input.GetKeyDown(rightKey)) {
             keyboard = true;
         }
 
-        if (state.Buttons.Start == ButtonState.Pressed)
-        {
+        if (state.Buttons.Start == ButtonState.Pressed || state.Buttons.A == ButtonState.Pressed 
+                || state.Buttons.X == ButtonState.Pressed || state.ThumbSticks.Left.X > horizontalDeadZone 
+                || state.ThumbSticks.Left.X < -horizontalDeadZone || state.ThumbSticks.Left.Y > verticalDeadZone
+                || state.ThumbSticks.Left.Y < -verticalDeadZone) {
             keyboard = false;
         }
     }

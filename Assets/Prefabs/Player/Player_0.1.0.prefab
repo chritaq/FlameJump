@@ -47831,6 +47831,10 @@ MonoBehaviour:
   redFlameParticles: {fileID: 1253427584}
   blueFlameParticles: {fileID: 753954139}
   deathParticles: {fileID: 2023398251}
+  flashRate: 0.1
+  flashMaterial: {fileID: 2100000, guid: 449618cd6703e7545a2eab84e1be4aa3, type: 3}
+  flashColor: {r: 1, g: 1, b: 1, a: 0.85490197}
+  blueStartColor: {r: 0.19607845, g: 0.41960788, b: 0.6745098, a: 1}
   maxMovementSpeed: 10
   maxDownardSpeed: 15
   canMove: 1

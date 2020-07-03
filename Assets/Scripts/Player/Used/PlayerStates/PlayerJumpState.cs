@@ -45,7 +45,6 @@ public class PlayerJumpState : PlayerState
             playerController.spriteAnimator.SetBool("Fall", true);
             playerController.spriteAnimator.SetBool("JumpUp", false);
             rb.gravityScale = playerController.fallMultiplier;
-
         }
 
         //Goes to lowjump if the player isn't pressing or holding down the jumpButton

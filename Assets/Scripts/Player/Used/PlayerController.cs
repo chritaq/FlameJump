@@ -10,10 +10,18 @@ public class PlayerController : Unit
     public GameObject redFlameParticles;
     public GameObject blueFlameParticles;
     public ParticleSystem deathParticles;
-    //public ParticleSystem dustParticles;
+    private Material startMaterial;
+    private Material activeMaterial;
+    [SerializeField] private float flashRate = 0.3f;
+    [SerializeField] private Material flashMaterial;
+    [SerializeField] private Color flashColor;
+    private Color activeNormalColor;
+    private Color redStartColor;
+    [SerializeField] private Color blueStartColor;
+//public ParticleSystem dustParticles;
 
 
-    //Movement
+//Movement
     [Header("MOVEMENT")]
     [SerializeField] private float maxMovementSpeed = 10f;
     [SerializeField] private float maxDownardSpeed;
@@ -75,9 +83,12 @@ public class PlayerController : Unit
 
     public override void Burn()
     {
+        Debug.Log("Burned player");
         if (health > 0)
         {
             health--;
+            StopFlash();
+            flashPlayerCoroutine = StartCoroutine(FlashPlayerSprite());
         }
         else {
             returnedState = new PlayerKillState();
@@ -131,6 +142,8 @@ public class PlayerController : Unit
         {
             if(!onGroundLastFrame)
             {
+                StopFlash();
+
                 ServiceLocator.GetGamepadRumble().StartGamepadRumble(1, 1f);
                 ServiceLocator.GetAudio().PlaySound("Player_Land", SoundType.interuptLast);
                 heightAnimator.SetTrigger("Squash");
@@ -206,6 +219,10 @@ public class PlayerController : Unit
         
         currentState = new PlayerIdleState();
         currentState.Enter(this);
+
+        startMaterial = playerSprite.material;
+        redStartColor = playerSprite.color;
+        activeNormalColor = redStartColor;
     }
 
 
@@ -223,7 +240,39 @@ public class PlayerController : Unit
         {
             StateSwap();
         }
-    } 
+
+        ChooseColor();
+    }
+
+    private bool triggeredRed = false;
+    private bool triggeredBlue = false;
+    private void ChooseColor()
+    {
+        if (dashCharges <= 0) {
+            activeNormalColor = blueStartColor;
+            activeMaterial = flashMaterial;
+
+            if (!triggeredBlue)
+            {
+                playerSprite.material = activeMaterial;
+                playerSprite.color = activeNormalColor;
+                triggeredBlue = true;
+                triggeredRed = false;
+            }
+        }
+        else
+        {
+            activeNormalColor = redStartColor;
+            activeMaterial = startMaterial;
+            if (!triggeredRed)
+            {
+                playerSprite.material = activeMaterial;
+                playerSprite.color = activeNormalColor;
+                triggeredRed = true;
+                triggeredBlue = false;
+            }
+        }
+    }
 
     
     private void FixedUpdate()
@@ -420,5 +469,52 @@ public class PlayerController : Unit
     public PlayerState readCurrentPlayerState()
     {
         return currentState;
+    }
+
+
+    public Coroutine flashPlayerCoroutine;
+    public IEnumerator FlashPlayerSprite() {
+        Debug.Log("Started player flash");
+        Debug.Log("Health is: " + health);
+        bool flash = true;
+        Color startColor = playerSprite.color;
+
+        while (health <= 0) {
+            if(flash)
+            {
+                playerSprite.material = flashMaterial;
+                playerSprite.color = flashColor;
+            }
+            else
+            {
+                if(dashCharges <= 0)
+                {
+                    playerSprite.material = flashMaterial;
+                    playerSprite.color = blueStartColor;
+                }
+                else
+                {
+                    playerSprite.material = startMaterial;
+                    playerSprite.color = redStartColor;
+                }
+
+            }
+
+            flash = !flash;
+            yield return new WaitForSeconds(flashRate);
+        }
+
+        playerSprite.material = startMaterial;
+        playerSprite.color = redStartColor;
+    }
+
+    public void StopFlash()
+    {
+        if(flashPlayerCoroutine != null)
+        {
+            StopCoroutine(flashPlayerCoroutine);
+        }
+        playerSprite.material = startMaterial;
+        playerSprite.color = redStartColor;
     }
 }

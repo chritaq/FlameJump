@@ -28,20 +28,22 @@ public class PlayerDashState : PlayerState
         dashRequest = true;
         dashTime = playerController.GetDashTime();
 
+
+
         //FIRE PARTICLES
-        if (playerController.GetPlayerHealth() == 0)
-        {
-            if (playerController.dashCharges != 0)
-            {
-                playerController.redFlameParticles.SetActive(true);
-                playerController.blueFlameParticles.SetActive(false);
-            }
-            else
-            {
-                playerController.blueFlameParticles.SetActive(true);
-                playerController.redFlameParticles.SetActive(false);
-            }
-        }
+        //if (playerController.GetPlayerHealth() == 0)
+        //{
+        //    if (playerController.dashCharges != 0)
+        //    {
+        //        playerController.redFlameParticles.SetActive(true);
+        //        playerController.blueFlameParticles.SetActive(false);
+        //    }
+        //    else
+        //    {
+        //        playerController.blueFlameParticles.SetActive(true);
+        //        playerController.redFlameParticles.SetActive(false);
+        //    }
+        //}
 
     }
 
@@ -58,17 +60,18 @@ public class PlayerDashState : PlayerState
 
         TurnOnGravity(playerController);
         playerController.canMove = true;
-        //if(!playerController.checkIfOnGround())
-        //{
-        //    if (playerController.GetPlayerHealth() <= 0)
-        //    {
-        //        playerController.spriteAnimator.SetBool("BurnedNoDash", true);
-        //    }
-        //    else if (playerController.dashCharges <= 0)
-        //    {
-        //        playerController.spriteAnimator.SetBool("NoDash", true);
-        //    }
-        //}
+        if (!playerController.checkIfOnGround())
+        {
+
+            //if (playerController.GetPlayerHealth() <= 0)
+            //{
+            //    playerController.spriteAnimator.SetBool("BurnedNoDash", true);
+            //}
+            //else if (playerController.dashCharges <= 0)
+            //{
+            //    playerController.spriteAnimator.SetBool("NoDash", true);
+            //}
+        }
 
 
         playerController.spriteAnimator.SetBool("DashUp", false);
@@ -111,7 +114,7 @@ public class PlayerDashState : PlayerState
             return new PlayerJumpState();
         }
 
-        return TryEndDash(t);
+        return TryEndDash(t, playerController);
     }
 
 
@@ -141,14 +144,24 @@ public class PlayerDashState : PlayerState
     }
 
 
-    private PlayerState TryEndDash(float t)
+    private PlayerState TryEndDash(float t, PlayerController playerController)
     {
         if (!dashRequest)
         {
             dashTime -= t;
             if (dashTime <= 0)
             {
-                return new PlayerIdleState();
+                if (playerController.checkIfOnGround())
+                {
+                    Debug.Log("Went to idle state");
+                    return new PlayerIdleState();
+                }
+                else
+                {
+                    Debug.Log("Went to Fall state");
+                    return new PlayerFallState();
+                }
+
             }
         }
 

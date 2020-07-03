@@ -10,7 +10,6 @@ public class MenuStartGameState : MenuState
         Debug.Log("Entered menustargame state");
         menuController.SetAboveState(new MenuMainState());
         menuController.startGameMenuObject.SetActive(true);
-        ServiceLocator.GetAudio().PlaySound("", SoundType.menuSound);
     }
 
     public override void Exit(MenuController menuController)

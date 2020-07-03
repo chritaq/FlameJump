@@ -76,6 +76,7 @@ public class PlayerDashState : PlayerState
 
         playerController.spriteAnimator.SetBool("DashUp", false);
         playerController.spriteAnimator.SetBool("DashSides", false);
+        playerController.spriteAnimator.SetBool("DashDiagonal", false);
     }
 
 
@@ -121,8 +122,12 @@ public class PlayerDashState : PlayerState
     private void AddDashVelocityOnce(PlayerController playerController)
     {
         rb.velocity = playerController.GetDirectionFromCommand().normalized * playerController.GetDashVelocity();
-
-        if(playerController.activeVerticalCommand != PlayerController.PlayerVerticalCommands.Nothing)
+        if(playerController.activeVerticalCommand != PlayerController.PlayerVerticalCommands.Nothing && playerController.activeHorizontalCommand != PlayerController.PlayerHorizontalCommands.Nothing)
+        {
+            playerController.heightAnimator.SetTrigger("Squeeze");
+            playerController.spriteAnimator.SetBool("DashDiagonal", true);
+        }
+        else if(playerController.activeVerticalCommand != PlayerController.PlayerVerticalCommands.Nothing)
         {
             playerController.spriteAnimator.SetBool("DashUp", true);
             playerController.heightAnimator.SetTrigger("Stretch");

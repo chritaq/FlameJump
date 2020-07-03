@@ -91,8 +91,7 @@ public class PlayerController : Unit
             flashPlayerCoroutine = StartCoroutine(FlashPlayerSprite());
         }
         else {
-            returnedState = new PlayerKillState();
-            StateSwap();
+            Kill();
         }
     }
 

@@ -10,10 +10,10 @@ public class PlayerKillState : PlayerState
 
     public override void Enter(PlayerController playerController)
     {
-        ServiceLocator.GetScreenShake().StartScreenShake(50, 1f);
+        ServiceLocator.GetScreenShake().StartScreenShake(10, 1f);
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(2, 0.1f);
         ServiceLocator.GetAudio().PlaySound("Player_Death", SoundType.interuptLast);
-        ServiceLocator.GetScreenShake().StartScreenFlash(2, 0.3f);
+        ServiceLocator.GetScreenShake().StartScreenFlash(2, 0.1f);
 
         playerController.deathParticles.Play();
         playerController.redFlameParticles.SetActive(false);
@@ -67,14 +67,22 @@ public class PlayerKillState : PlayerState
         return null;
     }
 
+    bool transitionTriggered = false;
     public override PlayerState Update(PlayerController playerController, float t)
     {
         rb.transform.transform.Translate(new Vector2(0, 0));
         //Timedelay for death
         respawnTime -= t;
 
+        if (respawnTime <= playerController.GetRespawnTime() / 2 && !transitionTriggered)
+        {
+            ServiceLocator.GetScreenShake().StartTransition(25, true);
+            transitionTriggered = true;
+        }
+
         if(respawnTime <= 0)
         {
+            ServiceLocator.GetScreenShake().StartTransition(25, false);
             return new PlayerIdleState();
         }
 

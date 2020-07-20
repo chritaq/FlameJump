@@ -6,7 +6,6 @@ public class InteractCommand : Command
 {
     public override void Excecute(PlayerController playerController)
     {
-        Debug.Log("Executed Interact");
         playerController.activeMiscCommand = PlayerController.PlayerMiscCommands.Dialouge;
     }
 }

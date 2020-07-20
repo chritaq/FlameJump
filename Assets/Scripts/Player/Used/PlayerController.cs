@@ -222,6 +222,7 @@ public class PlayerController : Unit
         startMaterial = playerSprite.material;
         redStartColor = playerSprite.color;
         activeNormalColor = redStartColor;
+        SetTrailPool();
     }
 
 
@@ -515,5 +516,76 @@ public class PlayerController : Unit
         }
         playerSprite.material = startMaterial;
         playerSprite.color = redStartColor;
+    }
+
+    [SerializeField] private float trailRate = 0.05f;
+    [SerializeField] private GameObject trailObject;
+    private Coroutine trailCoroutine;
+
+    public void StartTrailCoroutine()
+    {
+        StopTrailCoroutine();
+        trailCoroutine = StartCoroutine(DropTrail());
+    }
+
+    public void StopTrailCoroutine()
+    {
+        if (trailCoroutine != null)
+        {
+            StopCoroutine(trailCoroutine);
+        }
+    }
+
+    GameObject tempTrailObject;
+    SpriteRenderer tempTrailSpriteRenderer;
+    private IEnumerator DropTrail()
+    {
+        while (true)
+        {
+            tempTrailObject = PoolTrailObject();
+            if (tempTrailObject == null) break;
+            tempTrailObject.SetActive(true);
+            tempTrailSpriteRenderer = tempTrailObject.GetComponent<SpriteRenderer>();
+            Debug.Log("Dropped trail!");
+
+            tempTrailObject.transform.position = transform.position;
+            tempTrailObject.transform.rotation = transform.rotation;
+
+            if (playerSprite.flipX)
+            {
+                tempTrailSpriteRenderer.flipX = true;
+            }
+            tempTrailSpriteRenderer.sprite = playerSprite.sprite;
+            yield return new WaitForSeconds(trailRate);
+        }
+
+    }
+
+    private GameObject[] trailObjects;
+    private int trailObjectLenght = 30;
+    private void SetTrailPool()
+    {
+        trailObjects = new GameObject[trailObjectLenght];
+        for (int i = 0; i < trailObjects.Length; i++)
+        {
+            trailObjects[i] = Instantiate(trailObject, null);
+            trailObjects[i].SetActive(false);
+        }
+    }
+
+    private GameObject PoolTrailObject()
+    {
+        for (int i = 0; i < trailObjects.Length; i++)
+        {
+            if (!trailObjects[i].activeSelf)
+            {
+                Debug.Log("Pooled object");
+                return trailObjects[i];
+            }
+        }
+
+        Debug.Log("Couldnt pool object");
+
+        return null;
     }
 }

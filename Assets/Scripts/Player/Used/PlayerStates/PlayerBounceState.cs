@@ -10,6 +10,7 @@ public class PlayerBounceState : PlayerState
 
     public override void Enter(PlayerController playerController)
     {
+        playerController.StartTrailCoroutine();
         playerController.heightAnimator.SetTrigger("Stretch");
         playerController.spriteAnimator.SetBool("JumpUp", true);
 
@@ -33,6 +34,7 @@ public class PlayerBounceState : PlayerState
 
     public override void Exit(PlayerController playerController)
     {
+        playerController.StopTrailCoroutine();
         //Resets gravity for the player
         rb.gravityScale = initialGravityScale;
         playerController.redFlameParticles.SetActive(false);

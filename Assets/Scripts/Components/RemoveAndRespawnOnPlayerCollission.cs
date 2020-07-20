@@ -7,11 +7,12 @@ public class RemoveAndRespawnOnPlayerCollission : MonoBehaviour
     [SerializeField] private float respawnTime = 4f;
     private Collider2D collider;
     private SpriteRenderer sprite;
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
         collider = GetComponent<Collider2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
     }
 
     private Coroutine respawnCoroutine;
@@ -36,6 +37,10 @@ public class RemoveAndRespawnOnPlayerCollission : MonoBehaviour
         yield return new WaitForSeconds(respawnTime);
         collider.enabled = true;
         sprite.enabled = true;
+        if (animator != null)
+        {
+            animator.SetTrigger("Respawn");
+        }
         yield return null;
     }
 
@@ -47,6 +52,10 @@ public class RemoveAndRespawnOnPlayerCollission : MonoBehaviour
 
         collider.enabled = true;
         sprite.enabled = true;
+        if (animator != null)
+        {
+            animator.SetTrigger("Respawn");
+        }
     }
 
 

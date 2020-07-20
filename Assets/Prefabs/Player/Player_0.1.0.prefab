@@ -47866,6 +47866,9 @@ MonoBehaviour:
   acceleration: 5
   lateJumpTimer: 16
   coyoteJumpTime: 20
+  trailRate: 0.015
+  trailObject: {fileID: 4389584964538320876, guid: 8fbb7179a7134e34fb0503bca003b4f7,
+    type: 3}
 --- !u!50 &4865448684398400109
 Rigidbody2D:
   serializedVersion: 4

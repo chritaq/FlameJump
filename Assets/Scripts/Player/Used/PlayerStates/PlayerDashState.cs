@@ -57,7 +57,7 @@ public class PlayerDashState : PlayerState
 
     public override void Exit(PlayerController playerController)
     {
-
+        playerController.StopTrailCoroutine();
         TurnOnGravity(playerController);
         playerController.canMove = true;
         if (!playerController.checkIfOnGround())
@@ -104,7 +104,7 @@ public class PlayerDashState : PlayerState
 
         if (dashRequest == true && dashStartDelay <= 0)
         {
-
+            playerController.StartTrailCoroutine();
             ServiceLocator.GetGamepadRumble().StartGamepadRumble(2, 0.5f);
             ServiceLocator.GetScreenShake().StartScreenShake(dashTime, 0.2f);
             AddDashVelocityOnce(playerController);

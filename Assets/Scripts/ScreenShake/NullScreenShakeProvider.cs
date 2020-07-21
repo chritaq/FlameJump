@@ -19,6 +19,10 @@ public class NullScreenShakeProvider : IScreenShakeService
 
     }
 
+    public void StartSwipe(bool fadeIn)
+    {
+    }
+
     public void StartTransition(int fadeTime, bool fadeIn)
     {
 

@@ -8,4 +8,5 @@ public interface IScreenShakeService
     void StartScreenShake(float time, float amount);
     void StartTransition(int fadeTime, bool fadeIn);
     void StartScreenFlash(int time, float amount);
+    void StartSwipe(bool fadeIn);
 }

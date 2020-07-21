@@ -71,9 +71,6 @@ public class PlayerIdleState : PlayerState
             playerController.redFlameParticles.SetActive(false);
         }
 
-
-        playerController.CoyoteJumpTimer();
-
         if (playerController.checkIfOnGround())
         {
             playerController.SetHealthAndDashChargesToMax();
@@ -106,6 +103,12 @@ public class PlayerIdleState : PlayerState
         {
             playerController.heightAnimator.SetBool("Duck", false);
             return new PlayerDashState();
+        }
+
+        if(!grounded)
+        {
+            Debug.Log("Went to fall state");
+            return new PlayerFallState();
         }
 
         return null;

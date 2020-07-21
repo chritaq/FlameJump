@@ -118,10 +118,11 @@ public class PlayerDashState : PlayerState
         return TryEndDash(t, playerController);
     }
 
-
+    Vector2 directionOfDash;
     private void AddDashVelocityOnce(PlayerController playerController)
     {
-        rb.velocity = playerController.GetDirectionFromCommand().normalized * playerController.GetDashVelocity();
+        directionOfDash = playerController.GetDirectionFromCommand().normalized;
+        rb.velocity = directionOfDash * playerController.GetDashVelocity();
         if(playerController.activeVerticalCommand != PlayerController.PlayerVerticalCommands.Nothing && playerController.activeHorizontalCommand != PlayerController.PlayerHorizontalCommands.Nothing)
         {
             playerController.heightAnimator.SetTrigger("Squeeze");
@@ -148,7 +149,7 @@ public class PlayerDashState : PlayerState
         dashRequest = false;
     }
 
-
+    float forceOfExtraMovementAtEnd = 100;
     private PlayerState TryEndDash(float t, PlayerController playerController)
     {
         if (!dashRequest)
@@ -163,6 +164,12 @@ public class PlayerDashState : PlayerState
                 }
                 else
                 {
+                    playerController.AccessRigidBody().AddForce(Vector2.up * forceOfExtraMovementAtEnd);
+                    if (directionOfDash.y > 0)
+                    {
+                        playerController.AccessRigidBody().AddForce(Vector2.up * forceOfExtraMovementAtEnd);
+
+                    }
                     Debug.Log("Went to Fall state");
                     return new PlayerFallState();
                 }

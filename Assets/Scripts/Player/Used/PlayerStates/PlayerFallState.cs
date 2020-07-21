@@ -11,7 +11,7 @@ public class PlayerFallState : PlayerState
         rb = playerController.AccessRigidBody();
         playerController.spriteAnimator.SetBool("Fall", true);
         playerController.spriteAnimator.SetBool("JumpUp", false);
-        rb.gravityScale = playerController.fallMultiplier;
+        rb.gravityScale = playerController.CheckInitialGravityScale();
     }
 
     public override void Exit(PlayerController playerController)
@@ -32,6 +32,11 @@ public class PlayerFallState : PlayerState
             return new PlayerExitState();
         }
 
+        if (playerController.checkIfOnGround())
+        {
+            playerController.SetHealthAndDashChargesToMax();
+        }
+
         if (playerController.CheckLateJump())
         {
             playerController.activeActionCommand = PlayerController.PlayerActionCommands.LateJump;
@@ -39,9 +44,10 @@ public class PlayerFallState : PlayerState
 
         if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.JumpTap || playerController.activeActionCommand == PlayerController.PlayerActionCommands.LateJump)
         {
-            if (playerController.checkIfOnGround())
+            if (playerController.checkIfOnGround() || playerController.CheckCoyoteJump())
             {
                 playerController.StopLateJump();
+                playerController.heightAnimator.SetBool("Duck", false);
                 return new PlayerJumpState();
             }
             else if (playerController.activeActionCommand != PlayerController.PlayerActionCommands.LateJump)
@@ -52,6 +58,7 @@ public class PlayerFallState : PlayerState
 
         if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Dash && playerController.dashCharges != 0)
         {
+            playerController.heightAnimator.SetBool("Duck", false);
             return new PlayerDashState();
         }
 

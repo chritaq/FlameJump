@@ -9,6 +9,7 @@ public class TransitionFx : MonoBehaviour
 
     [SerializeField] private RawImage overlayImage;
     private Coroutine transitionCoroutine;
+    [SerializeField] private Animator swipeAnimator;
 
     private float colorAlpha = 0;
 
@@ -19,6 +20,16 @@ public class TransitionFx : MonoBehaviour
             StopCoroutine(transitionCoroutine);
         }
         transitionCoroutine = StartCoroutine(Transition(fadeTime, fadeIn));
+    }
+
+    public void StartSwipe(bool fadeIn)
+    {
+        if (transitionCoroutine != null)
+        {
+            StopCoroutine(transitionCoroutine);
+        }
+        overlayImage.color = new Color(255, 255, 255, 0);
+        swipeAnimator.SetBool("fadeIn", fadeIn);
     }
 
     private IEnumerator Transition(int fadeTime, bool fadeIn)

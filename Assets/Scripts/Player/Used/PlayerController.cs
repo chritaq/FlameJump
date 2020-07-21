@@ -167,7 +167,7 @@ public class PlayerController : Unit
     [SerializeField]
     private Rigidbody2D rb;
     [SerializeField]
-    private float respawnTime = 2f;
+    private float respawnTime = 2.6f;
 
     public Rigidbody2D AccessRigidBody()
     {
@@ -233,6 +233,7 @@ public class PlayerController : Unit
 
     private void Update()
     {
+        CoyoteJumpTimer();
 
         returnedState = currentState.Update(this, Time.deltaTime);
 

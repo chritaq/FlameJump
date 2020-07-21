@@ -30,6 +30,11 @@ public class ScreenShakeProvider : IScreenShakeService
         transitionFx.StartTransition(fadeTime, fadeIn);
     }
 
+    public void StartSwipe(bool fadeIn)
+    {
+        transitionFx.StartSwipe(fadeIn);
+    }
+
     public void StartScreenFlash(int time, float amount)
     {
         screenFlashFx.StartScreenFlash(time, amount);

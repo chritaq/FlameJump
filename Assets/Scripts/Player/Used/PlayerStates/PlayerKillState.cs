@@ -74,15 +74,16 @@ public class PlayerKillState : PlayerState
         //Timedelay for death
         respawnTime -= t;
 
-        if (respawnTime <= playerController.GetRespawnTime() / 2 && !transitionTriggered)
+        if (/*respawnTime <= playerController.GetRespawnTime() / 2 && */!transitionTriggered)
         {
-            ServiceLocator.GetScreenShake().StartTransition(25, true);
+            ServiceLocator.GetScreenShake().StartSwipe(true);
             transitionTriggered = true;
         }
 
         if(respawnTime <= 0)
         {
-            ServiceLocator.GetScreenShake().StartTransition(25, false);
+            ServiceLocator.GetScreenShake().StartSwipe(false);
+            //ServiceLocator.GetScreenShake().StartTransition(25, false);
             return new PlayerIdleState();
         }
 

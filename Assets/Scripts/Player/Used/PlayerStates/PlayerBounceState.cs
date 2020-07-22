@@ -29,6 +29,7 @@ public class PlayerBounceState : PlayerState
 
         //The force added for the bounce
         rb.AddForce(Vector2.up * playerController.bounceVelocity, ForceMode2D.Impulse);
+        playerController.StopLateJump();
     }
 
 

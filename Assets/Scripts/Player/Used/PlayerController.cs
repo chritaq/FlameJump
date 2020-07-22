@@ -400,21 +400,22 @@ public class PlayerController : Unit
 
     public void TryLateJump()
     {
-        //So we don't have two running at the same time
-        StopCoroutine("LateJumpTimer");
-        lateJump = false;
-
-        StartCoroutine("LateJumpTimer");
+        StopLateJump();
+        lateJumpTimerCoroutine = StartCoroutine(LateJumpTimer());
     }
 
     public void StopLateJump()
     {
-        StopCoroutine("LateJumpTimer");
+        if (lateJumpTimerCoroutine != null)
+        {
+            StopCoroutine(lateJumpTimerCoroutine);
+        }
         lateJump = false;
     }
 
     [SerializeField] private int lateJumpTimer = 30;
     private int timer;
+    private Coroutine lateJumpTimerCoroutine;
     private IEnumerator LateJumpTimer()
     {
         timer = lateJumpTimer;

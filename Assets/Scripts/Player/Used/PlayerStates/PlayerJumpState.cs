@@ -26,6 +26,7 @@ public class PlayerJumpState : PlayerState
 
         //Jump
         rb.AddForce(Vector2.up * playerController.jumpVelocity, ForceMode2D.Impulse);
+        playerController.StopLateJump();
     }
 
 

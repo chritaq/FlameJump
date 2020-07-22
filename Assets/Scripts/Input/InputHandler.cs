@@ -137,22 +137,25 @@ public class InputHandler : MonoBehaviour
 
     private void HandleKeyboardActionInput()
     {
-
-        if (Input.GetKeyDown(jumpKey))
+        if(actionInputQueue.Count < 1)
         {
-            actionInputQueue.Enqueue(jumpCommand);
+            if (Input.GetKeyDown(jumpKey))
+            {
+                actionInputQueue.Enqueue(jumpCommand);
 
+            }
+
+            if (Input.GetKey(jumpKey))
+            {
+                actionInputQueue.Enqueue(jumpHoldCommand);
+            }
+
+            if (Input.GetKeyDown(dashKey))
+            {
+                actionInputQueue.Enqueue(dashCommand);
+            }
         }
 
-        if (Input.GetKey(jumpKey))
-        {
-            actionInputQueue.Enqueue(jumpHoldCommand);
-        }
-
-        if (Input.GetKeyDown(dashKey))
-        {
-            actionInputQueue.Enqueue(dashCommand);
-        }
         
     }
 
@@ -167,12 +170,16 @@ public class InputHandler : MonoBehaviour
 
     private void HandleGamepadActionInputs()
     {
-        aHasBeenPressed = CheckButtonPressAndHold(state.Buttons.A, aHasBeenPressed, aButtonCommand, aButtonHoldCommand);
-        xHasBeenPressed = CheckButtonPressAndHold(state.Buttons.X, xHasBeenPressed, xButtonCommand, xButtonHoldCommand);
-        yHasBeenPressed = CheckButtonPressAndHold(state.Buttons.Y, yHasBeenPressed, yButtonCommand, yButtonHoldCommand);
-        bHasBeenPressed = CheckButtonPressAndHold(state.Buttons.B, bHasBeenPressed, bButtonCommand, bButtonHoldCommand);
-        rightShoulderHasBeenPressed = CheckButtonPressAndHold(state.Buttons.RightShoulder, rightShoulderHasBeenPressed, rightShoulderButtonCommand, rightShoulderButtonHoldCommand);
-        leftShoulderHasBeenPressed = CheckButtonPressAndHold(state.Buttons.LeftShoulder, leftShoulderHasBeenPressed, leftShoulderButtonCommand, leftShoulderButtonHoldCommand);
+        if (actionInputQueue.Count < 1)
+        {
+            aHasBeenPressed = CheckButtonPressAndHold(state.Buttons.A, aHasBeenPressed, aButtonCommand, aButtonHoldCommand);
+            xHasBeenPressed = CheckButtonPressAndHold(state.Buttons.X, xHasBeenPressed, xButtonCommand, xButtonHoldCommand);
+            yHasBeenPressed = CheckButtonPressAndHold(state.Buttons.Y, yHasBeenPressed, yButtonCommand, yButtonHoldCommand);
+            bHasBeenPressed = CheckButtonPressAndHold(state.Buttons.B, bHasBeenPressed, bButtonCommand, bButtonHoldCommand);
+            rightShoulderHasBeenPressed = CheckButtonPressAndHold(state.Buttons.RightShoulder, rightShoulderHasBeenPressed, rightShoulderButtonCommand, rightShoulderButtonHoldCommand);
+            leftShoulderHasBeenPressed = CheckButtonPressAndHold(state.Buttons.LeftShoulder, leftShoulderHasBeenPressed, leftShoulderButtonCommand, leftShoulderButtonHoldCommand);
+        }
+
     }
 
     private bool CheckButtonPressAndHold(ButtonState button, bool hasBeenPressed, Command buttonCommand, Command buttonHoldCommand)

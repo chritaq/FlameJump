@@ -18,10 +18,10 @@ public class PlayerController : Unit
     private Color activeNormalColor;
     private Color redStartColor;
     [SerializeField] private Color blueStartColor;
-//public ParticleSystem dustParticles;
+    [SerializeField] private GameObject dustParticles;
 
 
-//Movement
+    //Movement
     [Header("MOVEMENT")]
     [SerializeField] private float maxMovementSpeed = 10f;
     [SerializeField] private float maxDownardSpeed;
@@ -132,7 +132,7 @@ public class PlayerController : Unit
     [SerializeField] private float checkFloorRadius;
     [SerializeField] private LayerMask whatIsGround;
 
-
+    private GameObject spawnedDustParticle;
     public bool checkIfOnGround()
     {
         onGround = Physics2D.OverlapCircle(feetPos.position, checkFloorRadius, whatIsGround);
@@ -141,6 +141,9 @@ public class PlayerController : Unit
         {
             if(!onGroundLastFrame)
             {
+                spawnedDustParticle = Instantiate(dustParticles, heightAnimator.transform.position, heightAnimator.transform.rotation, null);
+                spawnedDustParticle.transform.localScale = heightAnimator.transform.localScale;
+                spawnedDustParticle.GetComponentInChildren<ParticleSystem>().Play();
                 StopFlash();
 
                 ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.small);

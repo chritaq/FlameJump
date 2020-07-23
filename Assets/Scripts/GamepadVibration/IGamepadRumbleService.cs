@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IGamepadRumbleService
 {
     void ReferenceGamepadRumble();
-    void StartGamepadRumble(int vibrationTime, float vibrationAmount);
+    void StartGamepadRumble(GamepadRumbleProvider.RumbleSize rumbleSize);
 }

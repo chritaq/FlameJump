@@ -14,7 +14,7 @@ public class MenuNewGameState : MenuState
         ServiceLocator.GetAudio().PlaySound("Menu_StartGame", SoundType.normal);
         //ServiceLocator.GetScreenShake().StartScreenShake(transitionTime, 1);
         ServiceLocator.GetScreenShake().StartTransition((int)transitionTime, true);
-        ServiceLocator.GetGamepadRumble().StartGamepadRumble((int)transitionTime, 1f);
+        ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.huge);
         ServiceLocator.GetScreenShake().StartScreenFlash(2, 1);
 
         //Need to disable controls

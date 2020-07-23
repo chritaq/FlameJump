@@ -143,7 +143,7 @@ public class PlayerController : Unit
             {
                 StopFlash();
 
-                ServiceLocator.GetGamepadRumble().StartGamepadRumble(1, 1f);
+                ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.small);
                 ServiceLocator.GetAudio().PlaySound("Player_Land", SoundType.interuptLast);
                 heightAnimator.SetTrigger("Squash");
                 spriteAnimator.SetTrigger("Player_Land");

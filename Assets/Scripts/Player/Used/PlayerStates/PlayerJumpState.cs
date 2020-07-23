@@ -13,7 +13,7 @@ public class PlayerJumpState : PlayerState
         playerController.heightAnimator.SetTrigger("Stretch");
         playerController.spriteAnimator.SetBool("JumpUp", true);
 
-        ServiceLocator.GetGamepadRumble().StartGamepadRumble(1, 0.5f);
+        ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.small);
         ServiceLocator.GetAudio().PlaySound("Player_Jump", SoundType.interuptLast);
 
         counterName = "Jump";

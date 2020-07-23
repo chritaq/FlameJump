@@ -15,7 +15,7 @@ public class PlayerExitState : PlayerState
         playerController.AccessRigidBody().velocity = Vector2.zero;
 
         ServiceLocator.GetScreenShake().StartScreenShake(150, 1f);
-        ServiceLocator.GetGamepadRumble().StartGamepadRumble(1, 1f);
+        ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.huge);
         //ServiceLocator.GetAudio().PlaySound("Player_Exit");
 
         counterName = "Exit";

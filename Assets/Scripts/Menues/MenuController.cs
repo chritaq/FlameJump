@@ -77,7 +77,7 @@ public class MenuController : MonoBehaviour
         if (aboveState != null)
         {
             ServiceLocator.GetAudio().PlaySound("Pickup_Recharge", SoundType.normal);
-            ServiceLocator.GetGamepadRumble().StartGamepadRumble(1, 1);
+            ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.small);
             currentState.Exit(this);
             currentState = aboveState;
             currentState.Enter(this);
@@ -114,7 +114,7 @@ public class MenuController : MonoBehaviour
     private void ChangeState(MenuState menuState)
     {
         ServiceLocator.GetAudio().PlaySound("Pickup_Recharge", SoundType.menuSound);
-        ServiceLocator.GetGamepadRumble().StartGamepadRumble(1, 1);
+        ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.small);
         SetMenuAboveButton();
         currentState.Exit(this);
         currentState = menuState;

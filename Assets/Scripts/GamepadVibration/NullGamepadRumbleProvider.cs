@@ -9,7 +9,7 @@ public class NullGamepadRumbleProvider : IGamepadRumbleService
 
     }
 
-    public void StartGamepadRumble(int vibrationTime, float vibrationAmount)
+    public void StartGamepadRumble(GamepadRumbleProvider.RumbleSize rumbleSize)
     {
 
     }

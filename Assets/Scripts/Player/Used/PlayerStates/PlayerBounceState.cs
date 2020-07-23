@@ -15,7 +15,7 @@ public class PlayerBounceState : PlayerState
         playerController.spriteAnimator.SetBool("JumpUp", true);
 
         ServiceLocator.GetScreenShake().StartScreenShake(2f, 0.2f);
-        ServiceLocator.GetGamepadRumble().StartGamepadRumble(2, 0.75f);
+        ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.big);
         ServiceLocator.GetAudio().PlaySound("Player_Bounce", SoundType.interuptLast);
         ServiceLocator.GetScreenShake().StartScreenFlash(2, 0.05f);
         counterName = "Bounce";

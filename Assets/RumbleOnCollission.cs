@@ -12,7 +12,7 @@ public class RumbleOnCollission : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            ServiceLocator.GetGamepadRumble().StartGamepadRumble(vibrationTime, vibrationAmount);
+            ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.small);
         }
 
     }

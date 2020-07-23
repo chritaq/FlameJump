@@ -41,9 +41,13 @@ public class GameManager : MonoBehaviour
 
         ServiceLocator.ProvideScreenShake(new ScreenShakeProvider());
         ServiceLocator.GetScreenShake().GetCamera();
-
         //Gör så en fadein görs i början av varje scen. Bör inte vara här?
-        ServiceLocator.GetScreenShake().StartTransition(100, false);
+        if(level != 0)
+        {
+            ServiceLocator.GetScreenShake().StartSwipe(false);
+        }
+
+        //StartTransition(100, false);
 
         removeAndRespawnObjects = FindObjectsOfType<RemoveAndRespawnOnPlayerCollission>();
     }

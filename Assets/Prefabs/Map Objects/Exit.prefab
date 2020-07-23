@@ -121,3 +121,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionTime: 150
+  spriteRenderer: {fileID: 5674216867250777074}
+  transform: {fileID: 5674216867250777077}

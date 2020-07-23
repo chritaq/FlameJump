@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionTime: 150
+  spriteRenderer: {fileID: 5992953855968655740}
+  transform: {fileID: 5992953855968655743}
 --- !u!212 &5992953855968655740
 SpriteRenderer:
   m_ObjectHideFlags: 0

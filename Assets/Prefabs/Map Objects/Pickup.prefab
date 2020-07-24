@@ -276,6 +276,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8214124111984572141, guid: c2d92bd9e9c1ce541838483e579fe296,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 16b6b5e327b2c3243873fec047b2ac19, type: 2}
     - target: {fileID: 8214124111984572140, guid: c2d92bd9e9c1ce541838483e579fe296,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -324,18 +329,23 @@ PrefabInstance:
     - target: {fileID: 8214124111984572140, guid: c2d92bd9e9c1ce541838483e579fe296,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8214124111984572140, guid: c2d92bd9e9c1ce541838483e579fe296,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.ctime1
       value: 65535
       objectReference: {fileID: 0}
-    - target: {fileID: 8214124111984572141, guid: c2d92bd9e9c1ce541838483e579fe296,
+    - target: {fileID: 8214124111984572140, guid: c2d92bd9e9c1ce541838483e579fe296,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 16b6b5e327b2c3243873fec047b2ac19, type: 2}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214124111984572140, guid: c2d92bd9e9c1ce541838483e579fe296,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2d92bd9e9c1ce541838483e579fe296, type: 3}
 --- !u!4 &4071796198468713234 stripped

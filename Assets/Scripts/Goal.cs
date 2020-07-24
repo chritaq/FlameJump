@@ -12,7 +12,7 @@ public class Goal : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform transform;
     private int keysToUnlock;
-    [HideInInspector] public bool unlocked;
+    [HideInInspector] public bool unlocked = true;
     [HideInInspector] public int keysCollected;
     [HideInInspector] public static Goal instance;
     [SerializeField] private Sprite lockedSprite;
@@ -30,16 +30,6 @@ public class Goal : MonoBehaviour
         if(openSprite == null)
         {
             openSprite = spriteRenderer.sprite;
-        }
-
-        if (keysToUnlock > 0)
-        {
-            spriteRenderer.sprite = lockedSprite;
-            unlocked = false;
-        }
-        else
-        {
-            unlocked = true;
         }
     }
 
@@ -103,6 +93,8 @@ public class Goal : MonoBehaviour
 
     public void AddKeysNeededForUnlock()
     {
+        spriteRenderer.sprite = lockedSprite;
+        unlocked = false;
         keysToUnlock++;
     }
 

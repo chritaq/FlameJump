@@ -31,4 +31,9 @@ public class NullTimeManagementProvider : ITimeManagementService
     public void SlowDown(float speedUpRate, bool unscaled)
     {
     }
+
+    public void StopTimeforRealTimeSeconds(float timeToStop)
+    {
+        throw new System.NotImplementedException();
+    }
 }

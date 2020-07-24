@@ -31,7 +31,7 @@ public class FadeOutAndDestroyComponent : MonoBehaviour
         {
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, alpha);
             alpha -= fadeOutStep;
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(0.01f);
         }
         gameObject.SetActive(false);
     }

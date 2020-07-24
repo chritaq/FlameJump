@@ -950,7 +950,7 @@ public class DialougeManagerV2 : MonoBehaviour
 
             if (command.Values.Count <= 0)
             {
-                ServiceLocator.GetScreenShake().StartScreenFlash(2, 0.3f);
+                ServiceLocator.GetScreenShake().StartScreenFlash(0.05f, 0.3f);
             }
             else if (command.Values.Count <= 1)
             {

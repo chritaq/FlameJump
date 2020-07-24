@@ -11,7 +11,6 @@ public class ScreenShaker : MonoBehaviour
     {
         //cameraTransform = <Transform>();
         startPosition = new Vector3 (cameraTransform.position.x, cameraTransform.position.y, cameraTransform.position.z);
-        Debug.Log(startPosition);
     }
 
     public void StartScreenShake(float time, float amount)

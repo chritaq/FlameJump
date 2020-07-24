@@ -9,6 +9,10 @@ public class RemoveAndRespawnOnPlayerCollission : MonoBehaviour
     private SpriteRenderer sprite;
     [SerializeField] private Animator animator;
 
+    [SerializeField] private bool respawnAfterPickup = true;
+
+    [SerializeField] private ParticleSystem particleSystem;
+
     private void Start()
     {
         collider = GetComponent<Collider2D>();
@@ -25,7 +29,7 @@ public class RemoveAndRespawnOnPlayerCollission : MonoBehaviour
             }
 
             respawnCoroutine = StartCoroutine("RemoveAndRespawn");
-            collision.GetComponent<PlayerController>().SetHealthAndDashChargesToMax();
+            //collision.GetComponent<PlayerController>().SetHealthAndDashChargesToMax();
         }
         
     }
@@ -34,13 +38,30 @@ public class RemoveAndRespawnOnPlayerCollission : MonoBehaviour
     {
         collider.enabled = false;
         sprite.enabled = false;
-        yield return new WaitForSeconds(respawnTime);
-        collider.enabled = true;
-        sprite.enabled = true;
+
         if (animator != null)
         {
-            animator.SetTrigger("Respawn");
+            animator.SetTrigger("Remove");
         }
+
+        if (particleSystem != null)
+            particleSystem.Play();
+
+        if (respawnAfterPickup)
+        {
+            yield return new WaitForSeconds(respawnTime);
+            collider.enabled = true;
+            sprite.enabled = true;
+            if (animator != null)
+            {
+                animator.SetTrigger("Respawn");
+            }
+
+            if (particleSystem != null)
+                particleSystem.Stop();
+        }
+
+
         yield return null;
     }
 
@@ -56,6 +77,9 @@ public class RemoveAndRespawnOnPlayerCollission : MonoBehaviour
         {
             animator.SetTrigger("Respawn");
         }
+
+        if (particleSystem != null)
+            particleSystem.Stop();
     }
 
 

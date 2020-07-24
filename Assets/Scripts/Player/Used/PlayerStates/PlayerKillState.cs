@@ -13,7 +13,7 @@ public class PlayerKillState : PlayerState
         ServiceLocator.GetScreenShake().StartScreenShake(10, 1f);
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.big);
         ServiceLocator.GetAudio().PlaySound("Player_Death", SoundType.interuptLast);
-        ServiceLocator.GetScreenShake().StartScreenFlash(2, 0.1f);
+        ServiceLocator.GetScreenShake().StartScreenFlash(0.05f, 0.1f);
 
         playerController.deathParticles.Play();
         playerController.redFlameParticles.SetActive(false);
@@ -40,12 +40,12 @@ public class PlayerKillState : PlayerState
         rb = playerController.AccessRigidBody();
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0;
-        
 
     }
 
     public override void Exit(PlayerController playerController)
     {
+        Goal.instance.ResetDoorAndKeys();
         playerController.spriteAnimator.SetBool("Death", false);
         //ServiceLocator.GetScreenShake().StartTransition(25, false);
 

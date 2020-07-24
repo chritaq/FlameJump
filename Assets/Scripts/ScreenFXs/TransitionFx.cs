@@ -13,7 +13,7 @@ public class TransitionFx : MonoBehaviour
 
     private float colorAlpha = 0;
 
-    public void StartTransition(int fadeTime, bool fadeIn)
+    public void StartTransition(float fadeTime, bool fadeIn)
     {
         if(transitionCoroutine != null)
         {
@@ -32,9 +32,9 @@ public class TransitionFx : MonoBehaviour
         swipeAnimator.SetBool("fadeIn", fadeIn);
     }
 
-    private IEnumerator Transition(int fadeTime, bool fadeIn)
+    private IEnumerator Transition(float fadeStep, bool fadeIn)
     {
-        int timer = fadeTime;
+        float step = fadeStep / 100;
 
         if(fadeIn)
         {
@@ -48,25 +48,31 @@ public class TransitionFx : MonoBehaviour
             overlayImage.color = new Color(255, 255, 255, 1);
             colorAlpha = 1;
         }
-        
 
-        while (timer > 0)
+
+        while (true)
         {
             
             //FadeColor += amount
             if (fadeIn)
             {
-                colorAlpha += (float)1 / fadeTime;
+                colorAlpha += step;
+                if(colorAlpha >= 1)
+                {
+                    break;
+                }
             }
             else
             {
-                colorAlpha -= (float)1 / fadeTime;
+                colorAlpha -= step;
+                if (colorAlpha <= 1)
+                {
+                    break;
+                }
             }
 
-            //overlayColor = new Color(255, 255, 255, colorAlpha);
             overlayImage.color = new Color(255, 255, 255, colorAlpha); 
-            timer--;
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSecondsRealtime(0.01f);
         }
 
         if (fadeIn)

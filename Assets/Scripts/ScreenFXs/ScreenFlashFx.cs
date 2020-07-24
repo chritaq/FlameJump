@@ -9,12 +9,12 @@ public class ScreenFlashFx : MonoBehaviour
 
     private float colorAlpha = 0;
 
-    public void StartScreenFlash(int time, float amount)
+    public void StartScreenFlash(float time, float amount)
     {
         StartCoroutine(ScreenFlash(time, amount));
     }
 
-    private IEnumerator ScreenFlash(int time, float amount)
+    private IEnumerator ScreenFlash(float time, float amount)
     {
         //Flash on
         colorAlpha = amount;
@@ -22,7 +22,7 @@ public class ScreenFlashFx : MonoBehaviour
 
         while(time > 0)
         {
-            time--;
+            time -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 

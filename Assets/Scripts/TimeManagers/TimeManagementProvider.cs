@@ -23,7 +23,11 @@ public class TimeManagementProvider : MonoBehaviour, ITimeManagementService
         {
             Time.timeScale = unPausedTime;
         }
-        
+    }
+
+    public void StopTimeforRealTimeSeconds(float timeToStop)
+    {
+        timeManagement.StopTimeForRealTimeSeconds(timeToStop);
     }
 
     public void ResetTimescale()

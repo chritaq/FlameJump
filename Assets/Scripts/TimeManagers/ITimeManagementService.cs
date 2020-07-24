@@ -11,4 +11,5 @@ public interface ITimeManagementService
     void ResetTimescale();
     void PauseTime();
     void SlowDown(float speedUpRate, bool unscaled);
+    void StopTimeforRealTimeSeconds(float timeToStop);
 }

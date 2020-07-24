@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3d077e3a8260443aac1bb1dea5847f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionTime: 150
+  transitionTime: 2
   spriteRenderer: {fileID: 5992953855968655740}
   transform: {fileID: 5992953855968655743}
 --- !u!212 &5992953855968655740

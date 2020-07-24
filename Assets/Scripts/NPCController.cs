@@ -87,7 +87,7 @@ public class NPCController : MonoBehaviour
             lerpStep += zoomSpeed * Time.deltaTime;
 
 
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(0.01f);
         }
         DialougeBegin();
         yield return null;

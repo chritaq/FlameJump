@@ -9,7 +9,7 @@ public class NullScreenShakeProvider : IScreenShakeService
 ;
     }
 
-    public void StartScreenFlash(int time, float amount)
+    public void StartScreenFlash(float time, float amount)
     {
 
     }
@@ -23,7 +23,7 @@ public class NullScreenShakeProvider : IScreenShakeService
     {
     }
 
-    public void StartTransition(int fadeTime, bool fadeIn)
+    public void StartTransition(float fadeTime, bool fadeIn)
     {
 
     }

@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class TimeManagement : MonoBehaviour
 {
-    private IEnumerator timeChangerCoroutine;
+    private Coroutine timeChangerCoroutine;
 
     public void SlowDown(float speedUpRate, bool unscaled)
     {
         StopActiveCoroutine();
-        timeChangerCoroutine = TimeSlower(speedUpRate, unscaled);
-        StartCoroutine(timeChangerCoroutine);
+        timeChangerCoroutine = StartCoroutine(TimeSlower(speedUpRate, unscaled));
     }
 
     private IEnumerator TimeSlower(float speedUpRate, bool unscaled)
@@ -30,6 +29,20 @@ public class TimeManagement : MonoBehaviour
         }
 
         Time.timeScale = 1;
+    }
+
+    public void StopTimeForRealTimeSeconds(float timeToStop)
+    {
+        StopActiveCoroutine();
+        timeChangerCoroutine = StartCoroutine(TimeStopper(timeToStop));
+    }
+
+    private IEnumerator TimeStopper(float timeToStop)
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(timeToStop);
+        Time.timeScale = 1;
+        yield return null;
     }
 
     public void StopActiveCoroutine()

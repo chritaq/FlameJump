@@ -139,8 +139,15 @@ public class PlayerController : Unit
 
         if (onGround)
         {
-            if(!onGroundLastFrame)
+            Collider2D hit = Physics2D.OverlapCircle(feetPos.position, checkFloorRadius, whatIsGround);
+            if (hit != null && hit.GetComponent<TimedRemoveAfterCollission>())
             {
+                hit.GetComponent<TimedRemoveAfterCollission>().StartRemoveAfterCollision();
+            }
+
+            if (!onGroundLastFrame)
+            {
+                
                 spawnedDustParticle = Instantiate(dustParticles, heightAnimator.transform.position, heightAnimator.transform.rotation, null);
                 spawnedDustParticle.transform.localScale = heightAnimator.transform.localScale;
                 spawnedDustParticle.GetComponentInChildren<ParticleSystem>().Play();
@@ -416,15 +423,15 @@ public class PlayerController : Unit
         lateJump = false;
     }
 
-    [SerializeField] private int lateJumpTimer = 30;
-    private int timer;
+    [SerializeField] private float lateJumpTimer = 0.25f;
+    private float timer;
     private Coroutine lateJumpTimerCoroutine;
     private IEnumerator LateJumpTimer()
     {
         timer = lateJumpTimer;
         while(timer > 0)
         {
-            timer--;
+            timer -= Time.deltaTime;
             lateJump = true;
             yield return new WaitForEndOfFrame();
         }
@@ -584,7 +591,6 @@ public class PlayerController : Unit
         {
             if (!trailObjects[i].activeSelf)
             {
-                Debug.Log("Pooled object");
                 return trailObjects[i];
             }
         }

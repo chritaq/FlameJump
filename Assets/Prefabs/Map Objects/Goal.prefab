@@ -48,7 +48,7 @@ MonoBehaviour:
   transitionTime: 2
   spriteRenderer: {fileID: 5992953855968655740}
   transform: {fileID: 5992953855968655743}
-  unlocked: 0
+  unlocked: 1
   keysCollected: 0
   lockedSprite: {fileID: 8547205953680582631, guid: 14b58b9116cf91a41b840cbef8838324,
     type: 3}

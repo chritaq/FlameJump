@@ -19,6 +19,8 @@ public class PlayerController : Unit
     private Color redStartColor;
     [SerializeField] private Color blueStartColor;
     [SerializeField] private GameObject dustParticles;
+    public ParticleSystem[] dashParticles;
+    public TrailRenderer trailRenderer;
 
 
     //Movement

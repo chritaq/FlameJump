@@ -8,6 +8,7 @@ public class PlayerDashState : PlayerState
     private float dashStartDelay;
     private bool dashRequest;
     private float dashTime;
+    
 
     public override void Enter(PlayerController playerController)
     {
@@ -77,6 +78,7 @@ public class PlayerDashState : PlayerState
         playerController.spriteAnimator.SetBool("DashUp", false);
         playerController.spriteAnimator.SetBool("DashSides", false);
         playerController.spriteAnimator.SetBool("DashDiagonal", false);
+        playerController.trailRenderer.time = 0f;
     }
 
 
@@ -121,6 +123,7 @@ public class PlayerDashState : PlayerState
     Vector2 directionOfDash;
     private void AddDashVelocityOnce(PlayerController playerController)
     {
+        playerController.trailRenderer.time = 0.2f;
         directionOfDash = playerController.GetDirectionFromCommand().normalized;
         rb.velocity = directionOfDash * playerController.GetDashVelocity();
         if(playerController.activeVerticalCommand != PlayerController.PlayerVerticalCommands.Nothing && playerController.activeHorizontalCommand != PlayerController.PlayerHorizontalCommands.Nothing)
@@ -130,11 +133,29 @@ public class PlayerDashState : PlayerState
         }
         else if(playerController.activeVerticalCommand != PlayerController.PlayerVerticalCommands.Nothing)
         {
+
+            if(directionOfDash.y > 0)
+            {
+                playerController.dashParticles[0].Play();
+            }
+            else if (directionOfDash.y < 0)
+            {
+                playerController.dashParticles[1].Play();
+            }
+
             playerController.spriteAnimator.SetBool("DashUp", true);
             playerController.heightAnimator.SetTrigger("Stretch");
         }
         else if(playerController.activeHorizontalCommand != PlayerController.PlayerHorizontalCommands.Nothing)
         {
+            if (directionOfDash.x < 0)
+            {
+                playerController.dashParticles[2].Play();
+            }
+            else if (directionOfDash.x > 0)
+            {
+                playerController.dashParticles[3].Play();
+            }
             playerController.spriteAnimator.SetBool("DashSides", true);
             playerController.heightAnimator.SetTrigger("Squash");
         }

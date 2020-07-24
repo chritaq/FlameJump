@@ -11,7 +11,7 @@ public class TimedRemoveAfterCollission : MonoBehaviour
 
 
     private Collider2D collider;
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
     [SerializeField] private ParticleSystem particleSystem;
 
@@ -20,7 +20,6 @@ public class TimedRemoveAfterCollission : MonoBehaviour
     private void Start()
     {
         collider = GetComponent<Collider2D>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private Coroutine removingCoroutine;

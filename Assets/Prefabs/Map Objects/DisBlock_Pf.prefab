@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 6515066984829390165}
   - component: {fileID: 6515066984829390168}
   - component: {fileID: 5730664480315475325}
+  - component: {fileID: 1241729309441421415}
   m_Layer: 8
   m_Name: DisBlock_Pf
   m_TagString: Untagged
@@ -187,6 +188,7 @@ MonoBehaviour:
   timeBeforeDissapearing: 0.5
   respawnAfterTime: 1
   respawnTime: 4
+  spriteRenderer: {fileID: 8373325228342810025}
   animator: {fileID: 5730664480315475325}
   particleSystem: {fileID: 7558079952434647421}
 --- !u!95 &5730664480315475325
@@ -208,6 +210,55 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!212 &1241729309441421415
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6515066984829390164}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -2
+  m_Sprite: {fileID: -5213823077509803185, guid: 14b58b9116cf91a41b840cbef8838324,
+    type: 3}
+  m_Color: {r: 0.6666667, g: 0.20784315, b: 0.20784315, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1001 &1809848847545001873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -275,6 +326,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8214124111984572141, guid: c2d92bd9e9c1ce541838483e579fe296,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214124111984572141, guid: c2d92bd9e9c1ce541838483e579fe296,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b6e621adefe042246843a0f7ed46f770, type: 2}
     - target: {fileID: 8214124111984572140, guid: c2d92bd9e9c1ce541838483e579fe296,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
@@ -324,11 +385,6 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8214124111984572141, guid: c2d92bd9e9c1ce541838483e579fe296,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2d92bd9e9c1ce541838483e579fe296, type: 3}

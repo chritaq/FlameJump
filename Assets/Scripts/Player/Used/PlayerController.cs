@@ -26,6 +26,7 @@ public class PlayerController : Unit
     //Movement
     [Header("MOVEMENT")]
     [SerializeField] private float maxMovementSpeed = 10f;
+    [SerializeField] private float maxMovementSpeedAir = 10f;
     [SerializeField] private float maxDownardSpeed;
     [HideInInspector] public bool canMove = true;
     private Vector2 direction;
@@ -343,6 +344,7 @@ public class PlayerController : Unit
     private float horizontalVelocity;
     [SerializeField] private float horizontalDamping;
     [SerializeField] private float acceleration;
+    [SerializeField] private float airAcceleration;
 
 
     private void Movement()
@@ -351,8 +353,17 @@ public class PlayerController : Unit
 
         UpdateVerticalVelocity();
 
+
+
         //Code for turning-speed and acceleration
-        if(direction.x != 0)
+        if(!onGround && direction.x != 0)
+        {
+            horizontalVelocity += direction.x * airAcceleration;
+            //horizontalVelocity *= Mathf.Pow(1f - horizontalDamping, Time.deltaTime * 10f);
+            horizontalVelocity = Mathf.Clamp(horizontalVelocity, -maxMovementSpeedAir, maxMovementSpeedAir);
+            movement = new Vector2(horizontalVelocity, verticalVelocity);
+        }
+        else if(direction.x != 0)
         {
             horizontalVelocity += direction.x * acceleration;
             //horizontalVelocity *= Mathf.Pow(1f - horizontalDamping, Time.deltaTime * 10f);
@@ -361,14 +372,29 @@ public class PlayerController : Unit
         }
         else
         {
-            if (horizontalVelocity < acceleration && horizontalVelocity > -acceleration)
+            if(!onGround)
             {
-                horizontalVelocity = 0;
+                if (horizontalVelocity < airAcceleration && horizontalVelocity > -airAcceleration)
+                {
+                    horizontalVelocity = 0;
+                }
+                else
+                {
+                    horizontalVelocity -= Mathf.Clamp(horizontalVelocity, -1, 1) * airAcceleration;
+                }
             }
             else
             {
-                horizontalVelocity -= Mathf.Clamp(horizontalVelocity, -1, 1) * acceleration;
+                if (horizontalVelocity < acceleration && horizontalVelocity > -acceleration)
+                {
+                    horizontalVelocity = 0;
+                }
+                else
+                {
+                    horizontalVelocity -= Mathf.Clamp(horizontalVelocity, -1, 1) * acceleration;
+                }
             }
+
 
             movement = new Vector2(horizontalVelocity, verticalVelocity);
         }

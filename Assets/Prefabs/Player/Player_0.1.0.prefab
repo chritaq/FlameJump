@@ -48156,6 +48156,7 @@ MonoBehaviour:
   - {fileID: 4959882618845826675}
   trailRenderer: {fileID: 1150049339225211272}
   maxMovementSpeed: 10
+  maxMovementSpeedAir: 10
   maxDownardSpeed: 15
   canMove: 1
   jumpVelocity: 14
@@ -48183,7 +48184,8 @@ MonoBehaviour:
   spriteAnimator: {fileID: 529989480}
   playerSprite: {fileID: 8823602520200214306}
   horizontalDamping: 0
-  acceleration: 5
+  acceleration: 2
+  airAcceleration: 2
   lateJumpTimer: 16
   coyoteJumpTime: 20
   trailRate: 0.015

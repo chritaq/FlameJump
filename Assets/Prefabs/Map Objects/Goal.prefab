@@ -52,6 +52,8 @@ MonoBehaviour:
   keysCollected: 0
   lockedSprite: {fileID: 8547205953680582631, guid: 14b58b9116cf91a41b840cbef8838324,
     type: 3}
+  openSprite: {fileID: -4441308703785614676, guid: 14b58b9116cf91a41b840cbef8838324,
+    type: 3}
 --- !u!212 &5992953855968655740
 SpriteRenderer:
   m_ObjectHideFlags: 0

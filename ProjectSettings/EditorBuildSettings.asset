@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/RemadeLevels/RemadeLevel03.unity
     guid: 77ce712bcd5e4cb4e8e94d2e21d48aeb
   - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq01.unity
+    guid: f8b5b94e3f51c6d489cfcb05079dda57
+  - enabled: 1
     path: Assets/Scenes/YouWin.unity
     guid: 65325b37ea9c4014ba1eba7cda476677
   - enabled: 0

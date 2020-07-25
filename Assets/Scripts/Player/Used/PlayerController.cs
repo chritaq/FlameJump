@@ -132,20 +132,24 @@ public class PlayerController : Unit
     private bool onGroundLastFrame = true;
     [Header("GROUND STUFF")]
     [SerializeField] private Transform feetPos;
+    [SerializeField] private Transform feetPos2;
     [SerializeField] private float checkFloorRadius;
     [SerializeField] private LayerMask whatIsGround;
 
     private GameObject spawnedDustParticle;
     public bool checkIfOnGround()
     {
-        onGround = Physics2D.OverlapCircle(feetPos.position, checkFloorRadius, whatIsGround);
+        //onGround = Physics2D.OverlapCircle(feetPos.position, checkFloorRadius, whatIsGround);
+
+        onGround = Physics2D.Linecast(feetPos.position, feetPos2.position, whatIsGround);
 
         if (onGround)
         {
-            Collider2D hit = Physics2D.OverlapCircle(feetPos.position, checkFloorRadius, whatIsGround);
-            if (hit != null && hit.GetComponent<TimedRemoveAfterCollission>())
+            //Collider2D hit = Physics2D.OverlapCircle(feetPos.position, checkFloorRadius, whatIsGround);
+            RaycastHit2D hit = Physics2D.Linecast(feetPos.position, feetPos2.position, whatIsGround);
+            if (hit != null && hit.collider.GetComponent<TimedRemoveAfterCollission>())
             {
-                hit.GetComponent<TimedRemoveAfterCollission>().StartRemoveAfterCollision();
+                hit.collider.GetComponent<TimedRemoveAfterCollission>().StartRemoveAfterCollision();
             }
 
             if (!onGroundLastFrame)

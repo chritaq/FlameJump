@@ -16,7 +16,7 @@ public class Goal : MonoBehaviour
     [HideInInspector] public int keysCollected;
     [HideInInspector] public static Goal instance;
     [SerializeField] private Sprite lockedSprite;
-    private Sprite openSprite;
+    [SerializeField] private Sprite openSprite;
 
     private bool triggered = false;
 
@@ -27,10 +27,6 @@ public class Goal : MonoBehaviour
 
     private void Start()
     {
-        if(openSprite == null)
-        {
-            openSprite = spriteRenderer.sprite;
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

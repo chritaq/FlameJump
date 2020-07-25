@@ -591,10 +591,8 @@ public class PlayerController : Unit
             tempTrailObject.transform.position = transform.position;
             tempTrailObject.transform.rotation = transform.rotation;
 
-            if (playerSprite.flipX)
-            {
-                tempTrailSpriteRenderer.flipX = true;
-            }
+            tempTrailSpriteRenderer.flipX = playerSprite.flipX;
+
             tempTrailSpriteRenderer.sprite = playerSprite.sprite;
             yield return new WaitForSeconds(trailRate);
         }

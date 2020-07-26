@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBeforeDissapearing: 0.5
   respawnAfterTime: 1
-  respawnTime: 4
+  respawnTime: 2
   spriteRenderer: {fileID: 8373325228342810025}
   animator: {fileID: 5730664480315475325}
   particleSystem: {fileID: 7558079952434647421}

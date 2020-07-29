@@ -36,7 +36,7 @@ MonoBehaviour:
     wordingStyle: 0
     textSpeedMultiplier: 0
     lockInput: 0
-    sentence: Ah alright...{FullWords} Coo{Pause:0.5}li{Pause:0.5}o
+    sentence: Ah alright...{FullWords} Coolio
   - character: 1
     emotionSprite: {fileID: 0}
     leftSide: 0

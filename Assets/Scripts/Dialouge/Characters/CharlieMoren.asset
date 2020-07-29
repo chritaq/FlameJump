@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca42ca60dcd46d84b9a2bb1537587e36, type: 3}
+  m_Name: CharlieMoren
+  m_EditorClassIdentifier: 
+  characterAvatar: {fileID: 7756370206698791624, guid: 14b58b9116cf91a41b840cbef8838324,
+    type: 3}
+  characterName: Charlie Moren
+  characterAudioDot:
+    value: {fileID: 11400000, guid: d3b13b431121e0a42a0cc0a203aa9a20, type: 2}

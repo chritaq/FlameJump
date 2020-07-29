@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/RemadeLevels/RemadeLevel03.unity
     guid: 77ce712bcd5e4cb4e8e94d2e21d48aeb
   - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq05_KeyTutorial.unity
+    guid: c8848bbfbf25cbd4eba2e4149eb688cd
+  - enabled: 1
     path: Assets/Scenes/TaqLevels/Taq01_Pillars.unity
     guid: f8b5b94e3f51c6d489cfcb05079dda57
   - enabled: 1
@@ -35,6 +38,30 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TaqLevels/Taq04_TooHigh.unity
     guid: ffdf05bd67788234994e468c02d6e732
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq10_Bouncy.unity
+    guid: e44726d296d87a64c91a2a9845694ebb
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq06_PinPoint.unity
+    guid: 6221153a06e066548bcc97db472d0e16
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq07_LongFirePit.unity
+    guid: cbc5e7df5249fc548bfbf8335b3a2d49
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq08_TightDisBlocks.unity
+    guid: f241c939e1d281f4f9a64f918597e9c1
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq09_DontTouchTheFire.unity
+    guid: 28acc69d595aa0841846c0ae81b0828d
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq11_NastyPits.unity
+    guid: 2bb62d543a3ebeb4dae8ecde4c2941e1
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq12_GoingUpTheDisBlocks.unity
+    guid: 106ae363bd270f048a49fb1dad1cef28
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq13_SmallCorridors.unity
+    guid: 499b0a9459d007044b9839764a851e01
   - enabled: 1
     path: Assets/Scenes/YouWin.unity
     guid: 65325b37ea9c4014ba1eba7cda476677

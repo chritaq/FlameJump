@@ -20,6 +20,8 @@ public class Goal : MonoBehaviour
 
     private bool triggered = false;
 
+    private PlayerController playerController;
+
     private void Awake()
     {
         instance = this;
@@ -27,11 +29,12 @@ public class Goal : MonoBehaviour
 
     private void Start()
     {
+        playerController = FindObjectOfType<PlayerController>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("Unlocked was:" + unlocked);
+        //Debug.Log("Unlocked was:" + unlocked);
         if (collision.tag == "Player" && !triggered && unlocked)
         {
             triggered = true;
@@ -98,6 +101,11 @@ public class Goal : MonoBehaviour
 
     private IEnumerator UnlockDoor()
     {
+        //while(PlayerController.inst)
+        //while(!playerController.checkIfOnGround())
+        //{
+        //    yield return null;
+        //}
         ServiceLocator.GetAudio().PlaySound("Player_Death", SoundType.interuptLast);
         ServiceLocator.GetTimeManagement().StopTimeforRealTimeSeconds(0.25f);
         yield return new WaitForSeconds(0.1f);
@@ -105,7 +113,11 @@ public class Goal : MonoBehaviour
         ServiceLocator.GetScreenShake().StartScreenShake(2, 0.2f);
         ServiceLocator.GetScreenShake().StartScreenFlash(0.1f, 1);
         ServiceLocator.GetAudio().PlaySound("Player_Bounce", SoundType.interuptLast);
-        unlocked = true;
         spriteRenderer.sprite = openSprite;
+
+        //Can use this delay so you'll get enough time to see the door open
+        //yield return new WaitForSeconds(0.2f);
+
+        unlocked = true;
     }
 }

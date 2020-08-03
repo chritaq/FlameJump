@@ -958,7 +958,7 @@ public class DialougeManagerV2 : MonoBehaviour
             }
             else
             {
-                ServiceLocator.GetScreenShake().StartScreenFlash(int.Parse(command.Values[0]), float.Parse(command.Values[1]));
+                ServiceLocator.GetScreenShake().StartScreenFlash(float.Parse(command.Values[0]), float.Parse(command.Values[1]));
             }
         }
 

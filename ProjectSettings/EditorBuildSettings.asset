@@ -96,6 +96,30 @@ EditorBuildSettings:
     path: Assets/Scenes/TaqLevels/Taq22_Learn2Fall.unity
     guid: ca319f12bbde2aa4e939a6194ee46ee9
   - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq23_TwoEasy.unity
+    guid: 679fe18398c6eb649a63cce3d0d376c1
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq24_RoundNBack.unity
+    guid: d1d18c8678e4f554eb6b9c321b04de84
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq25_DisJumps.unity
+    guid: 0954ea106b09712449010de7bfa171fb
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq26_DiagonalKeys.unity
+    guid: b20846aadc1c6e245a5c7036c35b4e46
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq27_RightAndLeft.unity
+    guid: 3d303fe52d8aa90469c7862c752e32b2
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq28_LongJumps.unity
+    guid: af7c6d4c4459fc040a67e2d2449b46f1
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq29_Goingdown.unity
+    guid: fe3238318899e6343b3710b3d0941c5f
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq30_LetThemDissapear.unity
+    guid: cb53ee95c95b36a4fb907aa70d77c36b
+  - enabled: 1
     path: Assets/Scenes/YouWin.unity
     guid: 65325b37ea9c4014ba1eba7cda476677
   - enabled: 0

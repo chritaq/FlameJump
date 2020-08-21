@@ -120,6 +120,24 @@ EditorBuildSettings:
     path: Assets/Scenes/TaqLevels/Taq30_LetThemDissapear.unity
     guid: cb53ee95c95b36a4fb907aa70d77c36b
   - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq31_DashUp.unity
+    guid: b84735c96efe0224a82cd098c525a039
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq32_ZagZagDown.unity
+    guid: 8eac898be5623a14b9a717eb18da2d28
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq33_CrawlNJump.unity
+    guid: d6a0796e0864c19499a92944b32eb32c
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq34_SteepKeys.unity
+    guid: f704aa95317445f43bb01736aa22555b
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq35_FlamingPillars.unity
+    guid: d6aa5bc8994993b46b383df00801441e
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq37_InTheAir.unity
+    guid: 737a6eed1ba20d54296c668e0a438e9e
+  - enabled: 1
     path: Assets/Scenes/YouWin.unity
     guid: 65325b37ea9c4014ba1eba7cda476677
   - enabled: 0

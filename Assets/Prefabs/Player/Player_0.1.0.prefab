@@ -48217,7 +48217,7 @@ MonoBehaviour:
   playerSprite: {fileID: 8823602520200214306}
   horizontalDamping: 0
   acceleration: 2
-  airAcceleration: 2
+  airAcceleration: 1.8
   lateJumpTimer: 16
   coyoteJumpTime: 20
   trailRate: 0.015

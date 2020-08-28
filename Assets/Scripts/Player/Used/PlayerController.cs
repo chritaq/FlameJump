@@ -349,11 +349,13 @@ public class PlayerController : Unit
     [SerializeField] private float horizontalDamping;
     [SerializeField] private float acceleration;
     [SerializeField] private float airAcceleration;
-
+    private float lastDirectionX = 0;
 
     private void Movement()
     {
         direction = GetDirectionFromCommand();
+
+        //Debug.Log(direction.x);
 
         UpdateVerticalVelocity();
 
@@ -378,28 +380,33 @@ public class PlayerController : Unit
         {
             if(!onGround)
             {
-                if (horizontalVelocity < airAcceleration && horizontalVelocity > -airAcceleration)
+                Debug.Log("velocity before deacceleration: " + horizontalVelocity);
+                Debug.Log("rigibody before deacceleration: " + rb.velocity.x);
+                //Det här blir fel eftersom den utgår efter spelarens command
+                if (rb.velocity.x > 1 || rb.velocity.x < -1f)
                 {
-                    horizontalVelocity = 0;
+                    horizontalVelocity -= lastDirectionX * airAcceleration * 1.5f;
+                    //horizontalVelocity = Mathf.Clamp(verticalVelocity, -1, 1);
                 }
                 else
                 {
-                    horizontalVelocity -= Mathf.Clamp(horizontalVelocity, -1, 1) * airAcceleration;
+                    horizontalVelocity = 0;
                 }
             }
             else
             {
-                if (horizontalVelocity < acceleration && horizontalVelocity > -acceleration)
+                if (rb.velocity.x > 1 || rb.velocity.x < -1f)
                 {
-                    horizontalVelocity = 0;
+                    horizontalVelocity -= lastDirectionX * acceleration * 1.5f;
+                    //horizontalVelocity = Mathf.Clamp(verticalVelocity, -1, 1);
                 }
                 else
                 {
-                    horizontalVelocity -= Mathf.Clamp(horizontalVelocity, -1, 1) * acceleration;
+                    horizontalVelocity = 0;
                 }
             }
 
-
+            //Debug.Log(movement.x);
             movement = new Vector2(horizontalVelocity, verticalVelocity);
         }
 
@@ -410,9 +417,23 @@ public class PlayerController : Unit
 
     private void UpdateVelocity()
     {
+        if(rb.velocity.x > 0)
+        {
+            lastDirectionX = 1;
+        }
+        else if(rb.velocity.x < 0)
+        {
+            lastDirectionX = -1;
+        }
+        else
+        {
+            lastDirectionX = 0;
+        }
         rb.velocity = new Vector2(movement.x, movement.y);
     }
 
+
+    private float downwardAcceleration = 0.1f;
     private void UpdateVerticalVelocity()
     {
 
@@ -420,7 +441,8 @@ public class PlayerController : Unit
         {
             if (direction.y < 0)
             {
-                verticalVelocity = Mathf.Clamp(rb.velocity.y * 2, -maxDownardSpeed * 2, maxDownardSpeed * 2);
+                verticalVelocity += direction.y * airAcceleration;
+                verticalVelocity = Mathf.Clamp(verticalVelocity, -maxDownardSpeed * 2, maxDownardSpeed * 2);
             }
             else
             {

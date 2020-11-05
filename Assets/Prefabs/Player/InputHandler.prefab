@@ -89,8 +89,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyboard: 1
-  horizontalDeadZone: 0.25
-  verticalDeadZone: 0.25
+  horizontalDeadZone: 0.35
+  verticalDeadZone: 0.35
 --- !u!114 &3833153710413883755
 MonoBehaviour:
   m_ObjectHideFlags: 0

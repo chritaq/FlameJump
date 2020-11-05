@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1446833595059022114}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2548483143425253905}
   - component: {fileID: 8373325228342810025}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 6515066984829390168}
   - component: {fileID: 5730664480315475325}
   - component: {fileID: 1241729309441421415}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: DisBlock_Pf
   m_TagString: Untagged
   m_Icon: {fileID: 0}

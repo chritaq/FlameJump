@@ -61,17 +61,29 @@ public class Goal : MonoBehaviour
         yield return null;
     }
 
-    public void AddKey()
+    private List<KeyComponent> keys = new List<KeyComponent>();
+    public void AddKey(KeyComponent newKey)
     {
+        keys.Add(newKey);
         keysCollected += 1;
-        if(keysCollected >= keysToUnlock)
+        TryUnlockDoor();
+    }
+
+    public KeyComponent GetLatestKey()
+    {
+        return keys[keys.Count - 1];
+    }
+
+    public void TryUnlockDoor()
+    {
+        if (keysCollected >= keysToUnlock && !unlocked)
         {
-            if(unlockDoorCoroutine != null)
+            if (unlockDoorCoroutine != null)
             {
                 StopCoroutine(unlockDoorCoroutine);
             }
+            
             unlockDoorCoroutine = StartCoroutine(UnlockDoor());
-
         }
     }
 
@@ -87,7 +99,6 @@ public class Goal : MonoBehaviour
             unlocked = false;
             spriteRenderer.sprite = lockedSprite;
         }
-
         keysCollected = 0;
     }
 
@@ -102,10 +113,20 @@ public class Goal : MonoBehaviour
     private IEnumerator UnlockDoor()
     {
         //while(PlayerController.inst)
-        //while(!playerController.checkIfOnGround())
-        //{
-        //    yield return null;
-        //}
+        while (!playerController.CheckIfOnSafeGround())
+        {
+            yield return null;
+        }
+
+        for(int i = 0; i < keys.Count; i++)
+        {
+            keys[i].DestroyKey();
+            yield return new WaitForSeconds(0.3f);
+        }
+
+
+        keys.Clear();
+
         ServiceLocator.GetAudio().PlaySound("Player_Death", SoundType.interuptLast);
         ServiceLocator.GetTimeManagement().StopTimeforRealTimeSeconds(0.25f);
         yield return new WaitForSeconds(0.1f);

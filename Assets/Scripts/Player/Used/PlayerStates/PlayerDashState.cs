@@ -97,6 +97,9 @@ public class PlayerDashState : PlayerState
     
     public override PlayerState Update(PlayerController playerController, float t)
     {
+        //HACK
+        //playerController.dashCharges = 0;
+
         if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.Exit)
         {
             return new PlayerExitState();
@@ -104,18 +107,25 @@ public class PlayerDashState : PlayerState
 
         dashStartDelay -= t;
 
-        if (dashRequest == true && dashStartDelay <= 0)
+        if(dashStartDelay <= 0)
         {
-            playerController.StartTrailCoroutine();
-            ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.small);
-            ServiceLocator.GetScreenShake().StartScreenShake(dashTime, 0.2f);
-            AddDashVelocityOnce(playerController);
+            if (dashRequest == true && dashStartDelay <= 0)
+            {
+                playerController.StartTrailCoroutine();
+                ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.small);
+                ServiceLocator.GetScreenShake().StartScreenShake(dashTime, 0.2f);
+                AddDashVelocityOnce(playerController);
+            }
+
+            //HACK
+            //CheckIfOnGround is a hack. Resets the dashcharge to what it was before so we wont get another dash when dashin from ground.
+            if (playerController.activeActionCommand == PlayerController.PlayerActionCommands.JumpTap && playerController.CheckIfOnGround(true))
+            {
+                return new PlayerJumpState();
+            }
         }
 
-        if (playerController.checkIfOnGround() && playerController.activeActionCommand == PlayerController.PlayerActionCommands.JumpTap)
-        {
-            return new PlayerJumpState();
-        }
+    
 
         return TryEndDash(t, playerController);
     }

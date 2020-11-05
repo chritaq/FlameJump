@@ -90,11 +90,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8828353092703914584}
   - component: {fileID: 8828353092703914589}
-  - component: {fileID: 8828353092703914591}
   - component: {fileID: 1073706843}
   - component: {fileID: 8794217156819090441}
   - component: {fileID: 1403383250948950488}
   - component: {fileID: 5732507828211354948}
+  - component: {fileID: 429802475586659127}
   m_Layer: 0
   m_Name: Key
   m_TagString: Untagged
@@ -134,22 +134,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &8828353092703914591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8828353092703914585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff4c6e0abebb73844a4d26c6ce8325cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnTime: 4
-  animator: {fileID: 1403383250948950488}
-  respawnAfterPickup: 0
-  particleSystem: {fileID: 5974618918828312060}
 --- !u!114 &1073706843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +193,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb37b1a370b7e54886427326fc08db5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followPlayerOnCollision: {fileID: 429802475586659127}
+  animator: {fileID: 1403383250948950488}
+  particleSystem: {fileID: 5974618918828312060}
+--- !u!114 &429802475586659127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8828353092703914585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a407ac0b2d550b4c9bbd0021e098424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  following: 0
+  speed: 0.05
+  followOtherObject: {fileID: 0}
 --- !u!1001 &2527770757574472464
 PrefabInstance:
   m_ObjectHideFlags: 0

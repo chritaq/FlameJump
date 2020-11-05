@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca42ca60dcd46d84b9a2bb1537587e36, type: 3}
-  m_Name: CharlieMoren
+  m_Name: Taqfan
   m_EditorClassIdentifier: 
-  characterAvatar: {fileID: 7756370206698791624, guid: 14b58b9116cf91a41b840cbef8838324,
+  characterAvatar: {fileID: -4178924672992774477, guid: 14b58b9116cf91a41b840cbef8838324,
     type: 3}
-  characterName: Charlie Moren
+  characterName: Taqfan
   characterAudioDot:
-    value: {fileID: 11400000, guid: 186083077edb7a64a85804e364af34b6, type: 2}
+    value: {fileID: 11400000, guid: 7f8a78fdc24c69d49870ddd143244f61, type: 2}

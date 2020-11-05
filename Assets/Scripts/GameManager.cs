@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private bool debugSounds;
     private RemoveAndRespawnOnPlayerCollission[] removeAndRespawnObjects;
+    private KeyComponent[] keyObjects;
     private TimedRemoveAfterCollission[] timedRemoveObjects;
 
     // Start is called before the first frame update
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
         ServiceLocator.GetTimeManagement().InstantiateTimeManagement();
 
         removeAndRespawnObjects = FindObjectsOfType<RemoveAndRespawnOnPlayerCollission>();
+        keyObjects = FindObjectsOfType<KeyComponent>();
         timedRemoveObjects = FindObjectsOfType<TimedRemoveAfterCollission>();
         //ServiceLocator.ProvideScreenOverlay(new ScreenOverlayProvider());
         //ServiceLocator.GetScreenOverlay().ReferenceScreenOverlay();
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
 
         removeAndRespawnObjects = FindObjectsOfType<RemoveAndRespawnOnPlayerCollission>();
         timedRemoveObjects = FindObjectsOfType<TimedRemoveAfterCollission>();
+        keyObjects = FindObjectsOfType<KeyComponent>();
     }
 
     public void ResetStage() {
@@ -62,6 +65,10 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < timedRemoveObjects.Length; i++)
         {
             timedRemoveObjects[i].InstantRespawn();
+        }
+        for (int i = 0; i < keyObjects.Length; i++)
+        {
+            keyObjects[i].InstantRespawn();
         }
     }
 

@@ -21,7 +21,7 @@ public class InputHandler : MonoBehaviour
     private Command aButtonCommand = new JumpCommand();
     private Command aButtonHoldCommand = new JumpHoldCommand();
     private Command xButtonCommand = new DashCommand();
-    private Command xButtonHoldCommand = new NullCommand();
+    private Command xButtonHoldCommand = new DashHoldCommand();
     private Command bButtonCommand = new NullCommand();
     private Command bButtonHoldCommand = new NullCommand();
     private Command yButtonCommand = new NullCommand();
@@ -178,6 +178,7 @@ public class InputHandler : MonoBehaviour
             bHasBeenPressed = CheckButtonPressAndHold(state.Buttons.B, bHasBeenPressed, bButtonCommand, bButtonHoldCommand);
             rightShoulderHasBeenPressed = CheckButtonPressAndHold(state.Buttons.RightShoulder, rightShoulderHasBeenPressed, rightShoulderButtonCommand, rightShoulderButtonHoldCommand);
             leftShoulderHasBeenPressed = CheckButtonPressAndHold(state.Buttons.LeftShoulder, leftShoulderHasBeenPressed, leftShoulderButtonCommand, leftShoulderButtonHoldCommand);
+
         }
 
     }
@@ -198,6 +199,7 @@ public class InputHandler : MonoBehaviour
         if (button == ButtonState.Pressed)
         {
             actionInputQueue.Enqueue(buttonHoldCommand);
+
         }
 
         return hasBeenPressed;
@@ -243,11 +245,11 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private float verticalDeadZone = 0.5f;
     private void HandleGamepadMovementInput()
     {
-        if (state.ThumbSticks.Left.X > horizontalDeadZone)
+        if (state.ThumbSticks.Left.X > horizontalDeadZone || state.DPad.Right == ButtonState.Pressed)
         {
             horizontalInputQueue.Enqueue(moveRightCommand);
         }
-        else if (state.ThumbSticks.Left.X < -horizontalDeadZone)
+        else if (state.ThumbSticks.Left.X < -horizontalDeadZone || state.DPad.Left == ButtonState.Pressed)
         {
             horizontalInputQueue.Enqueue(moveLeftCommand);
         }
@@ -256,11 +258,11 @@ public class InputHandler : MonoBehaviour
             horizontalInputQueue.Enqueue(noHorizontalCommand);
         }
 
-        if (state.ThumbSticks.Left.Y > verticalDeadZone)
+        if (state.ThumbSticks.Left.Y > verticalDeadZone || state.DPad.Up == ButtonState.Pressed)
         {
             verticalInputQueue.Enqueue(moveUpCommand);
         }
-        else if (state.ThumbSticks.Left.Y < -verticalDeadZone)
+        else if (state.ThumbSticks.Left.Y < -verticalDeadZone || state.DPad.Down == ButtonState.Pressed)
         {
             verticalInputQueue.Enqueue(moveDownCommand);
         }

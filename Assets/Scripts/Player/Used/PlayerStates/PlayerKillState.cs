@@ -10,6 +10,7 @@ public class PlayerKillState : PlayerState
 
     public override void Enter(PlayerController playerController)
     {
+        //playerController.respawnFreeze = true;
         ServiceLocator.GetScreenShake().StartScreenShake(10, 1f);
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.big);
         ServiceLocator.GetAudio().PlaySound("Player_Death", SoundType.interuptLast);
@@ -59,6 +60,8 @@ public class PlayerKillState : PlayerState
         playerController.canMove = true;
 
         playerController.gameManager.ResetStage();
+
+        playerController.StartCoroutine(playerController.RespawnFreeze());
 
     }
 

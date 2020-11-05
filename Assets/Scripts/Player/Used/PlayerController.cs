@@ -135,14 +135,12 @@ public class PlayerController : Unit
     [SerializeField] private Transform feetPos2;
     [SerializeField] private float checkFloorRadius;
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsSafeGround;
 
     private GameObject spawnedDustParticle;
     public bool checkIfOnGround()
     {
-        //onGround = Physics2D.OverlapCircle(feetPos.position, checkFloorRadius, whatIsGround);
-
         onGround = Physics2D.Linecast(feetPos.position, feetPos2.position, whatIsGround);
-
         if (onGround)
         {
             //Collider2D hit = Physics2D.OverlapCircle(feetPos.position, checkFloorRadius, whatIsGround);
@@ -165,7 +163,6 @@ public class PlayerController : Unit
                 heightAnimator.SetTrigger("Squash");
                 spriteAnimator.SetTrigger("Player_Land");
             }
-
             dashCharges = 1;
             onGroundLastFrame = true;
         }
@@ -175,6 +172,26 @@ public class PlayerController : Unit
         }
 
         return onGround;
+    }
+
+    //Hack
+    public bool CheckIfOnGround(bool dontChangeDashCharges)
+    {
+        int startCharges = dashCharges;
+        
+        bool onGroundBool = checkIfOnGround();
+
+        if (dontChangeDashCharges)
+        {
+            dashCharges = startCharges;
+        }
+
+        return onGroundBool;
+    }
+
+    public bool CheckIfOnSafeGround()
+    {
+        return Physics2D.Linecast(feetPos.position, feetPos2.position, whatIsSafeGround);
     }
 
 
@@ -223,6 +240,7 @@ public class PlayerController : Unit
 
     private void Start()
     {
+        StartCoroutine(RespawnFreeze());
         gameManager = FindObjectOfType<GameManager>();
 
         spawnPosition = GameObject.FindGameObjectWithTag("SpawnPosition");
@@ -250,6 +268,8 @@ public class PlayerController : Unit
 
     private void Update()
     {
+
+        if (respawnFreeze) return;
         CoyoteJumpTimer();
 
         returnedState = currentState.Update(this, Time.deltaTime);
@@ -295,12 +315,31 @@ public class PlayerController : Unit
     
     private void FixedUpdate()
     {
-        returnedState = currentState.FixedUpdate(this, Time.deltaTime);
+        if (respawnFreeze) return;
 
+        returnedState = currentState.FixedUpdate(this, Time.deltaTime);
         if (canMove)
         {
             Movement();
         }
+           
+    }
+
+    public bool respawnFreeze = false;
+    public IEnumerator RespawnFreeze()
+    {
+        Debug.Log("Respawn freeze started");
+        respawnFreeze = true;
+        float delay = 0.25f;
+        while(delay > 0)
+        {
+            Debug.Log("Respawn freeze running");
+            delay -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        respawnFreeze = false;
+        yield return null;
     }
 
     
@@ -351,6 +390,8 @@ public class PlayerController : Unit
     [SerializeField] private float airAcceleration;
     private float lastDirectionX = 0;
 
+    private Vector2 posLastFrame;
+
     private void Movement()
     {
         direction = GetDirectionFromCommand();
@@ -359,19 +400,34 @@ public class PlayerController : Unit
 
         UpdateVerticalVelocity();
 
-
-
         //Code for turning-speed and acceleration
         if(!onGround && direction.x != 0)
         {
-            horizontalVelocity += direction.x * airAcceleration;
+            if(direction.x == lastDirectionX || lastDirectionX == 0)
+            {
+                horizontalVelocity += direction.x * airAcceleration;
+            }
+            else
+            {
+                //This is so when the player is turning. Should fix code so it's the same for turn/de-acceleration below.
+                horizontalVelocity += direction.x * airAcceleration * 1.5f;
+            }
+            
             //horizontalVelocity *= Mathf.Pow(1f - horizontalDamping, Time.deltaTime * 10f);
             horizontalVelocity = Mathf.Clamp(horizontalVelocity, -maxMovementSpeedAir, maxMovementSpeedAir);
             movement = new Vector2(horizontalVelocity, verticalVelocity);
         }
         else if(direction.x != 0)
         {
-            horizontalVelocity += direction.x * acceleration;
+            if (direction.x == lastDirectionX || lastDirectionX == 0)
+            {
+                horizontalVelocity += direction.x * acceleration;
+            }
+            else
+            {
+                //This is so when the player is turning. Should fix code so it's the same for turn/de-acceleration below.
+                horizontalVelocity += direction.x * acceleration * 1.5f;
+            }
             //horizontalVelocity *= Mathf.Pow(1f - horizontalDamping, Time.deltaTime * 10f);
             horizontalVelocity = Mathf.Clamp(horizontalVelocity, -maxMovementSpeed, maxMovementSpeed);
             movement = new Vector2(horizontalVelocity, verticalVelocity);
@@ -407,14 +463,39 @@ public class PlayerController : Unit
             }
 
             //Debug.Log(movement.x);
+
+            
+
+
             movement = new Vector2(horizontalVelocity, verticalVelocity);
         }
+
+        //Hack, just so it wont be null. Shuld probably do nullref instead.
+        if(posLastFrame == null)
+        {
+            posLastFrame = rb.position;
+        }
+
+ 
+        if (movement.x > 0)
+        {
+            StopAtWallCollision(wallChecks[2].position, wallChecks[3].position);
+        }
+        else if (movement.x < 0)
+        {
+            StopAtWallCollision(wallChecks[0].position, wallChecks[1].position);
+        }
+
+        posLastFrame = rb.position;
 
         UpdateVelocity();
         //rb.velocity = new Vector2(movement.x, movement.y);
     }
 
 
+
+    [SerializeField] private Transform[] wallChecks;
+    [SerializeField] private LayerMask wallLayerMask;
     private void UpdateVelocity()
     {
         if(rb.velocity.x > 0)
@@ -423,13 +504,25 @@ public class PlayerController : Unit
         }
         else if(rb.velocity.x < 0)
         {
+
             lastDirectionX = -1;
         }
         else
         {
             lastDirectionX = 0;
         }
+
         rb.velocity = new Vector2(movement.x, movement.y);
+    }
+
+    private void StopAtWallCollision(Vector2 wallColliderHi, Vector2 wallColliderLow)
+    {
+        RaycastHit2D[] wallHits = Physics2D.LinecastAll(wallColliderHi, wallColliderLow, wallLayerMask);
+        Debug.Log("Checking for wallhit");
+        if (wallHits.Length > 0)
+        {
+            movement = new Vector2(0, movement.y);
+        }
     }
 
 
@@ -441,7 +534,7 @@ public class PlayerController : Unit
         {
             if (direction.y < 0)
             {
-                verticalVelocity += direction.y * airAcceleration;
+                verticalVelocity += direction.y * airAcceleration * 1.5f;
                 verticalVelocity = Mathf.Clamp(verticalVelocity, -maxDownardSpeed * 2, maxDownardSpeed * 2);
             }
             else
@@ -455,6 +548,7 @@ public class PlayerController : Unit
         }
     }
 
+    //LATE JUMP AND DASH
 
     private bool lateJump;
     public bool CheckLateJump()
@@ -494,6 +588,45 @@ public class PlayerController : Unit
     }
 
 
+    private bool lateDash;
+    public bool CheckLateDash()
+    {
+        return lateDash;
+    }
+
+    public void TryLateDash()
+    {
+        StopLateDash();
+        lateDashTimerCoroutine = StartCoroutine(LateDashTimer());
+    }
+
+    public void StopLateDash()
+    {
+        if (lateDashTimerCoroutine != null)
+        {
+            StopCoroutine(lateDashTimerCoroutine);
+        }
+        lateDash = false;
+    }
+
+    [SerializeField] private float lateDashTime = 0.25f;
+    private float lateDashTimer;
+    private Coroutine lateDashTimerCoroutine;
+    private IEnumerator LateDashTimer()
+    {
+        lateDashTimer = lateDashTime;
+        while (timer > 0)
+        {
+            lateDashTimer -= Time.deltaTime;
+            lateDash = true;
+            yield return new WaitForEndOfFrame();
+        }
+        lateDash = false;
+        yield return null;
+    }
+
+
+
 
     private int extraGroundedTimer;
     [SerializeField] private int coyoteJumpTime = 16;
@@ -518,6 +651,8 @@ public class PlayerController : Unit
             return false;
         }
     }
+
+
 
 
     public void GoToDialougeState()
@@ -612,7 +747,6 @@ public class PlayerController : Unit
             if (tempTrailObject == null) break;
             tempTrailObject.SetActive(true);
             tempTrailSpriteRenderer = tempTrailObject.GetComponent<SpriteRenderer>();
-            Debug.Log("Dropped trail!");
 
             tempTrailObject.transform.position = transform.position;
             tempTrailObject.transform.rotation = transform.rotation;

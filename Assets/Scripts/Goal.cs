@@ -109,7 +109,7 @@ public class Goal : MonoBehaviour
         keysToUnlock++;
     }
 
-
+    [SerializeField] private Animator doorFlashAnimator;
     private IEnumerator UnlockDoor()
     {
         //while(PlayerController.inst)
@@ -121,23 +121,39 @@ public class Goal : MonoBehaviour
         for(int i = 0; i < keys.Count; i++)
         {
             keys[i].DestroyKey();
+
+            //if(i == keys.Count - 1)
+            //{
+            //    Doorflash.SetActive(true);
+            //}
             yield return new WaitForSeconds(0.3f);
         }
 
 
         keys.Clear();
-
+        doorFlashAnimator.SetTrigger("FadeIn");
+        yield return new WaitForSecondsRealtime(0.11f);
         ServiceLocator.GetAudio().PlaySound("Player_Death", SoundType.interuptLast);
         ServiceLocator.GetTimeManagement().StopTimeforRealTimeSeconds(0.25f);
         yield return new WaitForSeconds(0.1f);
+        doorFlashAnimator.SetTrigger("FadeOut");
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.big);
-        ServiceLocator.GetScreenShake().StartScreenShake(2, 0.2f);
-        ServiceLocator.GetScreenShake().StartScreenFlash(0.1f, 1);
+        //ServiceLocator.GetScreenShake().StartScreenFlash(0.1f, 1);
+        ServiceLocator.GetScreenShake().StartScreenShake(10f, 0.2f);
         ServiceLocator.GetAudio().PlaySound("Player_Bounce", SoundType.interuptLast);
         spriteRenderer.sprite = openSprite;
 
+        yield return new WaitForSeconds(0.2f);
+
+        spriteRenderer.sortingOrder = 0;
+
+
+        
+
         //Can use this delay so you'll get enough time to see the door open
         //yield return new WaitForSeconds(0.2f);
+
+        yield return new WaitForSeconds(0.5f);
 
         unlocked = true;
     }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScreenFlashFx : MonoBehaviour
 {
-    [SerializeField] private RawImage overlayImage;
+    [SerializeField] private SpriteRenderer overlayImage;
 
     private float colorAlpha = 0;
 

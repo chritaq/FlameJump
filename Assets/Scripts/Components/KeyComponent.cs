@@ -48,7 +48,7 @@ public class KeyComponent : MonoBehaviour
     public void DestroyKey()
     {
         followPlayerOnCollision.following = false;
-        ServiceLocator.GetScreenShake().StartScreenShake(2f, 0.2f);
+        ServiceLocator.GetScreenShake().StartScreenShake(4f, 0.4f);
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.big);
 
         ServiceLocator.GetAudio().PlaySound("Player_Bounce", SoundType.interuptLast);

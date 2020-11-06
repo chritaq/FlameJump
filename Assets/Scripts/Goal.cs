@@ -100,6 +100,7 @@ public class Goal : MonoBehaviour
             spriteRenderer.sprite = lockedSprite;
         }
         keysCollected = 0;
+        keys.Clear();
     }
 
     public void AddKeysNeededForUnlock()

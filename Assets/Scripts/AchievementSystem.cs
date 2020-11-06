@@ -11,7 +11,6 @@ public class AchievementSystem : Observer
         //Used for testing:
         PlayerPrefs.DeleteAll();
 
-
         foreach (var pointOfInterest in FindObjectsOfType<PointOfInterest>())
         {
             pointOfInterest.AddObserver(this);

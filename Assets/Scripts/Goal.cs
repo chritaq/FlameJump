@@ -101,6 +101,9 @@ public class Goal : MonoBehaviour
         }
         keysCollected = 0;
         keys.Clear();
+        doorAnimator.SetBool("Shake", false);
+        doorEffectAnimator.SetBool("FadeIn", false);
+        doorEffectAnimator.SetBool("FadeOut", false);
     }
 
     public void AddKeysNeededForUnlock()
@@ -110,7 +113,8 @@ public class Goal : MonoBehaviour
         keysToUnlock++;
     }
 
-    [SerializeField] private Animator doorFlashAnimator;
+    [SerializeField] private Animator doorEffectAnimator;
+    [SerializeField] private Animator doorAnimator;
     private IEnumerator UnlockDoor()
     {
         //while(PlayerController.inst)
@@ -132,12 +136,15 @@ public class Goal : MonoBehaviour
 
 
         keys.Clear();
-        doorFlashAnimator.SetTrigger("FadeIn");
+        doorEffectAnimator.SetBool("FadeIn", true);
         yield return new WaitForSecondsRealtime(0.11f);
+        doorAnimator.SetBool("Shake", true);
         ServiceLocator.GetAudio().PlaySound("Player_Death", SoundType.interuptLast);
-        ServiceLocator.GetTimeManagement().StopTimeforRealTimeSeconds(0.25f);
+        ServiceLocator.GetTimeManagement().StopTimeforRealTimeSeconds(0.5f);
         yield return new WaitForSeconds(0.1f);
-        doorFlashAnimator.SetTrigger("FadeOut");
+        doorEffectAnimator.SetBool("FadeOut", true);
+        doorEffectAnimator.SetBool("FadeIn", false);
+        doorAnimator.SetBool("Shake", false);
         ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.big);
         //ServiceLocator.GetScreenShake().StartScreenFlash(0.1f, 1);
         ServiceLocator.GetScreenShake().StartScreenShake(10f, 0.2f);

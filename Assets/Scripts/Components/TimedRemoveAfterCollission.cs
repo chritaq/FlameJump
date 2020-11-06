@@ -9,7 +9,6 @@ public class TimedRemoveAfterCollission : MonoBehaviour
     [SerializeField] private bool respawnAfterTime = true;
     [SerializeField] private float respawnTime = 3f;
 
-
     private Collider2D collider;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Animator animator;
@@ -22,6 +21,7 @@ public class TimedRemoveAfterCollission : MonoBehaviour
         collider = GetComponent<Collider2D>();
     }
 
+
     private Coroutine removingCoroutine;
     public void StartRemoveAfterCollision()
     {
@@ -30,6 +30,7 @@ public class TimedRemoveAfterCollission : MonoBehaviour
             removing = true;
             StopActiveCoroutine();
             removingCoroutine = StartCoroutine(TimedRemove());
+            ServiceLocator.GetAudio().PlaySound("Block_Crumble", SoundType.normal);
         }
     }
 
@@ -57,6 +58,7 @@ public class TimedRemoveAfterCollission : MonoBehaviour
         ServiceLocator.GetScreenShake().StartScreenFlash(0.05f, 0.05f);
         collider.enabled = false;
         spriteRenderer.enabled = false;
+        ServiceLocator.GetAudio().PlaySound("Block_Destroyed", SoundType.normal);
 
         if (respawnAfterTime)
         {

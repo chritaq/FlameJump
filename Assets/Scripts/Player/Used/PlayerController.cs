@@ -268,8 +268,8 @@ public class PlayerController : Unit
 
     private void Update()
     {
-
         if (respawnFreeze) return;
+
         CoyoteJumpTimer();
 
         returnedState = currentState.Update(this, Time.deltaTime);
@@ -581,7 +581,7 @@ public class PlayerController : Unit
         {
             timer -= Time.deltaTime;
             lateJump = true;
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
         lateJump = false;
         yield return null;
@@ -619,7 +619,7 @@ public class PlayerController : Unit
         {
             lateDashTimer -= Time.deltaTime;
             lateDash = true;
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
         lateDash = false;
         yield return null;
@@ -628,8 +628,8 @@ public class PlayerController : Unit
 
 
 
-    private int extraGroundedTimer;
-    [SerializeField] private int coyoteJumpTime = 16;
+    private float extraGroundedTimer;
+    [SerializeField] private float coyoteJumpTime = 0.5f;
 
     public void CoyoteJumpTimer()
     {
@@ -637,7 +637,7 @@ public class PlayerController : Unit
         {
             extraGroundedTimer = coyoteJumpTime;
         }
-        extraGroundedTimer--;
+        extraGroundedTimer -= Time.deltaTime;
     }
 
     public bool CheckCoyoteJump()

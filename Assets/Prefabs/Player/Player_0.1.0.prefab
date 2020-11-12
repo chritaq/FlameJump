@@ -48266,7 +48266,7 @@ MonoBehaviour:
     m_Bits: 2304
   lateJumpTimer: 16
   lateDashTime: 0.25
-  coyoteJumpTime: 20
+  coyoteJumpTime: 0.2
   trailRate: 0.015
   trailObject: {fileID: 4389584964538320876, guid: 8fbb7179a7134e34fb0503bca003b4f7,
     type: 3}

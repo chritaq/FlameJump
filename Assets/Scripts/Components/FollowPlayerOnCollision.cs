@@ -9,12 +9,11 @@ public class FollowPlayerOnCollision : MonoBehaviour
 
     public GameObject followOtherObject;
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        if(following)
+        if (following)
         {
-            if(transformToFollow != null)
+            if (transformToFollow != null)
             {
                 Vector2 dir = (transformToFollow.position - transform.position);
                 transform.position += (new Vector3(dir.x, dir.y, 0) * speed);

@@ -256,10 +256,28 @@ Tilemap:
       m_ObjectToInstantiate: {fileID: 0}
       m_TileFlags: 1
       m_ColliderType: 1
+  - first: {x: 19, y: -6, z: 0}
+    second:
+      m_TileIndex: 74
+      m_TileSpriteIndex: 71
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
   - first: {x: 20, y: -6, z: 0}
     second:
       m_TileIndex: 73
       m_TileSpriteIndex: 70
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 0}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: 21, y: -6, z: 0}
+    second:
+      m_TileIndex: 75
+      m_TileSpriteIndex: 72
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -928,6 +946,10 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 9772de38841873845ab3d758641b19f0, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: ee451d6db047a35478ed79fca7169ec8, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 3a93aadcff1abac48a18264f7d63ca3d, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 54e3e716ef096744cae05ed3ce62b3d8, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 8375619264480416996, guid: 14b58b9116cf91a41b840cbef8838324,
@@ -1131,8 +1153,12 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: af868e290006b7442894c0a569f256dc, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 9eac9976e0d2b834a8ad3226c9af6d36, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: f162bc4d5e27ca84a8c820b278cf2307, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: e8fcbaf4de1ee6c46ad0858c2d61e730, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 74
+  - m_RefCount: 76
     m_Data:
       e00: 1
       e01: 0
@@ -1151,7 +1177,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 71
+  - m_RefCount: 73
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 1
     m_Data: {r: 0.9494149, g: 0.42397305, b: 0.56166893, a: 1}

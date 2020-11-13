@@ -51,9 +51,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TaqLevels/Taq10_Bouncy.unity
     guid: e44726d296d87a64c91a2a9845694ebb
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq06_PinPoint.unity
-    guid: 6221153a06e066548bcc97db472d0e16
-  - enabled: 1
     path: Assets/Scenes/TaqLevels/Taq07_LongFirePit.unity
     guid: cbc5e7df5249fc548bfbf8335b3a2d49
   - enabled: 1
@@ -68,7 +65,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TaqLevels/Taq12_GoingUpTheDisBlocks.unity
     guid: 106ae363bd270f048a49fb1dad1cef28
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TaqLevels/Taq13_SmallCorridors.unity
     guid: 499b0a9459d007044b9839764a851e01
   - enabled: 1

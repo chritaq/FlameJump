@@ -123,6 +123,8 @@ public class Goal : MonoBehaviour
             yield return null;
         }
 
+        float keyExplosionDelay = 0.3f;
+        float startExplosionDelay = keyExplosionDelay;
         for(int i = 0; i < keys.Count; i++)
         {
             keys[i].DestroyKey();
@@ -131,8 +133,19 @@ public class Goal : MonoBehaviour
             //{
             //    Doorflash.SetActive(true);
             //}
-            yield return new WaitForSeconds(0.3f);
+            keyExplosionDelay -= 0.08f;
+            if(keyExplosionDelay < 0.05)
+            {
+                yield return new WaitForSeconds(0.05f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(keyExplosionDelay);
+            }
+
         }
+
+        keyExplosionDelay = startExplosionDelay;
 
 
         keys.Clear();
@@ -161,7 +174,7 @@ public class Goal : MonoBehaviour
         //Can use this delay so you'll get enough time to see the door open
         //yield return new WaitForSeconds(0.2f);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         unlocked = true;
     }

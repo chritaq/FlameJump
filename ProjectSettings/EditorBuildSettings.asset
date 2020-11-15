@@ -66,7 +66,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TaqLevels/Taq12_GoingUpTheDisBlocks.unity
     guid: 106ae363bd270f048a49fb1dad1cef28
   - enabled: 0
-    path: Assets/Scenes/TaqLevels/Taq13_SmallCorridors.unity
+    path: 
     guid: 499b0a9459d007044b9839764a851e01
   - enabled: 1
     path: Assets/Scenes/TaqLevels/Taq14_QuickDash.unity
@@ -134,6 +134,42 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TaqLevels/Taq37_InTheAir.unity
     guid: 737a6eed1ba20d54296c668e0a438e9e
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq38_SimpleDisPit.unity
+    guid: b10e959ef226fc84aa88368531affb30
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq39_IsThisWallJump.unity
+    guid: 72a811d8467d52d469e04d5eada0c855
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq40_CoupleOfDisJumps.unity
+    guid: 28c497a4917867a4c8dfb5f88d5ca3d9
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq41_LittleHouseKey.unity
+    guid: c07436eca57c3ac4b8f65cb9fcd9d1a5
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq42_FlameThenWall.unity
+    guid: 386639e3b451bd442959a8e42eaadd79
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq43_WatchOutForFlames.unity
+    guid: a4b0f097f1bf84149bc1e9191484e525
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq44_DisMaw.unity
+    guid: 4b7690d5710448b4c854163555f2a23f
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq45_NormalFloatingPlatforms.unity
+    guid: 7061b00e5e587034d94c6cafc13deb58
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq46_EZPits.unity
+    guid: 93b1c46e520c5c44a9d6b1b7bfe4895c
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq47_EzDisBlocks.unity
+    guid: a189021c3151c9e4285fa2293aefe349
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq48_GetTheKey1.unity
+    guid: 6a096655d7ae98b4185ad9f870641758
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/Taq49_GetTheKey2.unity
+    guid: ec6e5d4da55e8704d8de75e314cbe641
   - enabled: 1
     path: Assets/Scenes/YouWin.unity
     guid: 65325b37ea9c4014ba1eba7cda476677

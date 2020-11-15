@@ -115,13 +115,16 @@ public class Goal : MonoBehaviour
 
     [SerializeField] private Animator doorEffectAnimator;
     [SerializeField] private Animator doorAnimator;
+    [SerializeField] private float distanceNeededForOpenDoor = 2f;
     private IEnumerator UnlockDoor()
     {
         //while(PlayerController.inst)
-        while (!playerController.CheckIfOnSafeGround())
+        while (!(playerController.CheckIfOnSafeGround() && Vector2.Distance(this.transform.position, playerController.transform.position) < distanceNeededForOpenDoor))
         {
+            Debug.Log("Distance was: " + Vector2.Distance(this.transform.position, playerController.transform.position));
             yield return null;
         }
+        Debug.Log("Distance was: " + Vector2.Distance(this.transform.position, playerController.transform.position));
 
         float keyExplosionDelay = 0.3f;
         float startExplosionDelay = keyExplosionDelay;

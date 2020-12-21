@@ -8,9 +8,10 @@ public class KillPlayerOnCollission : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("PlayerDeathCollider"))
         {
-            player = collision.GetComponent<PlayerController>();
+            //player = collision.GetComponent<PlayerController>();
+            player = collision.GetComponentInParent<PlayerController>();
             player.Kill();
         }
     }

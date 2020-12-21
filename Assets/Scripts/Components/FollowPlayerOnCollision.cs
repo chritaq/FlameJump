@@ -28,7 +28,7 @@ public class FollowPlayerOnCollision : MonoBehaviour
     Transform transformToFollow;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!following && collision.tag == "Player")
+        if (!following && collision.tag == "PickupCollider")
         {
             following = true;
             if(followOtherObject != null)

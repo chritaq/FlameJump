@@ -10,6 +10,9 @@ TagManager:
   - GameManager
   - ObserverSystems
   - Canvas
+  - PlayerDeathCollider
+  - PickupCollider
+  - Spikes
   layers:
   - Default
   - TransparentFX
@@ -23,7 +26,7 @@ TagManager:
   - Fire
   - 
   - ChangingGround
-  - 
+  - Spikes
   - 
   - 
   - 

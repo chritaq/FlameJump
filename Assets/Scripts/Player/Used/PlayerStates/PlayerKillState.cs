@@ -42,14 +42,18 @@ public class PlayerKillState : PlayerState
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0;
 
+        rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+
     }
 
     public override void Exit(PlayerController playerController)
     {
+
         Goal.instance.ResetDoorAndKeys();
         playerController.spriteAnimator.SetBool("Death", false);
         //ServiceLocator.GetScreenShake().StartTransition(25, false);
 
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.gravityScale = playerController.CheckInitialGravityScale();
         //Set playerpos to spawn
         playerController.transform.position = playerController.GetSpawnPosition();
@@ -62,6 +66,11 @@ public class PlayerKillState : PlayerState
         playerController.gameManager.ResetStage();
 
         playerController.StartCoroutine(playerController.RespawnFreeze());
+
+        playerController.activeVerticalCommand = PlayerController.PlayerVerticalCommands.Nothing;
+        playerController.activeHorizontalCommand = PlayerController.PlayerHorizontalCommands.Nothing;
+        playerController.activeActionCommand = PlayerController.PlayerActionCommands.Nothing;
+        playerController.activeMiscCommand = PlayerController.PlayerMiscCommands.Nothing;
 
     }
 

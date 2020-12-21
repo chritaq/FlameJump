@@ -205,11 +205,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6520050820159943848, guid: 2473d54d45108e444b41fca1ade3ffea,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8794217156819090441, guid: 2473d54d45108e444b41fca1ade3ffea,
         type: 3}
       propertyPath: vibrationTime
@@ -219,6 +214,11 @@ PrefabInstance:
         type: 3}
       propertyPath: vibrationAmount
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520050820159943848, guid: 2473d54d45108e444b41fca1ade3ffea,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2473d54d45108e444b41fca1ade3ffea, type: 3}
@@ -36352,7 +36352,7 @@ PrefabInstance:
     - target: {fileID: 8095976009912458929, guid: 451cf622d3edd5d43933b60e345f1c7b,
         type: 3}
       propertyPath: m_AnimatedTiles.Array.data[0].second.m_AnimationSpeed
-      value: 10.000001
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8095976009912458929, guid: 451cf622d3edd5d43933b60e345f1c7b,
         type: 3}

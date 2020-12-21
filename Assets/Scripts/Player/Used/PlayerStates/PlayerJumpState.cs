@@ -51,11 +51,16 @@ public class PlayerJumpState : PlayerState
         //Goes to lowjump if the player isn't pressing or holding down the jumpButton
         else if (rb.velocity.y > 0 && playerController.activeActionCommand != PlayerController.PlayerActionCommands.JumpHold && playerController.activeActionCommand != PlayerController.PlayerActionCommands.JumpTap)
         {
+            playerController.CheckForRoofSpike();
             rb.gravityScale = playerController.lowJumpMultiplier;
         }
 
         else
         {
+            if(rb.velocity.y > 0)
+            {
+                playerController.CheckForRoofSpike();
+            }
             rb.gravityScale = initialGravityScale;
         }
 

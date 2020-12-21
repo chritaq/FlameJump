@@ -161,7 +161,7 @@ public class PlayerController : Unit
                 ServiceLocator.GetGamepadRumble().StartGamepadRumble(GamepadRumbleProvider.RumbleSize.small);
                 ServiceLocator.GetAudio().PlaySound("Player_Land", SoundType.interuptLast);
                 heightAnimator.SetTrigger("Squash");
-                spriteAnimator.SetTrigger("Player_Land");
+                //spriteAnimator.SetTrigger("Player_Land");
             }
             dashCharges = 1;
             onGroundLastFrame = true;
@@ -240,6 +240,10 @@ public class PlayerController : Unit
 
     private void Start()
     {
+        activeActionCommand = PlayerActionCommands.Nothing;
+        activeHorizontalCommand = PlayerHorizontalCommands.Nothing;
+        activeMiscCommand = PlayerMiscCommands.Nothing;
+
         StartCoroutine(RespawnFreeze());
         gameManager = FindObjectOfType<GameManager>();
 
@@ -496,6 +500,7 @@ public class PlayerController : Unit
 
     [SerializeField] private Transform[] wallChecks;
     [SerializeField] private LayerMask wallLayerMask;
+    [SerializeField] private LayerMask spikeLayerMask;
     private void UpdateVelocity()
     {
         if(rb.velocity.x > 0)
@@ -521,7 +526,27 @@ public class PlayerController : Unit
         Debug.Log("Checking for wallhit");
         if (wallHits.Length > 0)
         {
+            Debug.Log("Hit wall");
+            horizontalVelocity = 0;
             movement = new Vector2(0, movement.y);
+            RaycastHit2D spikeHit = Physics2D.Linecast(this.transform.position, new Vector2(wallColliderHi.x, transform.position.y), spikeLayerMask);
+            if(spikeHit)
+            {
+                Debug.Log("Spike not hit");
+                Kill();
+            }
+
+        }
+    }
+
+    [SerializeField] private Transform roofCheck;
+    public void CheckForRoofSpike()
+    {
+        RaycastHit2D spikeHit = Physics2D.Linecast(this.transform.position, new Vector2(transform.position.x, roofCheck.position.y), spikeLayerMask);
+        if (spikeHit)
+        {
+            Debug.Log("Spike not hit");
+            Kill();
         }
     }
 

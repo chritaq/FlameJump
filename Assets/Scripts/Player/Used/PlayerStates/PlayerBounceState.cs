@@ -54,6 +54,10 @@ public class PlayerBounceState : PlayerState
             playerController.spriteAnimator.SetBool("JumpUp", false);
             rb.gravityScale = playerController.fallMultiplier;
         }
+        else if(rb.velocity.y > 0)
+        {
+            playerController.CheckForRoofSpike();
+        }
 
         return null;
     }

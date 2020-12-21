@@ -91,6 +91,10 @@ public class PlayerDashState : PlayerState
 
     public override PlayerState FixedUpdate(PlayerController playerController, float t)
     {
+        if(directionOfDash.y > 0)
+        {
+            playerController.CheckForRoofSpike();
+        }
         return null;
     }
 

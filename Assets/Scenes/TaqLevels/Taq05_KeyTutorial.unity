@@ -144,6 +144,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DisBlock_Pf
       objectReference: {fileID: 0}
+    - target: {fileID: 6515066984829390164, guid: be3517d4e7c827c43b691fd1413c43e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6515066984829390167, guid: be3517d4e7c827c43b691fd1413c43e7,
         type: 3}
       propertyPath: m_LocalPosition.x

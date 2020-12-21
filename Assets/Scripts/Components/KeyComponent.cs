@@ -24,7 +24,7 @@ public class KeyComponent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && !triggered)
+        if (collision.tag == "PickupCollider" && !triggered)
         {
             triggered = true;
 

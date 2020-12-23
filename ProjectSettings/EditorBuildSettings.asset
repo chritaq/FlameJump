@@ -9,166 +9,166 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: d03963ffe0801ab4881e58d9e8d498ef
   - enabled: 1
-    path: Assets/Scenes/Tutorials/Tutorial01.unity
+    path: Assets/Scenes/TaqLevels/Part1 - Flames & Jumps/_Tutorials/Tutorial01.unity
     guid: 0cbe4ffb92ba6084084ab88ddeba96ee
   - enabled: 1
-    path: Assets/Scenes/Tutorials/Tutorial_Fire1.unity
+    path: Assets/Scenes/TaqLevels/Part1 - Flames & Jumps/_Tutorials/Tutorial_Fire1.unity
     guid: a8ae41b2a9a553d4aa6bc0bb97066e46
   - enabled: 1
-    path: Assets/Scenes/Tutorials/Tutorial_Fire2.unity
+    path: Assets/Scenes/TaqLevels/Part1 - Flames & Jumps/_Tutorials/Tutorial_Fire2.unity
     guid: a553cb505b6cac2469e4f2cfc6455e75
   - enabled: 1
-    path: Assets/Scenes/Tutorials/Tutorial_Fire3.unity
+    path: Assets/Scenes/TaqLevels/Part1 - Flames & Jumps/_Tutorials/Tutorial_Fire3.unity
     guid: ccf62a4cf8a449f4ca65098dec047f7a
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq21_TwoEasyFlameJumps.unity
+    path: Assets/Scenes/TaqLevels/Part1 - Flames & Jumps/Taq21_TwoEasyFlameJumps.unity
     guid: e624a9956c14aee46bb6e5b648608878
   - enabled: 1
-    path: Assets/Scenes/RemadeLevels/RemadeLevel01.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/RemadeLevel01.unity
     guid: 4b52501b391bc5448be8fdc377b4418d
   - enabled: 1
-    path: Assets/Scenes/RemadeLevels/RemadeLevel02.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/RemadeLevel02.unity
     guid: 1bf0a70ddd407d14eb33fa2ba2131e9f
   - enabled: 1
-    path: Assets/Scenes/RemadeLevels/RemadeLevel03.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/RemadeLevel03.unity
     guid: 77ce712bcd5e4cb4e8e94d2e21d48aeb
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq05_KeyTutorial.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq05_KeyTutorial.unity
     guid: c8848bbfbf25cbd4eba2e4149eb688cd
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq01_Pillars.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq01_Pillars.unity
     guid: f8b5b94e3f51c6d489cfcb05079dda57
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq02_UpAndDownBounce.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq02_UpAndDownBounce.unity
     guid: 6649cba89fdf7a84d8acc70634bc72a8
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq03_DashingForward.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq03_DashingForward.unity
     guid: 478a9f7361f6a5547a7c11caf73318a1
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq04_TooHigh.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq04_TooHigh.unity
     guid: ffdf05bd67788234994e468c02d6e732
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq10_Bouncy.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq10_Bouncy.unity
     guid: e44726d296d87a64c91a2a9845694ebb
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq07_LongFirePit.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq07_LongFirePit.unity
     guid: cbc5e7df5249fc548bfbf8335b3a2d49
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq08_TightDisBlocks.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq08_TightDisBlocks.unity
     guid: f241c939e1d281f4f9a64f918597e9c1
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq09_DontTouchTheFire.unity
+    path: Assets/Scenes/TaqLevels/Part1 - Flames & Jumps/Taq09_DontTouchTheFire.unity
     guid: 28acc69d595aa0841846c0ae81b0828d
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq11_NastyPits.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq11_NastyPits.unity
     guid: 2bb62d543a3ebeb4dae8ecde4c2941e1
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq12_GoingUpTheDisBlocks.unity
+    path: Assets/Scenes/TaqLevels/Part3 - Disblocks/Taq12_GoingUpTheDisBlocks.unity
     guid: 106ae363bd270f048a49fb1dad1cef28
   - enabled: 0
     path: 
     guid: 499b0a9459d007044b9839764a851e01
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq14_QuickDash.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq14_QuickDash.unity
     guid: b416655ca4e1f33428b1801b80bd3bb0
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq15_UpNDown.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq15_UpNDown.unity
     guid: deb33deb4d7862047ac6163ab6647dc6
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq16_StairwayOfFlames.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq16_StairwayOfFlames.unity
     guid: 1610268f04a2d7448be7dfcdd114d09f
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq17_GoingUp.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq17_GoingUp.unity
     guid: 46a36e8773e00cc45b3fe9ed1acedda7
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq18_ClassicJump.unity
+    path: Assets/Scenes/TaqLevels/Part3 - Disblocks/Taq18_ClassicJump.unity
     guid: 706f63e8d12a2724b9921b95fdb29359
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq19_Labyrinth.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq19_Labyrinth.unity
     guid: cdcc62aedfcddb343bbb2bdc5677c8e2
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq20_SpikesNSpikes.unity
+    path: Assets/Scenes/TaqLevels/Part1 - Flames & Jumps/Taq20_SpikesNSpikes.unity
     guid: e697881a04f6f3b4ba8fb38b19dd68a9
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq22_Learn2Fall.unity
+    path: Assets/Scenes/TaqLevels/Part3 - Disblocks/Taq22_Learn2Fall.unity
     guid: ca319f12bbde2aa4e939a6194ee46ee9
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq23_TwoEasy.unity
+    path: Assets/Scenes/TaqLevels/Part1 - Flames & Jumps/Taq23_TwoEasy.unity
     guid: 679fe18398c6eb649a63cce3d0d376c1
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq24_RoundNBack.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq24_RoundNBack.unity
     guid: d1d18c8678e4f554eb6b9c321b04de84
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq25_DisJumps.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq25_DisJumps.unity
     guid: 0954ea106b09712449010de7bfa171fb
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq26_DiagonalKeys.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq26_DiagonalKeys.unity
     guid: b20846aadc1c6e245a5c7036c35b4e46
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq27_RightAndLeft.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq27_RightAndLeft.unity
     guid: 3d303fe52d8aa90469c7862c752e32b2
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq28_LongJumps.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq28_LongJumps.unity
     guid: af7c6d4c4459fc040a67e2d2449b46f1
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq29_Goingdown.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq29_Goingdown.unity
     guid: fe3238318899e6343b3710b3d0941c5f
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq30_LetThemDissapear.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq30_LetThemDissapear.unity
     guid: cb53ee95c95b36a4fb907aa70d77c36b
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq31_DashUp.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq31_DashUp.unity
     guid: b84735c96efe0224a82cd098c525a039
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq32_ZagZagDown.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq32_ZagZagDown.unity
     guid: 8eac898be5623a14b9a717eb18da2d28
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq33_CrawlNJump.unity
+    path: Assets/Scenes/TaqLevels/Part3 - Disblocks/Taq33_CrawlNJump.unity
     guid: d6a0796e0864c19499a92944b32eb32c
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq34_SteepKeys.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq34_SteepKeys.unity
     guid: f704aa95317445f43bb01736aa22555b
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq35_FlamingPillars.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq35_FlamingPillars.unity
     guid: d6aa5bc8994993b46b383df00801441e
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq37_InTheAir.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq37_InTheAir.unity
     guid: 737a6eed1ba20d54296c668e0a438e9e
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq38_SimpleDisPit.unity
+    path: Assets/Scenes/TaqLevels/Part3 - Disblocks/Taq38_SimpleDisPit.unity
     guid: b10e959ef226fc84aa88368531affb30
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq39_IsThisWallJump.unity
+    path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq39_IsThisWallJump.unity
     guid: 72a811d8467d52d469e04d5eada0c855
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq40_CoupleOfDisJumps.unity
+    path: Assets/Scenes/TaqLevels/Part3 - Disblocks/Taq40_CoupleOfDisJumps.unity
     guid: 28c497a4917867a4c8dfb5f88d5ca3d9
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq41_LittleHouseKey.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq41_LittleHouseKey.unity
     guid: c07436eca57c3ac4b8f65cb9fcd9d1a5
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq42_FlameThenWall.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq42_FlameThenWall.unity
     guid: 386639e3b451bd442959a8e42eaadd79
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq43_WatchOutForFlames.unity
+    path: Assets/Scenes/TaqLevels/Part1 - Flames & Jumps/Taq43_WatchOutForFlames.unity
     guid: a4b0f097f1bf84149bc1e9191484e525
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq44_DisMaw.unity
+    path: Assets/Scenes/TaqLevels/Part3 - Disblocks/Taq44_DisMaw.unity
     guid: 4b7690d5710448b4c854163555f2a23f
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq45_NormalFloatingPlatforms.unity
+    path: Assets/Scenes/TaqLevels/Part1 - Flames & Jumps/Taq45_NormalFloatingPlatforms.unity
     guid: 7061b00e5e587034d94c6cafc13deb58
   - enabled: 1
     path: Assets/Scenes/TaqLevels/Taq46_EZPits.unity
     guid: 93b1c46e520c5c44a9d6b1b7bfe4895c
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq47_EzDisBlocks.unity
+    path: Assets/Scenes/TaqLevels/Part3 - Disblocks/Taq47_EzDisBlocks.unity
     guid: a189021c3151c9e4285fa2293aefe349
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq48_GetTheKey1.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq48_GetTheKey1.unity
     guid: 6a096655d7ae98b4185ad9f870641758
   - enabled: 1
-    path: Assets/Scenes/TaqLevels/Taq49_GetTheKey2.unity
+    path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq49_GetTheKey2.unity
     guid: ec6e5d4da55e8704d8de75e314cbe641
   - enabled: 1
     path: Assets/Scenes/YouWin.unity

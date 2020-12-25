@@ -17,6 +17,7 @@ public class MenuController : MonoBehaviour
     public GameObject audioMenuObject;
     public GameObject controllersMenuObject;
     public GameObject startGameMenuObject;
+    public GameObject continueObject;
 
     public float longMenuTransitionTime = 2f;
     public float shortMenuTransitionTime = 0.1f;
@@ -130,6 +131,7 @@ public class MenuController : MonoBehaviour
 
     private GameObject selectedInMenu1;
     private GameObject selectedInMenu2;
+
     private void SetMenuAboveButton()
     {
         if(selectedInMenu1 == null)

@@ -10,11 +10,17 @@ public class MenuStartGameState : MenuState
         Debug.Log("Entered menustargame state");
         menuController.SetAboveState(new MenuMainState());
         menuController.startGameMenuObject.SetActive(true);
+        Debug.Log("Saved stage was: " + PlayerPrefs.GetInt("savedStage"));
+        if(PlayerPrefs.GetInt("savedStage") > 0)
+        {
+            menuController.continueObject.SetActive(true);
+        }
     }
 
     public override void Exit(MenuController menuController)
     {
         menuController.startGameMenuObject.SetActive(false);
+        menuController.continueObject.SetActive(false);
     }
 
     public override MenuState Update(MenuController menuController, float t)

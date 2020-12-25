@@ -53,10 +53,14 @@ public class GameManager : MonoBehaviour
 
         ServiceLocator.ProvideScreenShake(new ScreenShakeProvider());
         ServiceLocator.GetScreenShake().GetCamera();
-        //Gör så en fadein görs i början av varje scen. Bör inte vara här?
+
         if(level != 0)
         {
+            //Gör så en fadein görs i början av varje scen. Bör inte vara här?
             ServiceLocator.GetScreenShake().StartSwipe(false);
+
+            PlayerPrefs.SetInt("savedStage", level);
+            Debug.Log("SavedStage set to: " + PlayerPrefs.GetInt("savedStage"));
         }
 
         //StartTransition(100, false);

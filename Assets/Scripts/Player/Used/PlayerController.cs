@@ -263,7 +263,6 @@ public class PlayerController : Unit
     private void Start()
     {
 
-
         activeActionCommand = PlayerActionCommands.Nothing;
         activeHorizontalCommand = PlayerHorizontalCommands.Nothing;
         activeMiscCommand = PlayerMiscCommands.Nothing;

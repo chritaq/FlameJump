@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384dc2f319fca834aad1e5d1432d1f88, type: 3}
+  m_Name: IntroDialog2
+  m_EditorClassIdentifier: 
+  character1:
+    value: {fileID: 11400000, guid: 044978d096997b64690a2cca4488de7b, type: 2}
+  character2:
+    value: {fileID: 11400000, guid: b5cf38dec1a920542bc3d513c8a530ba, type: 2}
+  character3:
+    value: {fileID: 0}
+  character4:
+    value: {fileID: 0}
+  character5:
+    value: {fileID: 0}
+  sentences:
+  - character: 0
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 1
+    sentence: ?????
+  - character: 1
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 1
+    sentence: "Heaven I don\u2019t know much about to be honest... "
+  - character: 1
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 1
+    sentence: But Limbo is finite.
+  - character: 1
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 1
+    sentence: '.... while hell is eternal'
+  - character: 1
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 1
+    sentence: "So, going to hell means you\u2019re screwed, while there\u2019s always
+      a way out of Limbo."
+  - character: 1
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 1
+    sentence: Look

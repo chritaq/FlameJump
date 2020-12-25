@@ -48,8 +48,10 @@ public class PlayerKillState : PlayerState
 
     public override void Exit(PlayerController playerController)
     {
-
-        Goal.instance.ResetDoorAndKeys();
+        if(Goal.instance != null)
+        {
+            Goal.instance.ResetDoorAndKeys();
+        }
         playerController.spriteAnimator.SetBool("Death", false);
         //ServiceLocator.GetScreenShake().StartTransition(25, false);
 

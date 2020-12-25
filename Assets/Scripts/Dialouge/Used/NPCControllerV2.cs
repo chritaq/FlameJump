@@ -13,6 +13,7 @@ public class NPCControllerV2 : MonoBehaviour
     [SerializeField] private float xDistanceBeforeDialogeCanBeActive;
     private float yDistanceBeforeDialogeCanBeActive = 0.5f;
 
+    [SerializeField] private GameObject interactObject;
 
 
     [Header("Camera Zoom")]
@@ -38,10 +39,22 @@ public class NPCControllerV2 : MonoBehaviour
         yDistance = Mathf.Abs(transform.position.y - player.transform.position.y);
         if (xDistance < xDistanceBeforeDialogeCanBeActive && yDistance < yDistanceBeforeDialogeCanBeActive)
         {
+            if(!dialougeManager.CheckInDialouge())
+            {
+                interactObject.SetActive(true);
+            }
+            else
+            {
+                interactObject.SetActive(false);
+            }
             if (player.activeMiscCommand == PlayerController.PlayerMiscCommands.Dialouge && player.readCurrentPlayerState().GetType() == new PlayerIdleState().GetType())
             {
                 StartDialouge();
             }
+        }
+        else
+        {
+            interactObject.SetActive(false);
         }
     }
 
@@ -126,5 +139,11 @@ public class NPCControllerV2 : MonoBehaviour
         player.GoToDialougeState();
         dialougeManager.StartDialougeV2(dialouge);
         StartCoroutine(WaitUntilDialougeIsDoneToZoomOut());
+    }
+
+    public void StartCutsceneDialog()
+    {
+        player.GoToCutsceneDialougeState();
+        dialougeManager.StartDialougeV2(dialouge);
     }
 }

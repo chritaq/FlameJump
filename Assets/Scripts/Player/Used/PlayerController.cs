@@ -104,7 +104,17 @@ public class PlayerController : Unit
         StateSwap();
     }
 
+    public void GoToCutsceneState()
+    {
+        returnedState = new PlayerCutsceneState();
+        StateSwap();
+    }
 
+    public void GoToIdleState()
+    {
+        returnedState = new PlayerIdleState();
+        StateSwap();
+    }
 
     
     public override void Bounce()
@@ -237,15 +247,29 @@ public class PlayerController : Unit
     [HideInInspector] public enum PlayerMiscCommands {Nothing, Dialouge };
     [HideInInspector] public PlayerMiscCommands activeMiscCommand;
 
+    public static PlayerController playerInstance;
+
+    private void Awake()
+    {
+        if (playerInstance != null)
+        {
+            Destroy(playerInstance.gameObject);
+        }
+        playerInstance = this;
+
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     private void Start()
     {
+
+
         activeActionCommand = PlayerActionCommands.Nothing;
         activeHorizontalCommand = PlayerHorizontalCommands.Nothing;
         activeMiscCommand = PlayerMiscCommands.Nothing;
 
         StartCoroutine(RespawnFreeze());
-        gameManager = FindObjectOfType<GameManager>();
+
 
         spawnPosition = GameObject.FindGameObjectWithTag("SpawnPosition");
 
@@ -272,7 +296,8 @@ public class PlayerController : Unit
 
     private void Update()
     {
-        if (respawnFreeze) return;
+
+        if (respawnFreeze || gameManager.gameState == GameManager.GameState.cutscene) return;
 
         CoyoteJumpTimer();
 
@@ -319,7 +344,7 @@ public class PlayerController : Unit
     
     private void FixedUpdate()
     {
-        if (respawnFreeze) return;
+        if (respawnFreeze || gameManager.gameState == GameManager.GameState.cutscene) return;
 
         returnedState = currentState.FixedUpdate(this, Time.deltaTime);
         if (canMove)
@@ -683,6 +708,12 @@ public class PlayerController : Unit
     public void GoToDialougeState()
     {
         returnedState = new PlayerDialougeState();
+        StateSwap();
+    }
+
+    public void GoToCutsceneDialougeState()
+    {
+        returnedState = new PlayerCutsceneDialougeState();
         StateSwap();
     }
 

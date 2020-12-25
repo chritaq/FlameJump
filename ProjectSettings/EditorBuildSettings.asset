@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: d03963ffe0801ab4881e58d9e8d498ef
   - enabled: 1
+    path: Assets/Scenes/TaqLevels/_IntroRoom.unity
+    guid: baf9d4c634e9bbe4daabde514d3cabdb
+  - enabled: 1
     path: Assets/Scenes/TaqLevels/Part1 - Flames & Jumps/_Tutorials/Tutorial01.unity
     guid: 0cbe4ffb92ba6084084ab88ddeba96ee
   - enabled: 1
@@ -65,9 +68,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TaqLevels/Part3 - Disblocks/Taq12_GoingUpTheDisBlocks.unity
     guid: 106ae363bd270f048a49fb1dad1cef28
-  - enabled: 0
-    path: 
-    guid: 499b0a9459d007044b9839764a851e01
   - enabled: 1
     path: Assets/Scenes/TaqLevels/Part2 - Soulcoins/Taq14_QuickDash.unity
     guid: b416655ca4e1f33428b1801b80bd3bb0
@@ -170,6 +170,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TaqLevels/Part4 - Keys/Taq49_GetTheKey2.unity
     guid: ec6e5d4da55e8704d8de75e314cbe641
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/_EndRoom_White.unity
+    guid: ec5152f57f56cac41968d035019167b0
+  - enabled: 1
+    path: Assets/Scenes/TaqLevels/_EndRoom_Hell.unity
+    guid: 337788fd3f1f1794eb50efd9a85d75f7
   - enabled: 1
     path: Assets/Scenes/YouWin.unity
     guid: 65325b37ea9c4014ba1eba7cda476677

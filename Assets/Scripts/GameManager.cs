@@ -11,6 +11,14 @@ public class GameManager : MonoBehaviour
     private KeyComponent[] keyObjects;
     private TimedRemoveAfterCollission[] timedRemoveObjects;
 
+    [HideInInspector] public enum GameState
+    {
+        normal,
+        cutscene
+    }
+
+    [HideInInspector] public GameState gameState = GameState.normal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +46,7 @@ public class GameManager : MonoBehaviour
     private void OnLevelWasLoaded(int level)
     {
         //Fullösning, måste fixas!
-        if(level == 1)
+        if(level == 2)
         {
             ServiceLocator.GetAudio().PlayMusic("Music_Gameplay01");
         }

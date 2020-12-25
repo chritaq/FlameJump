@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384dc2f319fca834aad1e5d1432d1f88, type: 3}
+  m_Name: IntroDialog3
+  m_EditorClassIdentifier: 
+  character1:
+    value: {fileID: 11400000, guid: 044978d096997b64690a2cca4488de7b, type: 2}
+  character2:
+    value: {fileID: 11400000, guid: b5cf38dec1a920542bc3d513c8a530ba, type: 2}
+  character3:
+    value: {fileID: 11400000, guid: 2c3ce117ca80a8a45aac4566725c7fdf, type: 2}
+  character4:
+    value: {fileID: 0}
+  character5:
+    value: {fileID: 0}
+  sentences:
+  - character: 1
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 1
+    sentence: "You see those doors over there? Just keep walking through them. That\u2019s
+      as far as I can show you."
+  - character: 0
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 1
+    sentence: "Thanks, so what\u2019s your name?"
+  - character: 2
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 1
+    sentence: People usually just call me The Watcher
+  - character: 2
+    emotionSprite: {fileID: 0}
+    leftSide: 0
+    wordingStyle: 0
+    textSpeedMultiplier: 0
+    lockInput: 1
+    sentence: Good luck out there

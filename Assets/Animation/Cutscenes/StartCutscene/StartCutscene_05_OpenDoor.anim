@@ -513,6 +513,13 @@ AnimationClip:
     floatParameter: 20
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: PlayAudio
+    data: Player_Bounce
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.98333335
     functionName: TriggerEvent
     data: 

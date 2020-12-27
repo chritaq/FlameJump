@@ -27,6 +27,13 @@ public class MenuController : MonoBehaviour
         eventSystem = EventSystem.current;
         currentState = new MenuMainState();
         currentState.Enter(this);
+        StartCoroutine(PlayMusicDelay());
+    }
+
+    private IEnumerator PlayMusicDelay()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        ServiceLocator.GetAudio().PlayMusic("Music_Menu");
     }
 
     private void Update()
@@ -66,11 +73,14 @@ public class MenuController : MonoBehaviour
     public void NewGame()
     {
         ChangeState(new MenuNewGameState());
+        ServiceLocator.GetAudio().FadeOutMusic("Music_Menu");
+        //ServiceLocator.GetAudio()
     }
 
     public void Continue()
     {
         ChangeState(new MenuContinueState());
+        ServiceLocator.GetAudio().FadeOutMusic("Music_Menu");
     }
 
     public void GoBack()

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class NullAudioProvider : IAudioService
 {
+    public void FadeOutMusic(string musicID)
+    {
+    }
+
     public void LoadSounds()
     {
     }
@@ -19,10 +23,13 @@ public class NullAudioProvider : IAudioService
 
     public void PlaySound(string soundID, SoundType soundType)
     {
-        throw new System.NotImplementedException();
     }
 
     public void StopAll()
+    {
+    }
+
+    public void StopMusic(string musicID)
     {
     }
 

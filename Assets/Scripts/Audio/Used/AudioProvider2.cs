@@ -25,7 +25,12 @@ public class AudioProvider2 : IAudioService
     private List<MusicFile> musicfiles = new List<MusicFile>();
     Dictionary<string, MusicFile> musicDictionary = new Dictionary<string, MusicFile>();
 
-    
+    private MusicFile CreateMusicFileObjects()
+    {
+        GameObject musicFileObject = new GameObject("MusicFile");
+        MusicFile newMusicFile = musicFileObject.AddComponent<MusicFile>();
+        return newMusicFile;
+    }
 
     public void LoadSounds()
     {
@@ -224,6 +229,47 @@ public class AudioProvider2 : IAudioService
             return;
         }
 
+        musicDictionary[musicID] = musicFile;
+
+    }
+
+    public void StopMusic(string musicID)
+    {
+        MusicFile musicFile;
+
+        if (musicDictionary.ContainsKey(musicID))
+        {
+            musicFile = musicDictionary[musicID];
+            DebugLogger("Got music in provider: " + musicDictionary[musicID].musicFileData.name);
+        }
+        else
+        {
+            DebugLogger("No music with name " + musicID);
+            return;
+        }
+
+        for(int i = 0; i < musicFile.audioSources.Length; i++)
+        {
+            musicFile.audioSources[i].Stop();
+        }
+    }
+
+    public void FadeOutMusic(string musicID)
+    {
+        MusicFile musicFile;
+
+        if (musicDictionary.ContainsKey(musicID))
+        {
+            musicFile = musicDictionary[musicID];
+            DebugLogger("Got music in provider: " + musicDictionary[musicID].musicFileData.name);
+        }
+        else
+        {
+            DebugLogger("No music with name " + musicID);
+            return;
+        }
+
+        musicFile.FadeOutMusic();
     }
 
     private AudioSource GetAvaliableAudioSource()

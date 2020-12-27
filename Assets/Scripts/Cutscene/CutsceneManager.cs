@@ -32,6 +32,21 @@ public class CutsceneManager : MonoBehaviour
         ServiceLocator.GetAudio().PlaySound(audioToPlay, SoundType.normal);
     }
 
+    public void PlayMusic(string musicToPlay)
+    {
+        ServiceLocator.GetAudio().PlayMusic(musicToPlay);
+    }
+
+    public void StopMusic(string musicToPlay)
+    {
+        ServiceLocator.GetAudio().StopMusic(musicToPlay);
+    }
+
+    public void FadeOutMusic(string musicToFade)
+    {
+        ServiceLocator.GetAudio().FadeOutMusic(musicToFade);
+    }
+
     public void TriggerEvent(int triggerEventIndex)
     {
         eventsToTrigger[triggerEventIndex].Trigger();

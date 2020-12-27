@@ -11,6 +11,9 @@ public interface IAudioService
     /// This stops all sound
     /// </summary>
     /// <param name="soundID">the ID of the soundclip (aka name)</param>
+    /// 
+    void StopMusic(string musicID);
+    void FadeOutMusic(string musicID);
     void StopSound(string soundID);
     void StopAll();
 }

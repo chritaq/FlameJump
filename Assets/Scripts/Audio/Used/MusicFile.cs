@@ -9,6 +9,11 @@ public class MusicFile : MonoBehaviour
 
     public AudioSource[] audioSources;
 
+    private void Start()
+    {
+        
+    }
+
     public MusicFile(MusicFileData musicFileDataToAdd)
     {
         musicFileData = musicFileDataToAdd;
@@ -46,6 +51,15 @@ public class MusicFile : MonoBehaviour
         
         return musicFileData.audioMixerGroup;
     }
+
+    public void FadeOutMusic()
+    {
+        GameObject FadeoutObject = new GameObject("fadeout");
+        FadeOutMusic fadeOutScript = FadeoutObject.AddComponent<FadeOutMusic>();
+        fadeOutScript.StartFadeOut(audioSources);
+    }
+
+    
 
     //Get track
     //Etc

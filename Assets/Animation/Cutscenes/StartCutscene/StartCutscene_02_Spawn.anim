@@ -146,6 +146,20 @@ AnimationClip:
     floatParameter: 20
     intParameter: 0
     messageOptions: 0
+  - time: 0.85
+    functionName: PlayMusic
+    data: Music_Intro
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.85
+    functionName: PlayAudio
+    data: Player_Bounce
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 3.9666667
     functionName: TriggerEvent
     data: 
